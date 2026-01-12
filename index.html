@@ -302,6 +302,57 @@
             color: #3730a3;
         }
 
+        .badge.virtual {
+            background-color: #ecfeff;
+            color: #0891b2;
+            border: 1px solid #cffafe;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
+
+        /* Virtual Tour Special Button */
+        .virtual-tour-link {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%) !important;
+            border: 1px solid #bae6fd !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .virtual-tour-link:hover {
+            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%) !important;
+            color: white !important;
+            border-color: #2563eb !important;
+        }
+
+        .virtual-tour-link .quick-link-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.25rem;
+        }
+
+        .pulse {
+            animation: pulse-animation 2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes pulse-animation {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 0 rgba(14, 165, 233, 0.7));
+            }
+
+            70% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0));
+            }
+
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 0 rgba(14, 165, 233, 0));
+            }
+        }
+
         /* Category Card */
         .category-card {
             background-color: var(--bg-card);
@@ -483,6 +534,13 @@
                 <a href="Simject_Assembly_Flowchart.html" class="quick-link">
                     <span class="quick-link-icon">⚙️</span>
                     Assembly Flowchart
+                </a>
+                <a href="assets/images/Summed%20Anji.mp4" class="quick-link virtual-tour-link">
+                    <span class="quick-link-icon pulse">🎥</span>
+                    <div class="quick-link-text">
+                        <span class="badge virtual">Virtual</span>
+                        Anji Plant Tour
+                    </div>
                 </a>
             </div>
 
@@ -699,6 +757,7 @@
             <div class="footer-links">
                 <a href="Summed_Org_Chart.html">Organization Chart</a>
                 <a href="Simject_Assembly_Flowchart.html">Assembly Flowchart</a>
+                <a href="assets/images/Summed%20Anji.mp4">Anji Plant Tour</a>
             </div>
             <p>&copy; 2026 Summed Medtech 森迈医疗. All rights reserved.</p>
             <p style="margin-top: 0.5rem; font-size: 0.8rem;">
