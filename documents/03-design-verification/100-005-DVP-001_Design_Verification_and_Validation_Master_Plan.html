@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Verification and Validation Master Plan - 100-005-DVP-001</title>
+    <link rel="stylesheet" href="../../assets/css/summed-medtech-docs.css">
+</head>
+
+<body>
+    <div class="a4-container">
+
+        <div class="header-section">
+            <img src="../../assets/images/Summed logo.png" alt="Summed Medtech 森迈医疗" class="company-logo"
+                style="width: 80% !important; max-width: 306px !important; height: auto !important;">
+            <div class="document-meta">
+                <div><strong>Document No.:</strong> 100-005-DVP-001</div>
+                <div><strong>Revision:</strong> 1.0</div>
+            </div>
+        </div>
+
+        <h1>Design Verification and Validation Master Plan (V/VMP)</h1>
+
+        <table class="doc-info-table">
+            <tr>
+                <td width="20%"><strong>Project Name:</strong></td>
+                <td colspan="3">Simject-030 Adrenaline (Adult) Project by LBE Pharma</td>
+            </tr>
+            <tr>
+                <td><strong>Project Code:</strong></td>
+                <td>SM100-005</td>
+                <td width="20%"><strong>Product Code:</strong></td>
+                <td>AISI104</td>
+            </tr>
+            <tr>
+                <td><strong>Project Manager:</strong></td>
+                <td>Linda He</td>
+                <td><strong>R&D Engineer:</strong></td>
+                <td>Zoey Chai</td>
+            </tr>
+            <tr>
+                <td><strong>Document No.:</strong></td>
+                <td>100-005-DVP-001</td>
+                <td><strong>Revision:</strong></td>
+                <td>1.0</td>
+            </tr>
+        </table>
+
+        <!-- Signature Table -->
+        <table class="signature-table">
+            <tr>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">/s/ Zoey Chai</div>
+                        <div class="signature-title">QC Operator</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Prepared by</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">/s/ Grace Xue</div>
+                        <div class="signature-title">RA Director</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Reviewed by</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">/s/ Kevin Lo</div>
+                        <div class="signature-title">RD Director</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Approved by</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>1. Purpose</h2>
+        <p>The purpose of this Design Verification and Validation Master Plan (V/VMP) is to document the required tests
+            for a formal product related project. This plan lists which tests shall be conducted by SUMMED for design,
+            process and user V/V, as required by the FDA Quality System Regulation (21 CFR 820) and ISO 13485:2016. This
+            V/VMP is designed for the medical device constituent of a combination product.</p>
+        <p>The Verification and Validation activities are driven from input approved at Design Review:</p>
+        <ul>
+            <li>The Design Input Requirement (DIR), document no. SM100-005-DIR-001.</li>
+            <li>The User Requirement Specification (URS), document no. 100-005-URS-001.</li>
+            <li>Product Requirement Specification document no. 100-005-PRS-001.</li>
+            <li>Risk Assessment for Management plan, and FMEA (DFMEA, PFMEA).</li>
+        </ul>
+
+        <h2>2. Responsibilities</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th width="30%">Role</th>
+                    <th>Responsibilities</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Project Leader</strong></td>
+                    <td>Responsible for modifying this plan to include all required tests for the device that requires
+                        V/V.</td>
+                </tr>
+                <tr>
+                    <td><strong>Validation Manager</strong></td>
+                    <td>Responsible for reviewing the test data and the report. Coordinate with test team analysts for
+                        validation test.</td>
+                </tr>
+                <tr>
+                    <td><strong>Validation Analyst</strong></td>
+                    <td>Responsible for supporting/performing the test of the samples.</td>
+                </tr>
+                <tr>
+                    <td><strong>R&D Engineer</strong></td>
+                    <td>Responsible for reviewing the master plan.</td>
+                </tr>
+                <tr>
+                    <td><strong>PD Production Team</strong></td>
+                    <td>Responsible for arranging the production plan, preparing samples, and set-up of manufacturing
+                        equipment.</td>
+                </tr>
+                <tr>
+                    <td><strong>RA Team</strong></td>
+                    <td>Supporting the validation process in meeting applicable regulatory standards.</td>
+                </tr>
+                <tr>
+                    <td><strong>QC Team</strong></td>
+                    <td>Installation, set-up, and equipment acceptance of testing equipment.</td>
+                </tr>
+                <tr>
+                    <td><strong>QA Manager</strong></td>
+                    <td>Reviewing verification activities to ensure system requirements are met.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>3. Definitions</h2>
+        <ul>
+            <li><strong>Design Validation:</strong> Establishing by objective evidence that device specifications
+                conform to user needs and intended use(s). Completed under actual or simulated use conditions.</li>
+            <li><strong>Design Verification:</strong> Establishing by objective evidence confirming that the design
+                output meets the design input requirements.</li>
+            <li><strong>Process Validation:</strong> Demonstrating that a process when operated within specified limits
+                results in product complying with requirements.</li>
+            <li><strong>Tool/Equipment Validation:</strong> Checking that a tool or equipment meets specifications and
+                fulfills its intended purpose.</li>
+        </ul>
+
+        <div class="page-break"></div>
+
+        <h2>4. Relevant Standards and Regulations</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th width="20%">Region</th>
+                    <th width="30%">No. / Standard</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="4">International</td>
+                    <td>ISO 13485:2016</td>
+                    <td>Medical devices - Quality management systems</td>
+                </tr>
+                <tr>
+                    <td>ISO 14971:2019</td>
+                    <td>Application of risk management to medical devices</td>
+                </tr>
+                <tr>
+                    <td>ISO 11608-1:2022</td>
+                    <td>Needle-based injection systems for medical use - Part 1</td>
+                </tr>
+                <tr>
+                    <td>ISO 10993-1:2018</td>
+                    <td>Biological evaluation of medical devices - Part 1</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">China</td>
+                    <td>GB/T 42061-2022</td>
+                    <td>Medical device QMS requirements for regulatory purposes</td>
+                </tr>
+                <tr>
+                    <td>GB/T 42062-2022</td>
+                    <td>Application of risk management to medical devices</td>
+                </tr>
+                <tr>
+                    <td>YY/T 1768.1-2021</td>
+                    <td>Needle-based injection systems - Part 1</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>5. Verification and Validation Test Matrix</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Test Item</th>
+                    <th>Sample Quantity</th>
+                    <th>Total Samples</th>
+                    <th>Time (Days)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Functional Testing</td>
+                    <td>30</td>
+                    <td rowspan="5">2520</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Reliability Testing (Transport, Free Fall, Vibration)</td>
+                    <td>70</td>
+                    <td>40</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Stability testing (Accelerated & Real-time)</td>
+                    <td>1800</td>
+                    <td>932</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Biocompatibility Evaluation</td>
+                    <td>60</td>
+                    <td>60</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Marking, Labeling, and IFU Review</td>
+                    <td>/</td>
+                    <td>7</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>6. Approval and Revision History</h2>
+        <table class="revision-table">
+            <thead>
+                <tr>
+                    <th width="15%">Revision</th>
+                    <th width="25%">Date</th>
+                    <th width="30%">Prepared</th>
+                    <th width="15%">Reviewed</th>
+                    <th width="15%">Approved</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.0</td>
+                    <td>2025.11.27</td>
+                    <td>Zoey Chai</td>
+                    <td>Grace Xue</td>
+                    <td>Kevin Lo</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <p>Data Integrity Statement: This digital signature is the legally binding equivalent of a traditional
+                handwritten signature.</p>
+            <p>Summed Medtech 森迈医疗 | Document No.: 100-005-DVP-001 | Revision: 1.0 | Effective Date: 2025.11.27</p>
+        </div>
+
+    </div>
+</body>
+
+</html>

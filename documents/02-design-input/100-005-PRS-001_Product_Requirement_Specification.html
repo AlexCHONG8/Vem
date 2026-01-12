@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Requirement Specification - 100-005-PRS-001</title>
+    <link rel="stylesheet" href="../../assets/css/summed-medtech-docs.css">
+</head>
+<body><div class="a4-container">
+
+    <div class="header-section">
+    <img src="../../assets/images/Summed logo.png" alt="Summed Medtech 森迈医疗" class="company-logo" style="width: 80% !important; max-width: 300px !important; height: auto !important;">
+        <div class="document-meta">
+            <div><strong>Document No.:</strong> 100-005-PRS-001</div>
+            <div><strong>Revision:</strong> 1.0</div>
+        </div>
+    </div>
+
+    <h1>Product Requirement Specification (PRS)</h1>
+
+    <table class="doc-info-table">
+        <tr>
+            <td width="25%"><strong>Product Name:</strong></td>
+            <td colspan="3">Simject Epinephrine Auto-Injector (Adult Model)</td>
+        </tr>
+        <tr>
+            <td><strong>Project No.:</strong></td>
+            <td colspan="3">SM100-005</td>
+        </tr>
+        <tr>
+            <td><strong>Document No.:</strong></td>
+            <td>100-005-PRS-001</td>
+            <td><strong>Revision:</strong></td>
+            <td>1.0</td>
+        </tr>
+        <tr>
+            <td><strong>Effective Date:</strong></td>
+            <td colspan="3">2024.11.11</td>
+        </tr>
+    </table>
+
+    <!-- Signature Table - Horizontal 3-Person Format -->
+    <table class="signature-table">
+        <tr>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">ZZ Huang</div>
+                    <div class="signature-title">Issued by</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Prepared by</div>
+                </div>
+            </td>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">Nic Weng</div>
+                    <div class="signature-title">R&D Engineer</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Reviewed by</div>
+                </div>
+            </td>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">Kevin Lo</div>
+                    <div class="signature-title">R&D Director</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Approved by</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>1. Device Drawing</h2>
+
+    <div class="note-box">
+        <p><strong>Component List:</strong></p>
+        <ol>
+            <li>Rear Cover</li>
+            <li>Actuation Rod</li>
+            <li>Sleeve</li>
+            <li>Push Rod</li>
+            <li>Push Rod Spring</li>
+            <li>Barrel</li>
+            <li>Extended Barrel</li>
+            <li>Cap</li>
+            <li>Needle Shield</li>
+            <li>Syringe Barrel Sleeve</li>
+            <li>Washer Ring</li>
+            <li>PFS and Stopper (Pre-filled Syringe)</li>
+            <li>Needle Shield Spring</li>
+        </ol>
+    </div>
+
+    <h2>2. Product Specifications</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th width="8%">No.</th>
+                <th width="15%">Item</th>
+                <th width="32%">Requirements</th>
+                <th width="25%">Acceptable Criteria</th>
+                <th width="20%">Standard/Reference</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Dimension</td>
+                <td>Outer dimensions: 21.2 × 21.8 mm<br>Total length: 165 mm</td>
+                <td>Outer dimensions: 21.2±0.2 mm × 21.8±0.2 mm<br>Total length: 165±0.5 mm</td>
+                <td>URS/Summed Internal</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Appearance</td>
+                <td>Color: PANTONE 2035C</td>
+                <td>PANTONE 2035C</td>
+                <td>Summed Internal</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Function</td>
+                <td>Needle extension length (during injection) ≥0.5 in (12.70 mm)</td>
+                <td>0.6 in (±0.1 in) / 15.24 mm (±2.54 mm)</td>
+                <td>URS</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Function</td>
+                <td>Cap removal force</td>
+                <td>5 N ≤ cap removal force ≤ 35 N (for assembled product including PFS)</td>
+                <td>URS/Summed Internal</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Function</td>
+                <td>Injection activation force (pressing needle shield)</td>
+                <td>5-25 N</td>
+                <td>URS/Summed Internal</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Function</td>
+                <td>Injection time</td>
+                <td>Injection time for 0.3 mL dose ≤ 2 s</td>
+                <td>Summed Internal</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Function</td>
+                <td>Post-injection needle shield lockout force >2× injection activation force</td>
+                <td>>50 N</td>
+                <td>ISO 11608-5:2022</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Function</td>
+                <td>Needle shielding: when auto-injector contacts test surface, needle is not visually visible; when auto-injector does not contact test surface, needle does not protrude</td>
+                <td>Needle shield provides protection</td>
+                <td>ISO 11608-5:2022</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Function</td>
+                <td>Injection completion indication via visual, auditory, or tactile means, or combination thereof; indicates injection has been completed</td>
+                <td>Injection start audible prompt (measured at 30 cm from device, loudness ≥60 dB), stay for 5-10 seconds after hearing prompt to complete injection</td>
+                <td>ISO 11608-1:2022/Summed Internal</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Function</td>
+                <td>Dose accuracy</td>
+                <td><20 units: ±10 μL<br>≥20 units: ±5%</td>
+                <td>ISO 11608-1:2022</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Materials</td>
+                <td>Biocompatibility: Auto-injector biocompatibility shall be evaluated according to ISO 10993-1</td>
+                <td>Materials show negative results for cytotoxicity, sensitization, and irritation</td>
+                <td>
+                    ISO 10993-1:2018<br>
+                    ISO 10993-5:2009<br>
+                    ISO 10993-10:2021<br>
+                    ISO 10993-18:2020<br>
+                    ISO 10993-23:2021
+                </td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Packaging</td>
+                <td>
+                    PE bag, 30 pcs/Tray, 10 Trays/carton, 300 pcs/carton<br>
+                    Tray size: 385×585×27 mm, 2×18 pcs, spacing 30 mm; 10 trays/bag, 1 bag/carton<br>
+                    Carton size: 600 mm (L) × 400 mm (W) × 252 mm (H)
+                </td>
+                <td>
+                    Product appearance and performance normal and usable<br>
+                    No damage to outer carton affecting product function<br>
+                    Auto-injector quality shall still comply with relevant specifications after transportation
+                </td>
+                <td>
+                    Summed requirement<br>
+                    ISO 11608-1:2022 Sections 5.6 & 10.3.7<br>
+                    ASTM D4169-2022
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>3. Compliance Statement</h2>
+
+    <div class="note-box">
+        <p><strong>ISO 13485:2016 Compliance:</strong> This document is prepared in accordance with ISO 13485:2016 medical device quality management system requirements for design and development.</p>
+
+        <p><strong>FDA 21 CFR 820.30 Compliance:</strong> This Product Requirement Specification documents the design inputs for the Epinephrine Auto-Injector in accordance with FDA 21 CFR 820.30 Design Controls.</p>
+
+        <p><strong>ISO 11608 Series Compliance:</strong> Product requirements align with ISO 11608-1:2022 and ISO 11608-5:2022 standards for needle-based injection systems.</p>
+    </div>
+
+    <h2>4. Approval and Revision History</h2>
+
+    <table class="revision-table">
+        <thead>
+            <tr>
+                <th width="15%">Revision</th>
+                <th width="25%">Date</th>
+                <th width="30%">Prepared</th>
+                <th width="15%">Reviewed</th>
+                <th width="15%">Approved</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1.0</td>
+                <td>2024.11.11</td>
+                <td>ZZ Huang</td>
+                <td>Nic Weng</td>
+                <td>Kevin Lo</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <p>Summed Medtech 森迈医疗 | Document No.: 100-005-PRS-001 | Revision: 1.0 | Effective Date: 2024.11.11</p>
+    </div>
+
+</div></body>
+</html>

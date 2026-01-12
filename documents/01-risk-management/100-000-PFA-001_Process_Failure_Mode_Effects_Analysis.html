@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Failure Mode and Effects Analysis - 100-000-PFA-001</title>
+    <link rel="stylesheet" href="../../assets/css/summed-medtech-docs.css">
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 15mm 15mm 15mm 15mm;
+        }
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+        }
+        body {
+            max-width: 297mm;
+            margin: 0 auto;
+        }
+        .table-wrapper {
+            overflow-x: scroll !important;
+            overflow-y: visible;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+            position: relative;
+        }
+        .data-table {
+            width: max-content;
+        }
+        .doc-info-table,
+        .signature-table,
+        .revision-table {
+            width: 100%;
+            table-layout: auto;
+            max-width: 100%;
+        }
+        .fmea-table {
+            min-width: 1800px;
+            line-height: 1.3;
+            font-size: 9pt;
+        }
+        .fmea-table th,
+        .fmea-table td {
+            padding: 6px 4px !important;
+            line-height: 1.3;
+        }
+        .scroll-controls {
+            text-align: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: #e8f4f8;
+            border: 1px solid #003366;
+            border-radius: 5px;
+        }
+        .scroll-controls button {
+            background: #003366;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 3px;
+        }
+        .scroll-controls button:hover {
+            background: #004488;
+        }
+        .scroll-info {
+            margin: 10px 0;
+            padding: 8px;
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body><div class="a4-container">
+
+    <div class="header-section">
+    <img src="../../assets/images/Summed logo.png" alt="Summed Medtech 森迈医疗" class="company-logo" style="width: 80% !important; max-width: 300px !important; height: auto !important;">
+        <div class="document-meta">
+            <div><strong>Document No.:</strong> 100-000-PFA-001</div>
+            <div><strong>Revision:</strong> 1.0</div>
+        </div>
+    </div>
+
+    <h1>Process Failure Mode and Effects Analysis (PFMEA)</h1>
+
+    <table class="doc-info-table">
+        <tr>
+            <td width="25%"><strong>Project Name:</strong></td>
+            <td colspan="3">Epinephrine Simject Emergency Pen</td>
+        </tr>
+        <tr>
+            <td><strong>FMEA Revision:</strong></td>
+            <td>1.0</td>
+            <td><strong>BOM Revision:</strong></td>
+            <td>1.0</td>
+        </tr>
+        <tr>
+            <td><strong>Project Code:</strong></td>
+            <td colspan="3">SM100-000 (General)</td>
+        </tr>
+    </table>
+
+    <!-- Signature Table - Horizontal 3-Person Format -->
+    <table class="signature-table">
+        <tr>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">YH Su</div>
+                    <div class="signature-title">Production Operator</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Prepared by</div>
+                </div>
+            </td>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">ZY Gao</div>
+                    <div class="signature-title">Production Manager</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Reviewed by</div>
+                </div>
+            </td>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">Zen Yang</div>
+                    <div class="signature-title">Management Representative</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Approved by</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Revision History</h3>
+    <table class="revision-table">
+        <thead>
+            <tr>
+                <th width="15%">Revision Level</th>
+                <th width="20%">Date of Revision</th>
+                <th width="65%">Revision Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1.0</td>
+                <td>2024-01-15</td>
+                <td>Initial PFMEA release for 12 assembly processes</td>
+            </tr>
+            <tr>
+                <td>2.0</td>
+                <td>2024-06-20</td>
+                <td>Updated with additional failure modes for Push Rod and Rear Cover assembly processes</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>PFMEA Analysis Table (All 12 Processes)</h2>
+
+    <div class="scroll-info">ℹ️ <strong>Wide Table Alert:</strong> This table has 15 columns. Use the scroll buttons below or scroll horizontally to view all columns.</div>
+
+    <div class="scroll-controls">
+        <button onclick="scrollTable('pfa-table', -300)">← Scroll Left</button>
+        <button onclick="scrollTable('pfa-table', 300)">Scroll Right →</button>
+    </div>
+
+    <div class="table-wrapper" id="pfa-table-wrapper">
+    <table class="data-table fmea-table" id="pfa-table">
+        <thead>
+            <tr>
+                <th width="2%">Item#</th>
+                <th width="14%">Reviewed Item<br>Process Function</th>
+                <th width="14%">Potential Failure Mode</th>
+                <th width="17%">Potential Causes/<br>Failure Mechanisms</th>
+                <th width="17%">Potential Effects of Failure</th>
+                <th width="2%">OCC</th>
+                <th width="2%">SEV</th>
+                <th width="2%">DET</th>
+                <th width="2%">RPN</th>
+                <th width="14%">Current Process Controls<br>(Prevention)</th>
+                <th width="14%">Recommended Actions<br>(Prevention)</th>
+                <th width="2%">OCC</th>
+                <th width="2%">SEV</th>
+                <th width="2%">DET</th>
+                <th width="2%">RPN</th>
+                <th width="2%">Actions Taken</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Syringe Barrel & Washer Ring Assembly</td>
+                <td>Washer ring clip assembly misalignment</td>
+                <td>Washer ring clip not aligned with syringe barrel clip hole</td>
+                <td>PFS cannot be loaded into auto-injector</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Identify clip and hole positions before assembly</td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Syringe Barrel & Washer Ring Assembly</td>
+                <td>Washer ring installed backwards</td>
+                <td>Washer ring direction not confirmed before assembly</td>
+                <td>PFS flange may crack, PFS flies out</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Identify part direction before assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Syringe Barrel & Needle Cap Assembly</td>
+                <td>Syringe barrel direction installed backwards</td>
+                <td>Syringe barrel direction not confirmed before assembly</td>
+                <td>Needle cap cannot be correctly loaded into pen barrel</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Identify part direction before assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Syringe Barrel & Needle Cap Assembly</td>
+                <td>Syringe barrel loading angle incorrect</td>
+                <td>Syringe barrel direction not confirmed before assembly</td>
+                <td>Needle cap cannot be correctly loaded into pen barrel</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Identify part direction before assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Syringe Barrel & Needle Cap Assembly</td>
+                <td>Syringe barrel not assembled in place</td>
+                <td>Syringe barrel pressing distance not confirmed before assembly</td>
+                <td>Needle cap cannot be correctly loaded into pen barrel</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part assembly distance before assembly</td>
+                <td></td>
+                <td>Add position recognition and assembly precision control on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Needle Cap & Barrel Assembly</td>
+                <td>Needle cap assembly angle incorrect</td>
+                <td>Needle cap direction not confirmed before assembly</td>
+                <td>Needle cap cannot fix in barrel, easy to fall off</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part direction before assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Needle Cap & Barrel Assembly</td>
+                <td>Needle cap not assembled in place</td>
+                <td>Needle cap pressing distance not confirmed before assembly</td>
+                <td>Needle cap cannot fix in barrel, easy to fall off</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part assembly distance before assembly</td>
+                <td></td>
+                <td>Add position recognition and assembly precision control on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Extended Barrel & Barrel Assembly</td>
+                <td>Extended barrel assembly angle incorrect</td>
+                <td>Extended barrel direction not confirmed before assembly</td>
+                <td>Extended barrel cannot fix in barrel, easy to fall off</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part direction before assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Extended Barrel & Barrel Assembly</td>
+                <td>Extended barrel not assembled in place</td>
+                <td>Extended barrel pressing distance not confirmed before assembly</td>
+                <td>Extended barrel cannot fix in barrel, easy to fall off</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part assembly distance before assembly</td>
+                <td></td>
+                <td>Add position recognition and assembly precision control on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Iron Clip & Cap Press-fit</td>
+                <td>Iron clip slips off</td>
+                <td>Iron clip position assembled backwards</td>
+                <td>Needle protective cap cannot be removed</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Identify part direction before assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Iron Clip & Cap Press-fit</td>
+                <td>Iron clip slips off</td>
+                <td>Iron clip not press-fit</td>
+                <td>Needle protective cap cannot be removed</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part assembly distance before assembly</td>
+                <td></td>
+                <td>Add position recognition and assembly precision control on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Iron Clip & Cap Press-fit</td>
+                <td>Iron clip skewed</td>
+                <td>Iron clip press-fit position incorrect</td>
+                <td>PFS needle may be skewed</td>
+                <td>Low</td>
+                <td>Moderate</td>
+                <td>High</td>
+                <td>12</td>
+                <td>Identify part direction before assembly</td>
+                <td></td>
+                <td>Add position recognition and assembly precision control on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Moderate</td>
+                <td>High</td>
+                <td>6</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Iron Clip & Cap Press-fit</td>
+                <td>Iron clip cannot swing</td>
+                <td>Iron clip press-fit distance excessive</td>
+                <td>Needle protective cap cannot be removed</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part assembly distance before assembly</td>
+                <td></td>
+                <td>Add position recognition and assembly precision control on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Cap Assembly & Barrel Assembly</td>
+                <td>Cap label position incorrect</td>
+                <td>Cap direction not identified during installation</td>
+                <td>Affects appearance</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Identify part direction before assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Actuation Rod & Needle Shield Spring Assembly</td>
+                <td>Spring stuck in spring arm</td>
+                <td>Pay attention to gap between spring and actuation rod during installation</td>
+                <td>Cannot proceed with subsequent assembly</td>
+                <td>Low</td>
+                <td>Moderate</td>
+                <td>High</td>
+                <td>12</td>
+                <td>Confirm part position during assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Actuation Sleeve Assembly</td>
+                <td>Actuation sleeve spring presses spring</td>
+                <td>Pay attention to spring and actuation sleeve spring arm position during installation</td>
+                <td>Rear assembly cannot assemble normally</td>
+                <td>Low</td>
+                <td>Moderate</td>
+                <td>High</td>
+                <td>12</td>
+                <td>Confirm part direction during assembly</td>
+                <td></td>
+                <td>Personnel identify direction during assembly</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Actuation Sleeve Assembly</td>
+                <td>Actuation sleeve direction incorrect</td>
+                <td>Actuation sleeve slot not aligned with actuation sleeve clasp strip during installation</td>
+                <td>Rear assembly cannot assemble normally</td>
+                <td>Low</td>
+                <td>Moderate</td>
+                <td>High</td>
+                <td>12</td>
+                <td>Confirm part direction during assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Actuation Sleeve Assembly</td>
+                <td>Actuation sleeve cannot press down</td>
+                <td>Actuation sleeve stuck with actuation sleeve spring arm</td>
+                <td>Rear assembly cannot assemble normally</td>
+                <td>Low</td>
+                <td>Moderate</td>
+                <td>High</td>
+                <td>12</td>
+                <td>Confirm part assembly distance before assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Push Rod & Push Rod Spring Installation</td>
+                <td>Push rod cannot press down</td>
+                <td>Actuation sleeve not assembled to position</td>
+                <td>Rear assembly cannot assemble normally</td>
+                <td>Moderate</td>
+                <td>Moderate</td>
+                <td>High</td>
+                <td>18</td>
+                <td>Confirm part assembly distance before assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Push Rod & Push Rod Spring Installation</td>
+                <td>Push rod cannot press down</td>
+                <td>Push rod stuck on actuation sleeve spring arm</td>
+                <td>Rear assembly cannot assemble normally</td>
+                <td>Low</td>
+                <td>Moderate</td>
+                <td>High</td>
+                <td>12</td>
+                <td>Confirm part status during assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Push Rod & Push Rod Spring Installation</td>
+                <td>Push rod not locked to position</td>
+                <td>Actuation sleeve spring arm not fully expanded</td>
+                <td>Rear assembly cannot assemble normally</td>
+                <td>Low</td>
+                <td>Moderate</td>
+                <td>High</td>
+                <td>12</td>
+                <td>Confirm part direction during assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Push Rod & Push Rod Spring Installation</td>
+                <td>Push rod not locked to position</td>
+                <td>Push rod clasp not aligned with actuation sleeve clasp slot</td>
+                <td>Rear assembly cannot assemble normally</td>
+                <td>Moderate</td>
+                <td>Moderate</td>
+                <td>High</td>
+                <td>18</td>
+                <td>Confirm part status during assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Push Rod & Push Rod Spring Installation</td>
+                <td>Push rod not locked to position</td>
+                <td>Actuation sleeve spring arm does not catch push rod</td>
+                <td>Rear assembly cannot assemble normally</td>
+                <td>Moderate</td>
+                <td>Moderate</td>
+                <td>High</td>
+                <td>18</td>
+                <td>Confirm part position during assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Rear Cover Installation</td>
+                <td>Rear cover guide rod bent</td>
+                <td>Rear cover guide rod not aligned with actuation sleeve guide hole</td>
+                <td>Affects injection</td>
+                <td>Moderate</td>
+                <td>Moderate</td>
+                <td>High</td>
+                <td>18</td>
+                <td>Confirm part position during assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Rear Cover Installation</td>
+                <td>Rear cover guide rod bent</td>
+                <td>Rear cover guide rod contacts spring, bends</td>
+                <td>Affects injection</td>
+                <td>Moderate</td>
+                <td>Moderate</td>
+                <td>High</td>
+                <td>18</td>
+                <td>Confirm part position during assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Rear Cover Installation</td>
+                <td>Rear cover cannot install</td>
+                <td>Rear cover direction incorrect</td>
+                <td>Rear assembly cannot assemble normally</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part direction during assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Load into Tray</td>
+                <td>Product not loaded into Tray</td>
+                <td>Front assembly direction incorrect</td>
+                <td>Fall out of Tray</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part direction during assembly</td>
+                <td></td>
+                <td>Add position recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Load into Tray</td>
+                <td>Product not loaded into Tray</td>
+                <td>Front assembly/rear assembly cannot lock in slot</td>
+                <td>Fall out of Tray</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part status during assembly</td>
+                <td></td>
+                <td>Increase supplier quality management</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Load into Tray</td>
+                <td>Missing parts</td>
+                <td>Missed placement</td>
+                <td>Total quantity incorrect</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part quantity during assembly</td>
+                <td></td>
+                <td>Add quantity recognition on assembly equipment</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Boxing</td>
+                <td>Missing parts</td>
+                <td>Missed placement</td>
+                <td>Missed placement</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part quantity during assembly</td>
+                <td></td>
+                <td>Add personnel verification operation</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Boxing</td>
+                <td>Label error</td>
+                <td>Label information incorrect</td>
+                <td>Affects product traceability</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part quantity during assembly</td>
+                <td></td>
+                <td>Add personnel verification operation</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Boxing</td>
+                <td>Label not applied</td>
+                <td>Label missed</td>
+                <td>Affects product traceability</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part quantity during assembly</td>
+                <td></td>
+                <td>Add personnel verification operation</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Boxing</td>
+                <td>Carton orientation incorrect</td>
+                <td>Product easy to fall in direction</td>
+                <td>Affects product performance</td>
+                <td>Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>8</td>
+                <td>Confirm part direction during assembly</td>
+                <td></td>
+                <td>Add personnel verification operation</td>
+                <td>Very Low</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>4</td>
+                <td></td>
+            </tr>
+
+        </tbody>
+    </table>
+    </div>
+
+    <p style="text-align: center; margin-top: 20px;"><strong>Note:</strong> This PFMEA table contains all 12 assembly processes with complete failure mode analysis (32 failure modes analyzed).</p>
+
+    <div class="page-break"></div>
+
+    <h2>FMEA Rating Criteria</h2>
+
+    <table class="data-table table-3col">
+        <thead>
+            <tr>
+                <th>Occurrence (O)</th>
+                <th>Severity (S)</th>
+                <th>Detection (D)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Very Low</strong>: Remote likelihood of occurrence</td>
+                <td><strong>Low</strong>: Minor annoyance to user</td>
+                <td><strong>Very High</strong>: Almost certain detection</td>
+            </tr>
+            <tr>
+                <td><strong>Low</strong>: Low likelihood of occurrence</td>
+                <td><strong>Moderate</strong>: User discomfort or injury not requiring medical intervention</td>
+                <td><strong>High</strong>: High chance of detection</td>
+            </tr>
+            <tr>
+                <td><strong>Moderate</strong>: Moderate likelihood of occurrence</td>
+                <td><strong>High</strong>: User injury requiring medical intervention</td>
+                <td><strong>Moderate</strong>: Moderate chance of detection</td>
+            </tr>
+            <tr>
+                <td><strong>High</strong>: High likelihood of occurrence</td>
+                <td><strong>Very High</strong>: Life-threatening or fatal injury</td>
+                <td><strong>Low</strong>: Low chance of detection</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>PFMEA Process Summary</h2>
+    <table class="data-table table-2col">
+        <thead>
+            <tr>
+                <th>Process Item</th>
+                <th>Failure Modes Analyzed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1. Syringe Barrel & Washer Ring Assembly</td><td>2 failure modes</td></tr>
+            <tr><td>2. Syringe Barrel & Needle Cap Assembly</td><td>3 failure modes</td></tr>
+            <tr><td>3. Needle Cap & Barrel Assembly</td><td>2 failure modes</td></tr>
+            <tr><td>4. Extended Barrel & Barrel Assembly</td><td>2 failure modes</td></tr>
+            <tr><td>5. Iron Clip & Cap Press-fit</td><td>4 failure modes</td></tr>
+            <tr><td>6. Cap Assembly & Barrel Assembly</td><td>1 failure mode</td></tr>
+            <tr><td>7. Actuation Rod & Needle Shield Spring Assembly</td><td>1 failure mode</td></tr>
+            <tr><td>8. Actuation Sleeve Assembly</td><td>3 failure modes</td></tr>
+            <tr><td>9. Push Rod & Push Rod Spring Installation</td><td>5 failure modes</td></tr>
+            <tr><td>10. Rear Cover Installation</td><td>3 failure modes</td></tr>
+            <tr><td>11. Load into Tray</td><td>3 failure modes</td></tr>
+            <tr><td>12. Boxing</td><td>3 failure modes</td></tr>
+            <tr><td><strong>TOTAL</strong></td><td><strong>32 failure modes</strong></td></tr>
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <p>Summed Medtech 森迈医疗 | Document No.: 100-000-PFA-001 | Revision: 1.0</p>
+    </div>
+
+    <script>
+        function scrollTable(tableId, amount) {
+            const wrapper = document.getElementById(tableId + '-wrapper');
+            if (wrapper) {
+                wrapper.scrollBy({ left: amount, behavior: 'smooth' });
+            }
+        }
+    </script>
+
+</div></body>
+</html>

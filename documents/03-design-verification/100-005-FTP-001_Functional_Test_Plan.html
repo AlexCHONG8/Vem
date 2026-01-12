@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functional Test Plan - 100-005-FTP-001</title>
+    <link rel="stylesheet" href="../../assets/css/summed-medtech-docs.css">
+</head>
+<body><div class="a4-container">
+    <div class="header-section">
+        <img src="../../assets/images/Summed logo.png" alt="Summed Medtech 森迈医疗" class="company-logo" style="width: 80% !important; max-width: 300px !important; height: auto !important;">
+        <div class="document-meta">
+            <div><strong>Document No.:</strong> 100-005-FTP-001</div>
+            <div><strong>Revision:</strong> 1.0</div>
+        </div>
+    </div>
+    <h1>SM100-005 Functional Test Plan (FTP)</h1>
+    <table class="doc-info-table">
+        <tr>
+            <td width="25%"><strong>Document Name:</strong></td>
+            <td colspan="3">SM100-005 Functional Test Plan</td>
+        </tr>
+        <tr>
+            <td><strong>Document No.:</strong></td>
+            <td>100-005-FTP-001</td>
+            <td><strong>Revision:</strong></td>
+            <td>1.0</td>
+        </tr>
+    </table>
+    <table class="signature-table">
+        <tr>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">Yini Chai</div>
+                    <div class="signature-title">R&D Department (Prepared by)</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Prepared by</div>
+                </div>
+            </td>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">YC Yang</div>
+                    <div class="signature-title">Document Control</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Reviewed by</div>
+                </div>
+            </td>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">Logan Zhao</div>
+                    <div class="signature-title">R&D</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Reviewed by</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="signature-block">
+                    <div class="signature-name">Kevin Lo</div>
+                    <div class="signature-title">R&D Department (Approved by)</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Approved by</div>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>1. Purpose</h2>
+    <p>To verify that Simject-030 Epinephrine Auto-Injector (Adult) project product performance meets requirements.</p>
+
+    <h2>2. Scope</h2>
+    <p>This protocol is applicable to Simject-030 Epinephrine Auto-Injector (Adult) project functional test verification.</p>
+
+    <h2>3. Responsibilities</h2>
+    <p><strong>Analyst:</strong> Responsible for drafting this protocol, completing testing according to the protocol, and issuing test reports.</p>
+    <p><strong>R&D Engineer:</strong> Responsible for reviewing this protocol.</p>
+    <p><strong>R&D Director:</strong> Responsible for approving this protocol and verification reports.</p>
+
+    <h2>4. References</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th width="10%">No.</th>
+                <th width="30%">Standard</th>
+                <th width="60%">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>YY/T 1768.1-2021</td>
+                <td>Needle-based injection systems for medical use - Requirements and test methods - Part 1: Needle-based injection systems</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>ISO 11608-1:2022</td>
+                <td>Needle-based injection systems for medical use - Requirements and test methods - Part 1: Needle-based injection systems</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>5. Definitions</h2>
+    <p>None.</p>
+
+    <div class="page-break"></div>
+
+    <h2>6. Sample Information</h2>
+    <h3>6.1 Product Samples</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th width="25%">Product Name</th>
+                <th width="25%">Product Model</th>
+                <th width="25%">Product Batch No.</th>
+                <th width="25%">Product Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Simject Front Component</td>
+                <td>AISI104F0</td>
+                <td>Batch 1</td>
+                <td>10 units</td>
+            </tr>
+            <tr>
+                <td>Simject Rear Component</td>
+                <td>AISI104R0</td>
+                <td>Batch 1</td>
+                <td>10 units</td>
+            </tr>
+            <tr>
+                <td>Simject Front Component</td>
+                <td>AISI104F0</td>
+                <td>Batch 2</td>
+                <td>10 units</td>
+            </tr>
+            <tr>
+                <td>Simject Rear Component</td>
+                <td>AISI104R0</td>
+                <td>Batch 2</td>
+                <td>10 units</td>
+            </tr>
+            <tr>
+                <td>Simject Front Component</td>
+                <td>AISI104F0</td>
+                <td>Batch 3</td>
+                <td>10 units</td>
+            </tr>
+            <tr>
+                <td>Simject Rear Component</td>
+                <td>AISI104R0</td>
+                <td>Batch 3</td>
+                <td>10 units</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>6.2 Pre-filled Syringe (PFS)</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th width="25%">Product Name</th>
+                <th width="25%">Sample Model</th>
+                <th width="25%">Batch No.</th>
+                <th width="25%">Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Pre-filled Syringe (PFS)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>7. Verification Procedure</h2>
+
+    <h3>7.1 Fixture Information</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th width="30%">Fixture No.</th>
+                <th width="70%">Fixture Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>JS-JJ-24-022</td>
+                <td>Lisa & Lucy Front Component and PFS Manual Final Assembly Fixture</td>
+            </tr>
+            <tr>
+                <td>JS-JJ-24-023</td>
+                <td>Lisa & Lucy Front Component and Rear Component Manual Final Assembly Fixture</td>
+            </tr>
+            <tr>
+                <td>JS-JJ-24-019</td>
+                <td>Simject Series Sharps Injury Protection Fixture</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>7.2 Equipment Information</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th width="20%">Equipment No.</th>
+                <th width="30%">Equipment Name</th>
+                <th width="20%">Equipment Model</th>
+                <th width="15%">Valid Until</th>
+                <th width="15%">Validation Report</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>JS-JC-24-005</td>
+                <td>Simject Auto-Injector Testing Equipment</td>
+                <td>Simject</td>
+                <td>2026.05.12</td>
+                <td>EVR-JS-JC-25-001</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>7.3 Test Environment Requirements</h3>
+    <p>Temperature: 23 ± 5°C and Relative Humidity: 50 ± 25% RH</p>
+
+    <h3>7.4 Auto-Injector Pre-test Conditioning</h3>
+    <p>Before testing, condition at standard temperature: 23 ± 5°C and relative humidity: 50 ± 25% RH for at least 4 hours.</p>
+
+    <h3>7.5 Auto-Injector Assembly</h3>
+    <p>Assemble conditioned front and rear components with batch XX pre-filled syringe (PFS) according to "000-000-TIS-001 Lisa & Lucy Manual Final Assembly Fixture Test Instruction V1.0" to obtain finished auto-injectors.</p>
+
+    <h3>7.6 Test Method</h3>
+    <p>Conduct functional testing according to "100-005-TIS-023 V1.0 Final Assembly" for three independent batches, with 10 samples per batch.</p>
+
+    <h3>7.7 Test Items and Acceptance Criteria</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th width="5%">No.</th>
+                <th width="55%">Test Item</th>
+                <th width="40%">Acceptance Criteria</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Fill 1 ± 0.03 mL, single injection 0.3 mL (±5%);</td>
+                <td>0.27 < injection volume < 0.34 mL</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Needle extension length (during injection): ≥0.5 in (12.70 mm)</td>
+                <td>0.6 in (±0.1 in) / 15.24 mm (±2.54 mm)</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Cap removal force: 5-35 N</td>
+                <td>5-35 N</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Injection activation force (pressing needle shield): 5-25 N</td>
+                <td>5-25 N</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Injection time for 0.3 mL dose: ≤2 seconds</td>
+                <td>≤2 seconds</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Drug visibility before use for inspection</td>
+                <td>Viewing window clearly identifiable</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Post-injection needle shield lockout force >2× injection activation force</td>
+                <td>>50 N</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>User ability to distinguish device status (unused/in use/used/disabled)</td>
+                <td>After injection, PFS stopper visible at window</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Needle shielding</td>
+                <td>When contacting test surface, needle not visually visible; when not contacting, needle does not protrude</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Injection completion indication (visual/auditory/tactile or combination)</td>
+                <td>Injection start audible prompt, measured at 30 cm from device, loudness ≥60 dB</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Sharps injury protection</td>
+                <td>ISO 23908-2024 appendix test method</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>8. Verification Report</h2>
+    <p><strong>8.1.1.</strong> The report shall contain detailed information of the auto-injector and PFS used, including model, batch number, quantity, etc.</p>
+    <p><strong>8.1.2.</strong> The report shall contain functional test data.</p>
+    <p><strong>8.1.3.</strong> The report shall include result determination. If testing fails, re-testing shall be conducted until pass. Each testing process and result shall be recorded and described in detail in the report.</p>
+
+    <h2>9. Attachments</h2>
+    <p>None.</p>
+
+    <div class="page-break"></div>
+
+    <h2>Revision History</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th width="15%">Revision</th>
+                <th width="20%">Date</th>
+                <th width="20%">Revised by</th>
+                <th width="15%">Page</th>
+                <th width="30%">Description of Change</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1.0</td>
+                <td></td>
+                <td>Yini Chai</td>
+                <td>/</td>
+                <td>New version effective</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <p>Summed Medtech 森迈医疗 | Document No.: 100-005-FTP-001 | Revision: 1.0</p>
+    </div>
+</div></body>
+</html>

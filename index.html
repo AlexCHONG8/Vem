@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summed Medtech - Vem Pharma Audit Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #64748b;
+            --accent: #0ea5e9;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-sub: #475569;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            zoom: 150%;
+        }
+
+        /* A4 Page Simulation */
+        .a4-container {
+            background-color: var(--bg-card);
+            width: 210mm;
+            min-height: 297mm;
+            margin: 2rem auto;
+            padding: 0;
+            box-shadow: var(--shadow-lg);
+            border-radius: 0.25rem;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+            }
+
+            .a4-container {
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+            }
+        }
+
+        /* Hero Header */
+        .hero {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #0ea5e9 100%);
+            color: white;
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.5;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-logo {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.05em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        .hero-meta {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Logo centered */
+        .summed-logo {
+            display: block;
+            margin: 0 auto 1.5rem auto;
+            width: 306px;
+            height: auto;
+            background: white;
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem 5%;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 0.5rem 0;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-sub);
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .section-description {
+            font-size: 0.875rem;
+            color: var(--text-sub);
+            margin-left: auto;
+        }
+
+        /* Document Grid */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .doc-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.2s;
+        }
+
+        .doc-item:hover {
+            border-color: var(--primary);
+            background-color: #f8fafc;
+            transform: translateX(4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .doc-icon {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .doc-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .doc-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 0.25rem;
+            display: block;
+            line-height: 1.3;
+        }
+
+        .doc-meta {
+            font-size: 0.7rem;
+            color: var(--text-sub);
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: #f1f5f9;
+            color: var(--text-sub);
+            padding: 0.15rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 500;
+            font-size: 0.65rem;
+        }
+
+        .badge.risk {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge.design {
+            background-color: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        .badge.verification {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .badge.output {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge.materials {
+            background-color: #e0e7ff;
+            color: #3730a3;
+        }
+
+        /* Category Card */
+        .category-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .category-icon {
+            font-size: 1.75rem;
+            margin-right: 0.75rem;
+        }
+
+        .category-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 0;
+        }
+
+        .category-count {
+            margin-left: auto;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            background: var(--bg-page);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+        }
+
+        .category-description {
+            font-size: 0.875rem;
+            color: var(--text-sub);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Quick Links */
+        .quick-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .quick-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.25rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0.625rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .quick-link:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .quick-link-icon {
+            margin-right: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-sub);
+            font-size: 0.875rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-sub);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem 2rem;
+            }
+
+            .hero-logo {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .summed-logo {
+                width: 150px;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.25rem;
+            }
+
+            .section-description {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="a4-container">
+        <div class="hero">
+            <div class="hero-container">
+                <img src="assets/images/Summed%20logo.png" alt="Summed Medtech" class="summed-logo">
+                <div class="hero-subtitle">Vem Pharma Regulatory Audit Documentation</div>
+                <div class="hero-meta">
+                    <div class="hero-meta-item">
+                        <span>📍</span>
+                        <span>Jiaxing Summed Medtech Co., Ltd.</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span>💉</span>
+                        <span>Epinephrine Auto-Injector (Lisa & Lucy)</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span>📋</span>
+                        <span>ISO 13485:2016 | FDA 21 CFR 820</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main>
+
+            <!-- Quick Links -->
+
+            <div class="quick-links">
+                <a href="Summed_Org_Chart.html" class="quick-link">
+                    <span class="quick-link-icon">🏢</span>
+                    Organization Chart
+                </a>
+                <a href="Simject_Assembly_Flowchart.html" class="quick-link">
+                    <span class="quick-link-icon">⚙️</span>
+                    Assembly Flowchart
+                </a>
+            </div>
+
+            <!-- 01. Risk Management -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">⚠️</div>
+                    <h2 class="category-title">01. Risk Management</h2>
+                    <span class="category-count">3 documents</span>
+                </div>
+                <p class="category-description">PFMEA, DFMEA, and Risk Management Plan with comprehensive risk analysis
+                    throughout the product lifecycle.</p>
+                <div class="doc-grid">
+                    <a href="documents/01-risk-management/100-000-PFA-001_Process_Failure_Mode_Effects_Analysis.html"
+                        class="doc-item">
+                        <div class="doc-icon">⚠️</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Process Failure Mode Effects Analysis (PFMEA)</span>
+                            <div class="doc-meta"><span class="badge risk">PFA-001</span></div>
+                        </div>
+                    </a>
+                    <a href="documents/01-risk-management/100-005-DFA-001_Design_Failure_Mode_Effects_Analysis.html"
+                        class="doc-item">
+                        <div class="doc-icon">🛡️</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Design Failure Mode Effects Analysis (DFMEA)</span>
+                            <div class="doc-meta"><span class="badge risk">DFA-001</span></div>
+                        </div>
+                    </a>
+                    <a href="documents/01-risk-management/100-005-RMP-001_Risk_Management_Plan.html" class="doc-item">
+                        <div class="doc-icon">📋</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Risk Management Plan</span>
+                            <div class="doc-meta"><span class="badge risk">RMP-001</span></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 02. Design Input & Specifications -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">📝</div>
+                    <h2 class="category-title">02. Design Input & Specifications</h2>
+                    <span class="category-count">2 documents</span>
+                </div>
+                <p class="category-description">User Requirements Specification (URS) and Product Requirements
+                    Specification (PRS) defining customer needs and technical requirements.</p>
+                <div class="doc-grid">
+                    <a href="documents/02-design-input/100-005-PRS-001_Product_Requirement_Specification.html"
+                        class="doc-item">
+                        <div class="doc-icon">📝</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Product Requirement Specification</span>
+                            <div class="doc-meta"><span class="badge design">PRS-001</span></div>
+                        </div>
+                    </a>
+                    <a href="documents/02-design-input/100-005-URS-001_User_Requirement_Specification.html"
+                        class="doc-item">
+                        <div class="doc-icon">👤</div>
+                        <div class="doc-info">
+                            <span class="doc-name">User Requirement Specification</span>
+                            <div class="doc-meta"><span class="badge design">URS-001</span></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 03. Design Verification & Validation -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">🔧</div>
+                    <h2 class="category-title">03. Design Verification & Validation</h2>
+                    <span class="category-count">7 documents</span>
+                </div>
+                <p class="category-description">Functional test plans, reliability protocols, stability studies, and
+                    biological evaluation plans for comprehensive design validation.</p>
+                <div class="doc-grid">
+                    <a href="documents/03-design-verification/100-005-DVP-001_Design_Verification_and_Validation_Master_Plan.html"
+                        class="doc-item">
+                        <div class="doc-icon">📋</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Design V&V Master Plan</span>
+                            <div class="doc-meta"><span class="badge verification">DVP-001</span></div>
+                        </div>
+                    </a>
+                    <a href="documents/03-design-verification/100-000-BEP-001_Biological_Evaluation_Plan.html"
+                        class="doc-item">
+                        <div class="doc-icon">🧬</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Biological Evaluation Plan</span>
+                            <div class="doc-meta"><span class="badge verification">BEP-001</span></div>
+                        </div>
+                    </a>
+                    <a href="documents/03-design-verification/100-005-FTP-001_Functional_Test_Plan.html"
+                        class="doc-item">
+                        <div class="doc-icon">🔧</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Functional Test Plan</span>
+                            <div class="doc-meta"><span class="badge verification">FTP-001</span></div>
+                        </div>
+                    </a>
+                    <a href="documents/03-design-verification/100-005-RTP-001_Free_Fall_Test_Protocol.html"
+                        class="doc-item">
+                        <div class="doc-icon">📉</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Free Fall Test Protocol</span>
+                            <div class="doc-meta"><span class="badge verification">RTP-001</span></div>
+                        </div>
+                    </a>
+                    <a href="documents/03-design-verification/100-005-RTP-002_Simulated_Transport_Test_Protocol.html"
+                        class="doc-item">
+                        <div class="doc-icon">🚛</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Simulated Transport Test Protocol</span>
+                            <div class="doc-meta"><span class="badge verification">RTP-002</span></div>
+                        </div>
+                    </a>
+                    <a href="documents/03-design-verification/100-005-STP-001_Real-time_Aging_Stability_Plan.html"
+                        class="doc-item">
+                        <div class="doc-icon">⏳</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Real-time Aging Stability Plan</span>
+                            <div class="doc-meta"><span class="badge verification">STP-001</span></div>
+                        </div>
+                    </a>
+                    <a href="documents/03-design-verification/100-005-STP-002_Accelerated_Aging_Stability_Plan.html"
+                        class="doc-item">
+                        <div class="doc-icon">⚡</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Accelerated Aging Stability Plan</span>
+                            <div class="doc-meta"><span class="badge verification">STP-002</span></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 04. Design Output & Transfer -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">📤</div>
+                    <h2 class="category-title">04. Design Output & Transfer</h2>
+                    <span class="category-count">5 documents</span>
+                </div>
+                <p class="category-description">Instructions for Use (IFU) and Standard Inspection Procedures (SIP) for
+                    manufacturing transfer and production.</p>
+                <div class="doc-grid">
+                    <a href="documents/04-design-output/100-005-IFU-001_Instructions_for_Use.html" class="doc-item">
+                        <div class="doc-icon">📖</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Instructions for Use (IFU)</span>
+                            <div class="doc-meta"><span class="badge output">IFU-001</span></div>
+                        </div>
+                    </a>
+                    <a href="documents/04-design-output/100-005-SIP-001_Front_Component_Inspection_Specification.html"
+                        class="doc-item">
+                        <div class="doc-icon">🔍</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Front Component Inspection Spec</span>
+                            <div class="doc-meta"><span class="badge output">SIP-001</span></div>
+                        </div>
+                    </a>
+                    <a href="documents/04-design-output/100-005-SIP-011_Rear_Cover_Inspection_Specification.html"
+                        class="doc-item">
+                        <div class="doc-icon">🔍</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Rear Cover Inspection Spec</span>
+                            <div class="doc-meta"><span class="badge output">SIP-011</span></div>
+                        </div>
+                    </a>
+                    <a href="documents/04-design-output/100-005-SIP-012_Actuation_Rod_Inspection_Specification.html"
+                        class="doc-item">
+                        <div class="doc-icon">🔍</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Actuation Rod Inspection Spec</span>
+                            <div class="doc-meta"><span class="badge output">SIP-012</span></div>
+                        </div>
+                    </a>
+                    <a href="documents/04-design-output/100-005-SIP-014_Push_Rod_Inspection_Specification.html"
+                        class="doc-item">
+                        <div class="doc-icon">🔍</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Push Rod Inspection Spec</span>
+                            <div class="doc-meta"><span class="badge output">SIP-014</span></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 07. Materials & Components -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">🧾</div>
+                    <h2 class="category-title">07. Materials & Components</h2>
+                    <span class="category-count">1 document</span>
+                </div>
+                <p class="category-description">Interactive Bill of Materials (BOM) with complete component tree
+                    structure and material specifications.</p>
+                <div class="doc-grid">
+                    <a href="documents/07-materials-components/100-005-BOM-001_Interactive_EN.html" class="doc-item">
+                        <div class="doc-icon">🧾</div>
+                        <div class="doc-info">
+                            <span class="doc-name">Bill of Materials (BOM)</span>
+                            <div class="doc-meta"><span class="badge materials">BOM-001</span><span
+                                    class="badge materials">Interactive</span></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="Summed_Org_Chart.html">Organization Chart</a>
+                <a href="Simject_Assembly_Flowchart.html">Assembly Flowchart</a>
+            </div>
+            <p>&copy; 2026 Summed Medtech 森迈医疗. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+                Prepared for Vem Pharma Turkey Regulatory Audit | ISO 13485:2016 Certified | FDA 21 CFR 820 Compliant
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

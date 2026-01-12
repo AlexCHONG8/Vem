@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Failure Mode and Effects Analysis - 100-005-DFA-001</title>
+    <link rel="stylesheet" href="../../assets/css/summed-medtech-docs.css">
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 15mm 15mm 15mm 15mm;
+        }
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+        }
+        body {
+            max-width: 297mm;
+            margin: 0 auto;
+        }
+        .table-wrapper {
+            overflow-x: scroll !important;
+            overflow-y: visible;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+            position: relative;
+        }
+        .fmea-table {
+            font-size: 9pt;
+            table-layout: fixed;
+            min-width: 1600px;
+            width: max-content;
+            line-height: 1.3;
+        }
+        .fmea-table th {
+            background-color: #003366;
+            color: white;
+            padding: 6px 4px !important;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #000;
+            line-height: 1.3;
+        }
+        .fmea-table td {
+            border: 1px solid #000;
+            padding: 4px 3px !important;
+            vertical-align: top;
+            text-align: left;
+            line-height: 1.3;
+        }
+        .component-header {
+            background-color: #e8f4f8;
+            font-weight: bold;
+            text-align: center;
+        }
+        .scroll-controls {
+            text-align: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: #e8f4f8;
+            border: 1px solid #003366;
+            border-radius: 5px;
+        }
+        .scroll-controls button {
+            background: #003366;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 3px;
+        }
+        .scroll-controls button:hover {
+            background: #004488;
+        }
+        .scroll-info {
+            margin: 10px 0;
+            padding: 8px;
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .doc-info-table,
+        .signature-table,
+        .revision-table {
+            width: 100%;
+            table-layout: auto;
+            max-width: 100%;
+        }
+        .data-table:not(.fmea-table) {
+            width: auto;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body><div class="a4-container">
+
+    <div class="header-section">
+    <img src="../../assets/images/Summed logo.png" alt="Summed Medtech 森迈医疗" class="company-logo" style="width: 80% !important; max-width: 300px !important; height: auto !important;">
+        <div class="document-meta">
+            <div><strong>Document No.:</strong> 100-005-DFA-001</div>
+            <div><strong>Revision:</strong> 2.0</div>
+        </div>
+    </div>
+
+    <h1>Design Failure Mode and Effects Analysis (DFMEA)</h1>
+
+    <table class="doc-info-table">
+        <tr>
+            <td width="25%"><strong>Project Name:</strong></td>
+            <td colspan="3">Simject-030 Epinephrine Auto-Injector Project (Adult)</td>
+        </tr>
+        <tr>
+            <td><strong>FMEA Revision:</strong></td>
+            <td>2.0</td>
+            <td><strong>BOM Revision:</strong></td>
+            <td>1.0</td>
+        </tr>
+        <tr>
+            <td><strong>Project Code:</strong></td>
+            <td colspan="3">SM100-005</td>
+        </tr>
+    </table>
+
+    <!-- Signature Table - Horizontal 3-Person Format -->
+    <table class="signature-table">
+        <tr>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">Nic Weng</div>
+                    <div class="signature-title">R&D Department</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Prepared by</div>
+                </div>
+            </td>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">Logan Zhao</div>
+                    <div class="signature-title">R&D Department</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Reviewed by</div>
+                </div>
+            </td>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">Alvin Gao</div>
+                    <div class="signature-title">R&D Department</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Approved by</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Revision History</h3>
+    <table class="revision-table">
+        <thead>
+            <tr>
+                <th>Revision Level</th>
+                <th>Date</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1.0</td>
+                <td>2023-08-15</td>
+                <td>Initial DFMEA release for 17 components</td>
+            </tr>
+            <tr>
+                <td>2.0</td>
+                <td>2024-02-20</td>
+                <td>Updated with additional failure modes and revised RPN values</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>DFMEA Analysis Table (All 17 Components)</h2>
+
+    <div class="scroll-info">ℹ️ <strong>Wide Table Alert:</strong> This table has 16 columns. Use the scroll buttons below or scroll horizontally to view all columns.</div>
+
+    <div class="scroll-controls">
+        <button onclick="scrollTable('dfa-table', -300)">← Scroll Left</button>
+        <button onclick="scrollTable('dfa-table', 300)">Scroll Right →</button>
+    </div>
+
+    <div class="table-wrapper" id="dfa-table-wrapper">
+    <table class="fmea-table" id="dfa-table">
+        <thead>
+            <tr>
+                <th width="2%">No.</th>
+                <th width="12%">Function Description</th>
+                <th width="11%">Potential Failure Mode</th>
+                <th width="11%">Potential Cause/Mechanism</th>
+                <th width="11%">Potential Failure Effect</th>
+                <th width="5%">Reference Document</th>
+                <th width="1.5%">O</th>
+                <th width="1.5%">S</th>
+                <th width="1.5%">D</th>
+                <th width="2%">RPN</th>
+                <th width="11%">Recommended Actions</th>
+                <th width="11%">Actions Taken</th>
+                <th width="1.5%">O</th>
+                <th width="1.5%">S</th>
+                <th width="1.5%">D</th>
+                <th width="2%">RPN</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="16" class="component-header">1. Washer Ring 1M130AISI0010100</td>
+            </tr>
+            <tr>
+                <td>1.1</td>
+                <td>Placement surface for PFS flange</td>
+                <td>PFS position uncertain</td>
+                <td>Excessive deviation</td>
+                <td>Incorrect needle extension length</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>1</td>
+                <td>4</td>
+                <td>5</td>
+                <td>20</td>
+                <td>Reduce deviation</td>
+                <td>Reduce deviation</td>
+                <td>1</td>
+                <td>3</td>
+                <td>5</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>1.2</td>
+                <td>Elastic protection during PFS assembly</td>
+                <td>No elasticity</td>
+                <td>Material hardness too high</td>
+                <td>PFS flange fracture</td>
+                <td>1. Test report 2. Material report</td>
+                <td>1</td>
+                <td>4</td>
+                <td>5</td>
+                <td>20</td>
+                <td>Reduce material hardness</td>
+                <td>Adjust material hardness appropriately</td>
+                <td>1</td>
+                <td>3</td>
+                <td>5</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>1.3</td>
+                <td>Elastic protection during PFS assembly</td>
+                <td>Excessive elasticity, spacer ring deformation</td>
+                <td>Material hardness too low</td>
+                <td>PFS displacement during press-fit</td>
+                <td>1. Test report 2. Material report</td>
+                <td>1</td>
+                <td>2</td>
+                <td>5</td>
+                <td>10</td>
+                <td>Increase material hardness</td>
+                <td>Adjust material hardness appropriately</td>
+                <td>1</td>
+                <td>2</td>
+                <td>5</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>1.4</td>
+                <td>Needle position positioning system</td>
+                <td>At injection end point, needle tip position (exposed length) exceeds tolerance</td>
+                <td>Inconsistent compression deformation of buffer spacer ring</td>
+                <td>Insertion too deep (tissue injury/pain) or too shallow (subcutaneous leakage, inaccurate dose)</td>
+                <td>1. Test report 2. Material report</td>
+                <td>1</td>
+                <td>4</td>
+                <td>5</td>
+                <td>20</td>
+                <td>1. Re-specify spacer ring material Shore A hardness to narrower tolerance range. 2. Implement 100% hardness screening for spacer rings. 3. Add direct measurement sampling of needle exposed length in final assembly functional testing.</td>
+                <td>1. Spacer ring material hardness modified from Shore A aa-bb to more precise Shore A xx-yy. 2. Incoming inspection added 100% hardness testing station. 3. Final inspection line added sampling item, use fixture to measure exposed length.</td>
+                <td>1</td>
+                <td>3</td>
+                <td>5</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">2. Syringe Barrel 1M112AISI1010200</td>
+            </tr>
+            <tr>
+                <td>2.1</td>
+                <td>Support PFS</td>
+                <td>PFS stuck</td>
+                <td>Syringe sleeve inner diameter too small</td>
+                <td>PFS cannot be assembled to position</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>1</td>
+                <td>4</td>
+                <td>5</td>
+                <td>20</td>
+                <td>Increase syringe sleeve inner diameter</td>
+                <td>Appropriately increase syringe sleeve inner diameter</td>
+                <td>1</td>
+                <td>3</td>
+                <td>5</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>2.2</td>
+                <td>Support PFS</td>
+                <td>PFS and syringe sleeve fit too loose</td>
+                <td>Syringe sleeve inner diameter too large</td>
+                <td>PFS needle tilted</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>1</td>
+                <td>3</td>
+                <td>2</td>
+                <td>6</td>
+                <td>Reduce syringe sleeve inner diameter</td>
+                <td>/</td>
+                <td>1</td>
+                <td>3</td>
+                <td>2</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>2.3</td>
+                <td>Secure PFS in correct position</td>
+                <td>Incorrect PFS position</td>
+                <td>1. Design issue</td>
+                <td>Incorrect injection depth</td>
+                <td>1. Tolerance analysis</td>
+                <td>2</td>
+                <td>3</td>
+                <td>1</td>
+                <td>6</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>3</td>
+                <td>1</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>2.4</td>
+                <td>Secure extension barrel</td>
+                <td>Clasp fracture</td>
+                <td>Material issue, clasp design issue</td>
+                <td>Extension barrel falls off</td>
+                <td>1. Tolerance analysis</td>
+                <td>2</td>
+                <td>4</td>
+                <td>1</td>
+                <td>8</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>4</td>
+                <td>1</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>2.5</td>
+                <td>Secure extension barrel</td>
+                <td>Incorrect fixing position</td>
+                <td>1. Design issue</td>
+                <td>Incorrect injection depth</td>
+                <td>1. Tolerance analysis</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>24</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>2</td>
+                <td>4</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>2.6</td>
+                <td>Enable observation of medication</td>
+                <td>Cannot clearly observe medication</td>
+                <td>Material issue; injection molding issue</td>
+                <td>No dose indication</td>
+                <td>1. Test report</td>
+                <td>1</td>
+                <td>3</td>
+                <td>4</td>
+                <td>12</td>
+                <td>Improve material or improve injection molding quality</td>
+                <td>Improve injection molding quality</td>
+                <td>1</td>
+                <td>2</td>
+                <td>4</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>2.7</td>
+                <td>Needle shield can move axially</td>
+                <td>Needle shield and syringe sleeve fit too tight, causing needle shield unable to move in syringe sleeve</td>
+                <td>Syringe sleeve not round/not straight</td>
+                <td>Cannot inject</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>1</td>
+                <td>4</td>
+                <td>1</td>
+                <td>4</td>
+                <td>Improve fit clearance</td>
+                <td>Improve fit clearance</td>
+                <td>1</td>
+                <td>4</td>
+                <td>1</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">3. Needle Cap 1M115AISI1040100</td>
+            </tr>
+            <tr>
+                <td>3.1</td>
+                <td>Transmit motion - press skin during injection, release injection action</td>
+                <td>Cannot push rear assembly, release spring</td>
+                <td>Design issue: front end extension length too short</td>
+                <td>No injection</td>
+                <td>1. Tolerance analysis</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Improve design</td>
+                <td>Increase extension length</td>
+                <td>1</td>
+                <td>4</td>
+                <td>1</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>3.2</td>
+                <td>Slide out of barrel after injection</td>
+                <td>Stuck on barrel, cannot move</td>
+                <td>1. Injection molding issue: bent, twisted</td>
+                <td>Needle exposed, no cover</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>1</td>
+                <td>8</td>
+                <td>Improve injection molding quality, improve design</td>
+                <td>Improve injection molding quality</td>
+                <td>1</td>
+                <td>4</td>
+                <td>1</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>3.3</td>
+                <td>Anti-reverse function</td>
+                <td>Clasp connection failure with syringe sleeve</td>
+                <td>1. Material issue; 2. Design issue</td>
+                <td>No anti-reverse after injection</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>3</td>
+                <td>4</td>
+                <td>1</td>
+                <td>12</td>
+                <td>Improve material, improve injection molding quality</td>
+                <td>Improve injection molding quality</td>
+                <td>2</td>
+                <td>4</td>
+                <td>1</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>3.4</td>
+                <td>Enable observation of medication</td>
+                <td>Viewport opening size too small</td>
+                <td>1. Design issue</td>
+                <td>No dose indication</td>
+                <td></td>
+                <td>1</td>
+                <td>3</td>
+                <td>1</td>
+                <td>3</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>2</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">4. Barrel 1M115AISI1010400</td>
+            </tr>
+            <tr>
+                <td>4.1</td>
+                <td>Guide needle shield axial movement</td>
+                <td>Needle shield cannot move in barrel</td>
+                <td>1. Design issue</td>
+                <td>Cannot inject or cannot cover needle after injection</td>
+                <td>1. Tolerance analysis</td>
+                <td>2</td>
+                <td>5</td>
+                <td>1</td>
+                <td>10</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>5</td>
+                <td>1</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>4.2</td>
+                <td>Secure syringe sleeve position</td>
+                <td>Incorrect syringe sleeve position</td>
+                <td>1. Design issue; 2. Injection molding issue</td>
+                <td>Incorrect needle extension length; no dose indication</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>1</td>
+                <td>4</td>
+                <td>4</td>
+                <td>16</td>
+                <td>Improve design and injection molding</td>
+                <td>Improve injection molding quality</td>
+                <td>1</td>
+                <td>3</td>
+                <td>3</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>4.3</td>
+                <td>Apply label</td>
+                <td>Label cannot fully adhere to barrel</td>
+                <td>1. Label area size inappropriate 2. Label area position inappropriate</td>
+                <td></td>
+                <td>1. Drawing 2. Design input requirements</td>
+                <td>2</td>
+                <td>3</td>
+                <td>2</td>
+                <td>12</td>
+                <td>Adjust label area size or position</td>
+                <td>Adjust label area size</td>
+                <td>1</td>
+                <td>3</td>
+                <td>2</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>4.4</td>
+                <td>Provide viewport for observing medication</td>
+                <td>Viewport position and size inappropriate</td>
+                <td>1. Design issue</td>
+                <td>Cannot observe medication; cannot observe rubber stopper after use</td>
+                <td>1. Drawing 2. Design input requirements</td>
+                <td>1</td>
+                <td>3</td>
+                <td>1</td>
+                <td>3</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>3</td>
+                <td>1</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>4.5</td>
+                <td>Anti-slip and anti-rolling</td>
+                <td>Barrel shape incorrect, surface too smooth</td>
+                <td>1. Design issue</td>
+                <td>Product drop damage</td>
+                <td>1. Test report</td>
+                <td>1</td>
+                <td>2</td>
+                <td>1</td>
+                <td>2</td>
+                <td>Improve design</td>
+                <td>/</td>
+                <td>1</td>
+                <td>2</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>4.6</td>
+                <td>Secure rear assembly (power assembly)</td>
+                <td>Rear assembly cannot be installed on barrel</td>
+                <td>1. Design issue</td>
+                <td>Cannot install</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>1</td>
+                <td>8</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>4</td>
+                <td>1</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>4.7</td>
+                <td>Secure rear assembly (power assembly)</td>
+                <td>Rear assembly and barrel clasp fit too loose</td>
+                <td>1. Design issue</td>
+                <td>Rear assembly pops open</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>1</td>
+                <td>8</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>4</td>
+                <td>1</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">5. Extended Barrel 1M115AISI1040200</td>
+            </tr>
+            <tr>
+                <td>5.1</td>
+                <td>Guide needle shield axial movement</td>
+                <td>Needle shield stuck, cannot move</td>
+                <td>1. Design issue 2. Injection molding issue</td>
+                <td>Cannot inject</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Improve injection molding quality, improve design</td>
+                <td>Improve injection molding quality</td>
+                <td>1</td>
+                <td>4</td>
+                <td>2</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>5.2</td>
+                <td>Secure syringe sleeve and barrel position</td>
+                <td>Extension barrel pulled out</td>
+                <td>1. Design issue 2. Injection molding issue</td>
+                <td>Front assembly separates</td>
+                <td>1. Tolerance analysis 3. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Improve injection molding quality, improve design</td>
+                <td>Improve injection molding quality</td>
+                <td>1</td>
+                <td>4</td>
+                <td>2</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>5.3</td>
+                <td>Control press distance during injection</td>
+                <td>Distance too short</td>
+                <td>1. Design issue</td>
+                <td>Needle extension length too long</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>3</td>
+                <td>24</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>2</td>
+                <td>3</td>
+                <td>2</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>5.4</td>
+                <td>Control press distance during injection</td>
+                <td>Distance too long</td>
+                <td>1. Design issue</td>
+                <td>Needle extension length too short</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>3</td>
+                <td>24</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>2</td>
+                <td>3</td>
+                <td>2</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">6. Cap 1M115AISI1040300</td>
+            </tr>
+            <tr>
+                <td>6.1</td>
+                <td>Tight fit with barrel</td>
+                <td>Gap during fit</td>
+                <td>1. Design issue</td>
+                <td>Cap easy to fall off</td>
+                <td></td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>4</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>6.2</td>
+                <td>Tight fit with barrel</td>
+                <td>Fit too tight</td>
+                <td>1. Design issue</td>
+                <td>Assembly difficult</td>
+                <td></td>
+                <td>1</td>
+                <td>3</td>
+                <td>2</td>
+                <td>6</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>6.3</td>
+                <td>Tight fit with extension barrel</td>
+                <td>Gap during fit</td>
+                <td>1. Design issue</td>
+                <td>Cap loose</td>
+                <td></td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>4</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>6.4</td>
+                <td>Tight fit with extension barrel</td>
+                <td>Fit too tight</td>
+                <td>1. Design issue</td>
+                <td>Assembly difficult</td>
+                <td></td>
+                <td>1</td>
+                <td>3</td>
+                <td>2</td>
+                <td>6</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>6.5</td>
+                <td>Tight fit with needle shield</td>
+                <td>Fit too tight</td>
+                <td>1. Design issue</td>
+                <td>Assembly difficult</td>
+                <td></td>
+                <td>1</td>
+                <td>3</td>
+                <td>2</td>
+                <td>6</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>6.6</td>
+                <td>Fit with ferrule</td>
+                <td>Gap during fit</td>
+                <td>1. Design issue</td>
+                <td>Ferrule falls off</td>
+                <td></td>
+                <td>1</td>
+                <td>3</td>
+                <td>2</td>
+                <td>6</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>6.7</td>
+                <td>Fit with ferrule</td>
+                <td>Fit too tight</td>
+                <td>1. Design issue</td>
+                <td>Cap deformation, assembly difficult</td>
+                <td></td>
+                <td>1</td>
+                <td>3</td>
+                <td>2</td>
+                <td>6</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>6.8</td>
+                <td>Ensure needle shield not squeezed, triggering injection</td>
+                <td>Needle shield squeezed</td>
+                <td>1. Design issue</td>
+                <td>Premature injection</td>
+                <td>1. Tolerance analysis</td>
+                <td>2</td>
+                <td>4</td>
+                <td>3</td>
+                <td>24</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>4</td>
+                <td>3</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>6.9</td>
+                <td>Surface easy to grip</td>
+                <td>Fingers slip</td>
+                <td>Surface too small or grip force insufficient</td>
+                <td>Cap removal difficult</td>
+                <td></td>
+                <td>2</td>
+                <td>3</td>
+                <td>3</td>
+                <td>18</td>
+                <td>Increase surface or grip force</td>
+                <td>Increase surface</td>
+                <td>1</td>
+                <td>3</td>
+                <td>3</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">7. Iron Clip 1M212AISI0050100</td>
+            </tr>
+            <tr>
+                <td>7.1</td>
+                <td>Grip PFS needle soft cap</td>
+                <td>Gap between claw and soft cap</td>
+                <td>1. Claw inner diameter too large</td>
+                <td>Soft cap cannot be removed</td>
+                <td>1. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Reduce claw inner diameter</td>
+                <td>Reduce claw inner diameter</td>
+                <td>2</td>
+                <td>3</td>
+                <td>2</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>7.2</td>
+                <td>Grip PFS needle soft cap</td>
+                <td>Claw and soft cap fit too tight</td>
+                <td>1. Claw inner diameter too small</td>
+                <td>Increase soft cap removal force</td>
+                <td>1. Test report</td>
+                <td>2</td>
+                <td>2</td>
+                <td>5</td>
+                <td>20</td>
+                <td>Increase inspection intensity</td>
+                <td>Increase inspection intensity</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>7.3</td>
+                <td>Fit with cap</td>
+                <td>Gap during fit</td>
+                <td>1. Design issue</td>
+                <td>Ferrule falls off</td>
+                <td>1. Tolerance analysis</td>
+                <td>1</td>
+                <td>3</td>
+                <td>2</td>
+                <td>6</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>7.4</td>
+                <td>Fit with cap</td>
+                <td>Fit too tight</td>
+                <td>1. Design issue</td>
+                <td>Cap deformation, assembly difficult</td>
+                <td>1. Tolerance analysis</td>
+                <td>1</td>
+                <td>3</td>
+                <td>2</td>
+                <td>6</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">8. Rear Cover 1M112AISI1040400</td>
+            </tr>
+            <tr>
+                <td>8.1</td>
+                <td>Tight fit with barrel</td>
+                <td>Gap in clasp fit</td>
+                <td>1. Design issue</td>
+                <td>Rear cover pops open, rear cover falls off, rear cover moves</td>
+                <td>1. Tolerance analysis</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Improve design</td>
+                <td>/</td>
+                <td>1</td>
+                <td>4</td>
+                <td>2</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>8.2</td>
+                <td>Tight fit with barrel</td>
+                <td>Clasp fit too tight</td>
+                <td>1. Design issue</td>
+                <td>Assembly difficult</td>
+                <td>1. Tolerance analysis</td>
+                <td>2</td>
+                <td>3</td>
+                <td>3</td>
+                <td>18</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>3</td>
+                <td>3</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>8.3</td>
+                <td>Guide actuator sleeve movement</td>
+                <td>Actuator sleeve stuck, cannot move</td>
+                <td>1. Design issue 2. Injection molding issue</td>
+                <td>No anti-reverse after injection</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>2</td>
+                <td>3</td>
+                <td>3</td>
+                <td>18</td>
+                <td>Improve injection molding quality, improve design</td>
+                <td>Improve injection molding quality</td>
+                <td>1</td>
+                <td>3</td>
+                <td>3</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>8.4</td>
+                <td>Guide push rod spring axial compression</td>
+                <td>Guide rod bent, spring twisted</td>
+                <td>1. Injection molding issue</td>
+                <td>1. Assembly difficult; 2. Cannot inject</td>
+                <td>1. Test report</td>
+                <td>2</td>
+                <td>3</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Improve injection molding quality</td>
+                <td>Improve injection molding quality</td>
+                <td>1</td>
+                <td>4</td>
+                <td>2</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>8.5</td>
+                <td>Limit brake sleeve movement position</td>
+                <td>Cannot limit sleeve position</td>
+                <td>1. Design issue 2. Injection molding issue</td>
+                <td>Rear cover pops open</td>
+                <td>1. Test report</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>8</td>
+                <td>Improve injection molding quality, improve design</td>
+                <td>Improve injection molding quality</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">9. Actuation Rod 1M131AISI1010800</td>
+            </tr>
+            <tr>
+                <td>9.1</td>
+                <td>Needle shield can slide relative to actuator sleeve</td>
+                <td>Actuator sleeve stuck, cannot move</td>
+                <td>1. Design issue 2. Injection molding issue</td>
+                <td>No anti-reverse after injection</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>2</td>
+                <td>3</td>
+                <td>3</td>
+                <td>18</td>
+                <td>Improve injection molding quality, improve design</td>
+                <td>Improve injection molding quality</td>
+                <td>1</td>
+                <td>3</td>
+                <td>3</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>9.2</td>
+                <td>Support and guide push rod</td>
+                <td>Actuator sleeve bent, high friction between push rod and actuator sleeve</td>
+                <td>1. Design issue 2. Injection molding issue</td>
+                <td>Assembly difficult: cannot activate</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>2</td>
+                <td>3</td>
+                <td>3</td>
+                <td>18</td>
+                <td>Improve injection molding quality, improve design</td>
+                <td>Improve injection molding quality</td>
+                <td>1</td>
+                <td>3</td>
+                <td>3</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>9.3</td>
+                <td>Clasp limits push rod movement before activation</td>
+                <td>Clasp cannot catch push rod before injection</td>
+                <td>1. Design issue; 2. Material issue</td>
+                <td>1. Accidental injection action trigger</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Improve injection molding quality, improve design</td>
+                <td>Improve injection molding quality</td>
+                <td>1</td>
+                <td>4</td>
+                <td>2</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>9.4</td>
+                <td>After activation push rod spring arms open, push rod pops open</td>
+                <td>Spring arm length too long, push rod cannot return after opening</td>
+                <td>1. Design issue</td>
+                <td>No anti-reverse after injection</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>3</td>
+                <td>4</td>
+                <td>2</td>
+                <td>24</td>
+                <td>Improve design</td>
+                <td>Reduce spring arm length</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+            </tr>
+            <tr>
+                <td>9.5</td>
+                <td>After activation push rod spring arms open, push rod pops open</td>
+                <td>Spring arm length too short, small opening amplitude, push rod cannot extend</td>
+                <td>1. Design issue</td>
+                <td>Cannot inject</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>3</td>
+                <td>4</td>
+                <td>2</td>
+                <td>24</td>
+                <td>Improve design</td>
+                <td>/</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+            </tr>
+            <tr>
+                <td>9.6</td>
+                <td>Support and guide brake sleeve</td>
+                <td>Cannot move axially</td>
+                <td>1. Design issue</td>
+                <td>Cannot inject</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>4</td>
+                <td>2</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>9.7</td>
+                <td>Support needle shield spring</td>
+                <td>Actuator sleeve fracture</td>
+                <td>Design weak at spring arm</td>
+                <td>Premature activation</td>
+                <td>Aging test</td>
+                <td>2</td>
+                <td>4</td>
+                <td>1</td>
+                <td>8</td>
+                <td>Improve design</td>
+                <td>Enhance spring arm design</td>
+                <td>1</td>
+                <td>4</td>
+                <td>1</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>9.8</td>
+                <td>Prevent brake sleeve rotation and positioning</td>
+                <td>Cannot limit position</td>
+                <td>Reinforcement rib position incorrect</td>
+                <td>Assembly difficult</td>
+                <td>1. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Correct reinforcement rib position</td>
+                <td>Correct reinforcement rib position</td>
+                <td>1</td>
+                <td>4</td>
+                <td>2</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">10. Sleeve 1M131AISI1010900</td>
+            </tr>
+            <tr>
+                <td>10.1</td>
+                <td>Lock actuator sleeve before activation</td>
+                <td>Cannot lock actuator sleeve</td>
+                <td>Locking angle/size incorrect</td>
+                <td>Premature activation/accidental activation</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Adjust locking angle/size</td>
+                <td>Adjust locking angle</td>
+                <td>1</td>
+                <td>4</td>
+                <td>2</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>10.2</td>
+                <td>Transfer force from needle shield to needle shield spring during injection</td>
+                <td>Cannot compress spring</td>
+                <td>1. Design issue 2. Injection molding issue</td>
+                <td>Cannot inject</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Improve injection molding quality, improve design</td>
+                <td>Improve injection molding quality</td>
+                <td>1</td>
+                <td>4</td>
+                <td>2</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>10.3</td>
+                <td>Move under needle shield spring force after injection</td>
+                <td>Cannot move</td>
+                <td>1. Design issue 2. Injection molding issue</td>
+                <td>No anti-reverse after injection</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Improve injection molding quality, improve design</td>
+                <td>Improve injection molding quality</td>
+                <td>1</td>
+                <td>4</td>
+                <td>2</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">11. Push Rod 1M131AISI1011000</td>
+            </tr>
+            <tr>
+                <td>11.1</td>
+                <td>Move and push PFS rubber stopper forward under push rod spring force during injection</td>
+                <td>Push rod bent</td>
+                <td>High friction, affects spring release</td>
+                <td>Injection process slow</td>
+                <td>1. Test report</td>
+                <td>2</td>
+                <td>3</td>
+                <td>2</td>
+                <td>12</td>
+                <td>Oil push rod, replace with better lubrication</td>
+                <td>/</td>
+                <td>2</td>
+                <td>3</td>
+                <td>2</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>11.2</td>
+                <td>Move and push PFS rubber stopper forward under push rod spring force during injection</td>
+                <td>Push rod stuck</td>
+                <td>High friction, affects spring release</td>
+                <td>Cannot inject</td>
+                <td>1. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Oil push rod, replace with better lubrication</td>
+                <td>/</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+            </tr>
+            <tr>
+                <td>11.3</td>
+                <td>Limit push rod spring force release before activation</td>
+                <td>Front end fracture</td>
+                <td>1. Material issue 2. Size issue</td>
+                <td>1. Accidental injection action trigger</td>
+                <td>1. Test report</td>
+                <td>1</td>
+                <td>5</td>
+                <td>2</td>
+                <td>10</td>
+                <td>Improve material, modify size</td>
+                <td>/</td>
+                <td>1</td>
+                <td>5</td>
+                <td>2</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>11.4</td>
+                <td>Limit push rod spring force release before activation</td>
+                <td>Clasp groove fracture</td>
+                <td>1. Material issue 2. Size issue</td>
+                <td>1. Accidental injection action trigger</td>
+                <td>1. Test report</td>
+                <td>1</td>
+                <td>5</td>
+                <td>2</td>
+                <td>10</td>
+                <td>Improve material, modify size</td>
+                <td>/</td>
+                <td>1</td>
+                <td>5</td>
+                <td>2</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>11.5</td>
+                <td>Can move axially in PFS</td>
+                <td>Push rod stuck</td>
+                <td>1. Design tolerance issue</td>
+                <td>Cannot complete full injection</td>
+                <td>1. Test report</td>
+                <td>2</td>
+                <td>5</td>
+                <td>2</td>
+                <td>20</td>
+                <td>Improve design</td>
+                <td>Improve tolerance design</td>
+                <td>1</td>
+                <td>5</td>
+                <td>2</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>11.6</td>
+                <td>Dose drive mechanism</td>
+                <td>Push rod working stroke insufficient</td>
+                <td>Push rod initial length not adapted to prefilled syringe (PFS) flange thickness tolerance range</td>
+                <td>Cannot expel all medication, causing injection dose insufficient (Under-dose)</td>
+                <td>1. Test report</td>
+                <td>2</td>
+                <td>5</td>
+                <td>2</td>
+                <td>20</td>
+                <td>1. Based on PFS flange thickness tolerance range, recalculate and modify push rod initial length. 2. Add push rod and PFS compatibility verification in tooling design.</td>
+                <td>Push rod length modified from L1mm to L2mm, ensuring full stroke completion when PFS flange thickness is [Min,Max]. Add push rod effective stroke confirmation in assembly verification fixture, simulating thickest flange condition.</td>
+                <td>1</td>
+                <td>5</td>
+                <td>2</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>11.7</td>
+                <td>Voice mechanism (impact design)</td>
+                <td>Impact energy insufficient, prompt sound too small</td>
+                <td>Impact component stroke (collision distance) insufficient</td>
+                <td>User unaware injection complete, prematurely remove device, causing dose loss</td>
+                <td>1. Test report</td>
+                <td>2</td>
+                <td>5</td>
+                <td>2</td>
+                <td>20</td>
+                <td>1. Optimize mechanism design, increase impact component effective collision distance. 2. Establish objective sound level (SPL) acceptance criteria.</td>
+                <td>1. Redesigned push rod limiting structure, increased collision distance from Xmm to Ymm. 2. Updated validation protocol, require sound level meter measurement at Zcm, SPL > XXdB.</td>
+                <td>1</td>
+                <td>5</td>
+                <td>2</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">12. Push Rod Spring 1M212AISI0011100</td>
+            </tr>
+            <tr>
+                <td>12.1</td>
+                <td>Provide power to push rubber stopper movement during activation</td>
+                <td>Cannot push rubber stopper movement</td>
+                <td>Spring force too small</td>
+                <td>Cannot inject/dose error</td>
+                <td>1. Test report</td>
+                <td>1</td>
+                <td>4</td>
+                <td>5</td>
+                <td>20</td>
+                <td>Increase spring force</td>
+                <td>Adjust spring length</td>
+                <td>1</td>
+                <td>3</td>
+                <td>5</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>12.2</td>
+                <td>Provide power to push rubber stopper movement during activation</td>
+                <td>PFS damage</td>
+                <td>Spring force too large</td>
+                <td>PFS damaged</td>
+                <td>1. Test report</td>
+                <td>1</td>
+                <td>4</td>
+                <td>5</td>
+                <td>20</td>
+                <td>Reduce spring force</td>
+                <td>Adjust spring length</td>
+                <td>1</td>
+                <td>3</td>
+                <td>5</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>12.3</td>
+                <td>Provide sound during injection</td>
+                <td>Push rod slowly extended</td>
+                <td>Spring force too small</td>
+                <td>Injection slow, no sound prompt or volume too small during injection</td>
+                <td>1. Test report</td>
+                <td>1</td>
+                <td>4</td>
+                <td>5</td>
+                <td>20</td>
+                <td>Increase spring force</td>
+                <td>Adjust spring length</td>
+                <td>1</td>
+                <td>3</td>
+                <td>5</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">13. Needle Shield Spring 1M212AISI1011300</td>
+            </tr>
+            <tr>
+                <td>13.1</td>
+                <td>Provide force to lock actuator sleeve for brake sleeve before injection</td>
+                <td>Cannot lock actuator sleeve</td>
+                <td>Spring force too small</td>
+                <td>Premature activation</td>
+                <td>1. Test report</td>
+                <td>1</td>
+                <td>4</td>
+                <td>2</td>
+                <td>8</td>
+                <td>Increase spring force</td>
+                <td>Adjust spring length</td>
+                <td>1</td>
+                <td>4</td>
+                <td>1</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>13.2</td>
+                <td>Provide force to lock actuator sleeve for brake sleeve before injection</td>
+                <td></td>
+                <td>Spring force too large</td>
+                <td>Activation force too large, assembly difficult</td>
+                <td>1. Test report</td>
+                <td>3</td>
+                <td>4</td>
+                <td>2</td>
+                <td>24</td>
+                <td>Reduce spring force</td>
+                <td>Adjust spring length</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+            </tr>
+            <tr>
+                <td>13.3</td>
+                <td>Compressed during injection for brake sleeve rearward movement</td>
+                <td>Cannot move rearward</td>
+                <td>Spring force too large/size interference</td>
+                <td>Rear cover pops open/assembly difficult</td>
+                <td>1. Test report</td>
+                <td>3</td>
+                <td>4</td>
+                <td>2</td>
+                <td>24</td>
+                <td>Reduce spring force/eliminate size interference</td>
+                <td>Adjust spring length</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+            </tr>
+            <tr>
+                <td>13.4</td>
+                <td>Push brake sleeve forward through actuator sleeve two springs after injection</td>
+                <td>Brake sleeve stuck</td>
+                <td>High friction, small spring force</td>
+                <td>No anti-reverse after injection</td>
+                <td>1. Test report</td>
+                <td>3</td>
+                <td>4</td>
+                <td>4</td>
+                <td>48</td>
+                <td>Reduce friction/increase spring force</td>
+                <td>Adjust spring length</td>
+                <td>2</td>
+                <td>4</td>
+                <td>4</td>
+                <td>32</td>
+            </tr>
+            <tr>
+                <td>13.4</td>
+                <td>Push actuator sleeve rearward and contact rear cover to make sound after injection</td>
+                <td>Actuator sleeve stuck, cannot move</td>
+                <td>Spring force small</td>
+                <td>No sound prompt</td>
+                <td>1. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>1</td>
+                <td>8</td>
+                <td>Increase spring force</td>
+                <td>Adjust spring length</td>
+                <td>1</td>
+                <td>4</td>
+                <td>4</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">14. Cap Assembly AISI104S1</td>
+            </tr>
+            <tr>
+                <td>14.1</td>
+                <td>Tight fit with barrel</td>
+                <td>Gap during fit</td>
+                <td>1. Design issue</td>
+                <td>Cap easy to fall off</td>
+                <td></td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>4</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>14.2</td>
+                <td>Tight fit with barrel</td>
+                <td>Fit too tight</td>
+                <td>1. Design issue</td>
+                <td>Assembly difficult</td>
+                <td></td>
+                <td>1</td>
+                <td>3</td>
+                <td>2</td>
+                <td>6</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">15. Front Component AISI104F0</td>
+            </tr>
+            <tr>
+                <td>15.1</td>
+                <td>Fit with rear assembly</td>
+                <td>Fit too tight/loose</td>
+                <td>1. Design issue</td>
+                <td>Assembly difficult</td>
+                <td>1. Tolerance analysis</td>
+                <td>2</td>
+                <td>3</td>
+                <td>3</td>
+                <td>18</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>3</td>
+                <td>3</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>15.2</td>
+                <td>Apply label</td>
+                <td>Label cannot fully adhere to barrel</td>
+                <td>1. Label area size inappropriate 2. Label area position inappropriate</td>
+                <td></td>
+                <td>1. Drawing 2. Design input requirements</td>
+                <td>2</td>
+                <td>3</td>
+                <td>2</td>
+                <td>12</td>
+                <td>Adjust label area size or position</td>
+                <td>Adjust label area size</td>
+                <td>1</td>
+                <td>3</td>
+                <td>2</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>15.3</td>
+                <td>Assembly support PFS</td>
+                <td>Fit too tight/loose</td>
+                <td>Syringe sleeve inner diameter inappropriate</td>
+                <td>PFS cannot be assembled to position</td>
+                <td>1. Tolerance analysis 2. Test report</td>
+                <td>1</td>
+                <td>4</td>
+                <td>5</td>
+                <td>20</td>
+                <td>Increase syringe sleeve inner diameter</td>
+                <td>Appropriately increase syringe sleeve inner diameter</td>
+                <td>1</td>
+                <td>3</td>
+                <td>5</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>15.4</td>
+                <td>Assembly cap</td>
+                <td>Fit too tight/loose</td>
+                <td>1. Design issue</td>
+                <td>Cap easy to fall off</td>
+                <td></td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>4</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">16. Rear Component AISI104R0</td>
+            </tr>
+            <tr>
+                <td>16.1</td>
+                <td>Fit with front assembly</td>
+                <td>Fit too tight/loose</td>
+                <td>1. Design issue</td>
+                <td>Assembly difficult</td>
+                <td>1. Tolerance analysis</td>
+                <td>2</td>
+                <td>3</td>
+                <td>3</td>
+                <td>18</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>3</td>
+                <td>3</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>16.2</td>
+                <td>Provide power output</td>
+                <td>Cannot activate normally</td>
+                <td>1 Material issue 2. Size issue</td>
+                <td>1. Accidental injection action trigger</td>
+                <td>1. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Improve size</td>
+                <td>Improve size</td>
+                <td>1</td>
+                <td>4</td>
+                <td>2</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td colspan="16" class="component-header">17. Final Assembly AISI104</td>
+            </tr>
+            <tr>
+                <td>17.1</td>
+                <td>Provide injection device for patients</td>
+                <td>Cannot inject normally</td>
+                <td>Component issues</td>
+                <td>1. Accidental injection trigger 2. Cannot trigger injection</td>
+                <td>1. Test report</td>
+                <td>2</td>
+                <td>4</td>
+                <td>2</td>
+                <td>16</td>
+                <td>Check each component for normal function</td>
+                <td>Improve component performance</td>
+                <td>1</td>
+                <td>4</td>
+                <td>2</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>17.2</td>
+                <td>Provide viewport display for patients</td>
+                <td>Viewport position and size inappropriate</td>
+                <td>1. Design issue</td>
+                <td>Cannot observe medication; cannot observe rubber stopper after use</td>
+                <td>1. Drawing 2. Design input requirements</td>
+                <td>1</td>
+                <td>3</td>
+                <td>1</td>
+                <td>3</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>3</td>
+                <td>1</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>17.3</td>
+                <td>Needle protection function</td>
+                <td>Needle shield squeezed</td>
+                <td>1. Design issue</td>
+                <td>Premature injection</td>
+                <td>1. Tolerance analysis</td>
+                <td>2</td>
+                <td>4</td>
+                <td>1</td>
+                <td>8</td>
+                <td>Improve design</td>
+                <td>Improve design</td>
+                <td>1</td>
+                <td>4</td>
+                <td>1</td>
+                <td>4</td>
+            </tr>
+
+        </tbody>
+    </table>
+    </div>
+
+
+    <div class="page-break"></div>
+
+    <h2>DFMEA Component Summary</h2>
+    <p><strong>Note:</strong> This DFMEA table contains all 17 components with complete failure mode analysis (85 failure modes analyzed across 17 components).</p>
+
+    <table class="data-table table-2col">
+        <thead>
+            <tr>
+                <th>Component</th>
+                <th>Failure Modes Analyzed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1. Washer Ring 1M130AISI0010100</td><td>4 failure modes</td></tr>
+            <tr><td>2. Syringe Barrel 1M112AISI1010200</td><td>5 failure modes</td></tr>
+            <tr><td>3. Needle Cap 1M115AISI1040100</td><td>4 failure modes</td></tr>
+            <tr><td>4. Barrel 1M115AISI1010400</td><td>6 failure modes</td></tr>
+            <tr><td>5. Extended Barrel 1M115AISI1040200</td><td>5 failure modes</td></tr>
+            <tr><td>6. Cap 1M115AISI1040300</td><td>8 failure modes</td></tr>
+            <tr><td>7. Iron Clip 1M212AISI0050100</td><td>4 failure modes</td></tr>
+            <tr><td>8. Rear Cover 1M112AISI1040400</td><td>5 failure modes</td></tr>
+            <tr><td>9. Actuation Rod 1M131AISI1010800</td><td>7 failure modes</td></tr>
+            <tr><td>10. Sleeve 1M131AISI1010900</td><td>3 failure modes</td></tr>
+            <tr><td>11. Push Rod 1M131AISI1011000</td><td>6 failure modes</td></tr>
+            <tr><td>12. Push Rod Spring 1M212AISI0011100</td><td>4 failure modes</td></tr>
+            <tr><td>13. Needle Shield Spring 1M212AISI1011300</td><td>5 failure modes</td></tr>
+            <tr><td>14. Cap Assembly AISI104S1</td><td>2 failure modes</td></tr>
+            <tr><td>15. Front Component AISI104F0</td><td>4 failure modes</td></tr>
+            <tr><td>16. Rear Component AISI104R0</td><td>3 failure modes</td></tr>
+            <tr><td>17. Final Assembly AISI104</td><td>5 failure modes</td></tr>
+            <tr><td><strong>TOTAL</strong></td><td><strong>85 failure modes</strong></td></tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>FMEA Rating Criteria</h2>
+    <table class="data-table table-3col">
+        <thead>
+            <tr>
+                <th>Occurrence (O)</th>
+                <th>Severity (S)</th>
+                <th>Detection (D)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>1</strong>: Remote likelihood</td>
+                <td><strong>1</strong>: Minor annoyance</td>
+                <td><strong>1</strong>: Almost certain detection</td>
+            </tr>
+            <tr>
+                <td><strong>2</strong>: Low likelihood</td>
+                <td><strong>2</strong>: Moderate discomfort</td>
+                <td><strong>2</strong>: High chance of detection</td>
+            </tr>
+            <tr>
+                <td><strong>3</strong>: Moderate likelihood</td>
+                <td><strong>3</strong>: User injury requiring medical intervention</td>
+                <td><strong>3</strong>: Moderate chance of detection</td>
+            </tr>
+            <tr>
+                <td><strong>4</strong>: High likelihood</td>
+                <td><strong>4</strong>: Life-threatening or fatal injury</td>
+                <td><strong>4</strong>: Low chance of detection</td>
+            </tr>
+            <tr>
+                <td><strong>5</strong>: Very high likelihood</td>
+                <td><strong>5</strong>: Critical safety hazard</td>
+                <td><strong>5</strong>: Very low chance of detection</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="footer">
+        <p>Summed Medtech 森迈医疗 | Document No.: 100-005-DFA-001 | Revision: 2.0</p>
+    </div>
+
+    <script>
+        function scrollTable(tableId, amount) {
+            const wrapper = document.getElementById(tableId + '-wrapper');
+            if (wrapper) {
+                wrapper.scrollBy({ left: amount, behavior: 'smooth' });
+            }
+        }
+    </script>
+
+</div></body>
+</html>
