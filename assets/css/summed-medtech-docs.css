@@ -38,18 +38,38 @@ body {
     background-color: var(--bg-page);
     margin: 0;
     padding: 0;
-    zoom: 150%;
+}
+
+/* Responsive Zoom for different screen sizes */
+@media screen and (min-width: 1400px) {
+    body {
+        zoom: 150%;
+    }
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1399px) {
+    body {
+        zoom: 125%;
+    }
+}
+
+@media screen and (max-width: 1099px) {
+    body {
+        zoom: 100%;
+    }
 }
 
 /* A4 Container Simulation */
 .a4-container {
     background-color: var(--bg-white);
     width: 210mm;
+    max-width: 95%;
     min-height: 297mm;
     margin: 2rem auto;
     padding: 15mm 5%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
+    overflow: visible;
 }
 
 /* Header & Logo */
@@ -131,18 +151,67 @@ th {
 }
 
 .signature-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border-top: 1px solid #000;
-    padding-top: 0.5rem;
+    padding-top: 0.75rem;
     text-align: center;
+    min-height: 100px;
+    justify-content: flex-start;
 }
 
 .signature-name {
     font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-style: italic;
+    color: #003366;
+}
+
+/* Digital signature indicator */
+.signature-prefix {
+    font-weight: normal;
+    color: #666;
+    font-size: 0.9rem;
+    margin-right: 4px;
 }
 
 .signature-title {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--secondary);
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.signature-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.signature-date {
+    font-size: 0.8rem;
+    color: #000;
+}
+
+.signature-line {
+    width: 100%;
+    height: 0;
+    border-top: 2px solid #000;
+    margin: 12px 0;
+}
+
+.signature-block {
+    position: relative;
+    padding: 1.5rem 1rem;
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    min-height: 180px;
 }
 
 /* Figures */

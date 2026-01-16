@@ -50,7 +50,7 @@
         }
 
         .fmea-table {
-            min-width: 1600px;
+            min-width: 1500px;
             line-height: 1.4;
             font-size: 8.5pt;
             table-layout: fixed;
@@ -64,18 +64,6 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
             vertical-align: top;
-        }
-
-        /* Enhanced text wrapping for Process Function column */
-        .fmea-table tbody td:nth-child(2),
-        .fmea-table thead th:nth-child(2) {
-            width: 200px !important;
-            min-width: 200px !important;
-            max-width: 200px !important;
-            word-break: break-word;
-            overflow-wrap: break-word;
-            line-height: 1.3;
-            text-align: left;
         }
 
         .scroll-controls {
@@ -212,10 +200,10 @@
                 <thead>
                     <tr>
                         <th width="2%">Item#</th>
-                        <th>Reviewed Item<br>Process Function</th>
-                        <th width="11%">Potential Failure Mode</th>
-                        <th width="15%">Potential Causes/<br>Failure Mechanisms</th>
-                        <th width="15%">Potential Effects of Failure</th>
+                        <th width="13%">Reviewed Item<br>Process Function</th>
+                        <th width="12%">Potential Failure Mode</th>
+                        <th width="16%">Potential Causes/<br>Failure Mechanisms</th>
+                        <th width="16%">Potential Effects of Failure</th>
                         <th width="2%">OCC</th>
                         <th width="2%">SEV</th>
                         <th width="2%">DET</th>
@@ -231,8 +219,8 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td rowspan="2">1</td>
-                        <td rowspan="2">Syringe Barrel & Washer Ring Assembly</td>
+                        <td>1</td>
+                        <td>Syringe Barrel & Washer Ring Assembly</td>
                         <td>Washer ring clip assembly misalignment</td>
                         <td>Washer ring clip not aligned with syringe barrel clip hole</td>
                         <td>PFS cannot be loaded into auto-injector</td>
@@ -249,6 +237,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>1</td>
+                        <td>Syringe Barrel & Washer Ring Assembly</td>
                         <td>Washer ring installed backwards</td>
                         <td>Washer ring direction not confirmed before assembly</td>
                         <td>PFS flange may crack, PFS flies out</td>
@@ -266,8 +256,8 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td rowspan="3">2</td>
-                        <td rowspan="3">Syringe Barrel & Needle Cap Assembly</td>
+                        <td>2</td>
+                        <td>Syringe Barrel & Needle Cap Assembly</td>
                         <td>Syringe barrel direction installed backwards</td>
                         <td>Syringe barrel direction not confirmed before assembly</td>
                         <td>Needle cap cannot be correctly loaded into pen barrel</td>
@@ -285,6 +275,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>2</td>
+                        <td>Syringe Barrel & Needle Cap Assembly</td>
                         <td>Syringe barrel loading angle incorrect</td>
                         <td>Syringe barrel direction not confirmed before assembly</td>
                         <td>Needle cap cannot be correctly loaded into pen barrel</td>
@@ -302,6 +294,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>2</td>
+                        <td>Syringe Barrel & Needle Cap Assembly</td>
                         <td>Syringe barrel not assembled in place</td>
                         <td>Syringe barrel pressing distance not confirmed before assembly</td>
                         <td>Needle cap cannot be correctly loaded into pen barrel</td>
@@ -319,8 +313,8 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td rowspan="2">3</td>
-                        <td rowspan="2">Needle Cap & Barrel Assembly</td>
+                        <td>3</td>
+                        <td>Needle Cap & Barrel Assembly</td>
                         <td>Needle cap assembly angle incorrect</td>
                         <td>Needle cap direction not confirmed before assembly</td>
                         <td>Needle cap cannot fix in barrel, easy to fall off</td>
@@ -338,6 +332,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>3</td>
+                        <td>Needle Cap & Barrel Assembly</td>
                         <td>Needle cap not assembled in place</td>
                         <td>Needle cap pressing distance not confirmed before assembly</td>
                         <td>Needle cap cannot fix in barrel, easy to fall off</td>
@@ -355,8 +351,8 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td rowspan="2">4</td>
-                        <td rowspan="2">Extended Barrel & Barrel Assembly</td>
+                        <td>4</td>
+                        <td>Extended Barrel & Barrel Assembly</td>
                         <td>Extended barrel assembly angle incorrect</td>
                         <td>Extended barrel direction not confirmed before assembly</td>
                         <td>Extended barrel cannot fix in barrel, easy to fall off</td>
@@ -374,6 +370,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>4</td>
+                        <td>Extended Barrel & Barrel Assembly</td>
                         <td>Extended barrel not assembled in place</td>
                         <td>Extended barrel pressing distance not confirmed before assembly</td>
                         <td>Extended barrel cannot fix in barrel, easy to fall off</td>
@@ -391,8 +389,8 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td rowspan="4">5</td>
-                        <td rowspan="4">Iron Clip & Cap Press-fit</td>
+                        <td>5</td>
+                        <td>Iron Clip & Cap Press-fit</td>
                         <td>Iron clip slips off</td>
                         <td>Iron clip position assembled backwards</td>
                         <td>Needle protective cap cannot be removed</td>
@@ -410,6 +408,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>5</td>
+                        <td>Iron Clip & Cap Press-fit</td>
                         <td>Iron clip slips off</td>
                         <td>Iron clip not press-fit</td>
                         <td>Needle protective cap cannot be removed</td>
@@ -427,6 +427,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>5</td>
+                        <td>Iron Clip & Cap Press-fit</td>
                         <td>Iron clip skewed</td>
                         <td>Iron clip press-fit position incorrect</td>
                         <td>PFS needle may be skewed</td>
@@ -444,6 +446,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>5</td>
+                        <td>Iron Clip & Cap Press-fit</td>
                         <td>Iron clip cannot swing</td>
                         <td>Iron clip press-fit distance excessive</td>
                         <td>Needle protective cap cannot be removed</td>
@@ -499,8 +503,8 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td rowspan="3">8</td>
-                        <td rowspan="3">Actuation Sleeve Assembly</td>
+                        <td>8</td>
+                        <td>Actuation Sleeve Assembly</td>
                         <td>Actuation sleeve spring presses spring</td>
                         <td>Pay attention to spring and actuation sleeve spring arm position during installation</td>
                         <td>Rear assembly cannot assemble normally</td>
@@ -518,6 +522,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>8</td>
+                        <td>Actuation Sleeve Assembly</td>
                         <td>Actuation sleeve direction incorrect</td>
                         <td>Actuation sleeve slot not aligned with actuation sleeve clasp strip during installation</td>
                         <td>Rear assembly cannot assemble normally</td>
@@ -535,6 +541,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>8</td>
+                        <td>Actuation Sleeve Assembly</td>
                         <td>Actuation sleeve cannot press down</td>
                         <td>Actuation sleeve stuck with actuation sleeve spring arm</td>
                         <td>Rear assembly cannot assemble normally</td>
@@ -552,8 +560,8 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td rowspan="5">9</td>
-                        <td rowspan="5">Push Rod & Push Rod Spring Installation</td>
+                        <td>9</td>
+                        <td>Push Rod & Push Rod Spring Installation</td>
                         <td>Push rod cannot press down</td>
                         <td>Actuation sleeve not assembled to position</td>
                         <td>Rear assembly cannot assemble normally</td>
@@ -571,6 +579,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>9</td>
+                        <td>Push Rod & Push Rod Spring Installation</td>
                         <td>Push rod cannot press down</td>
                         <td>Push rod stuck on actuation sleeve spring arm</td>
                         <td>Rear assembly cannot assemble normally</td>
@@ -588,6 +598,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>9</td>
+                        <td>Push Rod & Push Rod Spring Installation</td>
                         <td>Push rod not locked to position</td>
                         <td>Actuation sleeve spring arm not fully expanded</td>
                         <td>Rear assembly cannot assemble normally</td>
@@ -605,6 +617,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>9</td>
+                        <td>Push Rod & Push Rod Spring Installation</td>
                         <td>Push rod not locked to position</td>
                         <td>Push rod clasp not aligned with actuation sleeve clasp slot</td>
                         <td>Rear assembly cannot assemble normally</td>
@@ -622,6 +636,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>9</td>
+                        <td>Push Rod & Push Rod Spring Installation</td>
                         <td>Push rod not locked to position</td>
                         <td>Actuation sleeve spring arm does not catch push rod</td>
                         <td>Rear assembly cannot assemble normally</td>
@@ -639,8 +655,8 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td rowspan="3">10</td>
-                        <td rowspan="3">Rear Cover Installation</td>
+                        <td>10</td>
+                        <td>Rear Cover Installation</td>
                         <td>Rear cover guide rod bent</td>
                         <td>Rear cover guide rod not aligned with actuation sleeve guide hole</td>
                         <td>Affects injection</td>
@@ -658,6 +674,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>10</td>
+                        <td>Rear Cover Installation</td>
                         <td>Rear cover guide rod bent</td>
                         <td>Rear cover guide rod contacts spring, bends</td>
                         <td>Affects injection</td>
@@ -675,6 +693,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>10</td>
+                        <td>Rear Cover Installation</td>
                         <td>Rear cover cannot install</td>
                         <td>Rear cover direction incorrect</td>
                         <td>Rear assembly cannot assemble normally</td>
@@ -692,8 +712,8 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td rowspan="3">11</td>
-                        <td rowspan="3">Load into Tray</td>
+                        <td>11</td>
+                        <td>Load into Tray</td>
                         <td>Product not loaded into Tray</td>
                         <td>Front assembly direction incorrect</td>
                         <td>Fall out of Tray</td>
@@ -711,6 +731,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>11</td>
+                        <td>Load into Tray</td>
                         <td>Product not loaded into Tray</td>
                         <td>Front assembly/rear assembly cannot lock in slot</td>
                         <td>Fall out of Tray</td>
@@ -728,6 +750,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>11</td>
+                        <td>Load into Tray</td>
                         <td>Missing parts</td>
                         <td>Missed placement</td>
                         <td>Total quantity incorrect</td>
@@ -745,8 +769,8 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td rowspan="4">12</td>
-                        <td rowspan="4">Final Packaging and Labeling</td>
+                        <td>12</td>
+                        <td>Final Packaging and Labeling</td>
                         <td>Missing parts</td>
                         <td>Missed placement</td>
                         <td>Missed placement</td>
@@ -764,6 +788,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>12</td>
+                        <td>Final Packaging and Labeling</td>
                         <td>Label error</td>
                         <td>Label information incorrect</td>
                         <td>Affects product traceability</td>
@@ -781,6 +807,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>12</td>
+                        <td>Final Packaging and Labeling</td>
                         <td>Label not applied</td>
                         <td>Label missed</td>
                         <td>Affects product traceability</td>
@@ -798,6 +826,8 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>12</td>
+                        <td>Final Packaging and Labeling</td>
                         <td>Carton orientation incorrect</td>
                         <td>Product easy to fall in direction</td>
                         <td>Affects product performance</td>

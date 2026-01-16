@@ -1,6 +1,22 @@
+# System files
 .DS_Store
-.claude/
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Backup files
+*.bak
+*.bak2
+*.bak3
+*.bak4
+*~
+
+# Claude/Agent temp files
 .agent/
-.gemini/
-*.log
-node_modules/
+.claude/
+
+# Optional: Track archive for complete history
+# archive/
