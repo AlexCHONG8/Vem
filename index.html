@@ -23,10 +23,14 @@
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --vem-blue: #003366;
         }
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         @page {
@@ -38,13 +42,234 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-page);
             color: var(--text-main);
-            margin: 0;
-            padding: 0;
             min-height: 100vh;
             zoom: 150%;
+            overflow-x: hidden;
         }
 
-        /* A4 Page Simulation */
+        /* Page Transition System */
+        .page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .page.fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* ==================== WELCOME PAGE ==================== */
+        .welcome-container {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 50%, #f0f9ff 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0.25rem 2rem 0.5rem 2rem;
+        }
+
+        .logos-two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 0.5rem;
+            align-items: center;
+            justify-items: center;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .logo-column {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .vem-column {
+            justify-content: flex-end;
+        }
+
+        .summed-column {
+            justify-content: center;
+        }
+
+        .logos-two-column img {
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logos-two-column img:hover {
+            transform: scale(1.05);
+        }
+
+        .logos-two-column .vem-logo {
+            height: 75px;
+        }
+
+        .logos-two-column .summed-logo {
+            height: 40px;
+            background: white;
+            border-radius: 0.75rem;
+            padding: 0.4rem 1rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .teams-section {
+            display: flex;
+            gap: 1.25rem;
+            flex: 0 0 auto;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            animation: slideUp 0.6s ease-out 0.2s backwards;
+        }
+
+        .team-card {
+            flex: 1;
+            background: white;
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            box-shadow: var(--shadow-xl);
+            transition: all 0.3s ease;
+            animation: scaleIn 0.6s ease-out backwards;
+        }
+
+        .team-card:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+
+        .team-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .team-header {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .team-title {
+            font-size: 1rem;
+            color: var(--vem-blue);
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .team-member {
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+            border-left: 2px solid var(--accent);
+            animation: slideUp 0.4s ease-out backwards;
+        }
+
+        .team-member:nth-child(2) { animation-delay: 0.3s; }
+        .team-member:nth-child(3) { animation-delay: 0.4s; }
+        .team-member:nth-child(4) { animation-delay: 0.5s; }
+        .team-member:nth-child(5) { animation-delay: 0.6s; }
+
+        .member-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.05rem;
+            line-height: 1.1;
+        }
+
+        .member-title {
+            font-size: 0.7rem;
+            color: var(--text-sub);
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        .enter-button-container {
+            text-align: center;
+            margin-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            animation: slideUp 0.6s ease-out 0.6s backwards;
+        }
+
+        .enter-button {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .enter-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        }
+
+        .enter-button:active {
+            transform: translateY(-1px);
+        }
+
+        .enter-button .arrow {
+            font-size: 0.85rem;
+            transition: transform 0.3s ease;
+        }
+
+        .enter-button:hover .arrow {
+            transform: translateX(3px);
+        }
+
+        /* ==================== MAIN DOCUMENT PAGE ==================== */
         .a4-container {
             background-color: var(--bg-card);
             width: 210mm;
@@ -99,10 +324,14 @@
         }
 
         .hero-logo {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.05em;
+            display: block;
+            margin: 0 auto 1.5rem auto;
+            width: 306px;
+            height: auto;
+            background: white;
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: var(--shadow-lg);
         }
 
         .hero-subtitle {
@@ -127,16 +356,32 @@
             gap: 0.5rem;
         }
 
-        /* Logo centered */
-        .summed-logo {
-            display: block;
-            margin: 0 auto 1.5rem auto;
-            width: 306px;
-            height: auto;
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
             background: white;
-            border-radius: 1rem;
-            padding: 1rem;
-            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-main);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateX(-4px);
         }
 
         /* Main Content */
@@ -159,11 +404,12 @@
             padding: 1.5rem;
             text-align: center;
             box-shadow: var(--shadow-md);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .stat-card:hover {
             transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
 
         .stat-icon {
@@ -230,7 +476,7 @@
             border-radius: 0.5rem;
             text-decoration: none;
             color: var(--text-main);
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
 
         .doc-item:hover {
@@ -361,6 +607,11 @@
             padding: 1.5rem;
             margin-bottom: 2rem;
             box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .category-card:hover {
+            box-shadow: var(--shadow-md);
         }
 
         .category-header {
@@ -426,6 +677,7 @@
             color: white;
             border-color: var(--primary);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         .quick-link-icon {
@@ -461,13 +713,111 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .welcome-container {
+                padding: 0.25rem 1.5rem;
+            }
+
+            .logos-two-column {
+                gap: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .logos-two-column .vem-logo {
+                height: 75px;
+            }
+
+            .logos-two-column .summed-logo {
+                height: 40px;
+            }
+
+            .teams-section {
+                gap: 1rem;
+            }
+
+            .team-card {
+                padding: 0.625rem;
+            }
+
+            .team-title {
+                font-size: 0.9rem;
+            }
+
+            .member-name {
+                font-size: 0.75rem;
+            }
+
+            .member-title {
+                font-size: 0.65rem;
+            }
+        }
+
         @media (max-width: 768px) {
+            body {
+                zoom: 100%;
+            }
+
+            .welcome-container {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .logos-two-column {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .vem-column {
+                justify-content: center;
+            }
+
+            .logos-two-column .vem-logo {
+                height: 70px;
+            }
+
+            .logos-two-column .summed-logo {
+                height: 38px;
+            }
+
+            .teams-section {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .team-card {
+                padding: 0.5rem;
+            }
+
+            .team-title {
+                font-size: 0.85rem;
+            }
+
+            .member-name {
+                font-size: 0.7rem;
+            }
+
+            .member-title {
+                font-size: 0.6rem;
+            }
+
+            .enter-button {
+                padding: 0.4rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .back-button {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
+            }
+
             .hero {
                 padding: 3rem 1.5rem 2rem;
             }
 
             .hero-logo {
-                font-size: 2rem;
+                width: 150px;
             }
 
             .hero-subtitle {
@@ -477,10 +827,6 @@
             .hero-meta {
                 flex-direction: column;
                 gap: 0.5rem;
-            }
-
-            .summed-logo {
-                width: 150px;
             }
 
             main {
@@ -494,278 +840,501 @@
             .section-description {
                 display: none;
             }
+
+            .a4-container {
+                width: 100%;
+                margin: 0;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="a4-container">
-        <div class="hero">
-            <div class="hero-container">
-                <img src="assets/images/Summed%20logo.png" alt="Summed Medtech" class="summed-logo">
-                <div class="hero-subtitle">Vem Pharma Regulatory Audit Documentation</div>
-                <div class="hero-meta">
-                    <div class="hero-meta-item">
-                        <span>📍</span>
-                        <span>Jiaxing Summed Medtech Co., Ltd.</span>
+    <!-- ==================== WELCOME PAGE ==================== -->
+    <div id="welcome-page" class="page">
+        <div class="welcome-container">
+            <div class="logos-two-column">
+                <div class="logo-column vem-column">
+                    <img src="assets/images/Vem logo.jpeg" alt="Vem İlaç" class="vem-logo">
+                </div>
+                <div class="logo-column summed-column">
+                    <img src="assets/images/Summed simple logo.png" alt="Summed Medtech" class="summed-logo">
+                </div>
+            </div>
+
+            <div class="teams-section">
+                <div class="team-card">
+                    <div class="team-header">
+                        <h2 class="team-title">Vem İlaç Team</h2>
                     </div>
-                    <div class="hero-meta-item">
-                        <span>💉</span>
-                        <span>Epinephrine Auto-Injector (Lisa & Lucy)</span>
+                    <div class="team-member">
+                        <div class="member-name">Deniz Konyalı</div>
+                        <div class="member-title">Quality System Executive</div>
                     </div>
-                    <div class="hero-meta-item">
-                        <span>📋</span>
-                        <span>ISO 13485:2016 | FDA 21 CFR 820</span>
+                    <div class="team-member">
+                        <div class="member-name">Ceren Maz</div>
+                        <div class="member-title">Quality System Specialist</div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-name">Nesrin Akyüz</div>
+                        <div class="member-title">Procurement Specialist</div>
                     </div>
                 </div>
+
+                <div class="team-card">
+                    <div class="team-header">
+                        <h2 class="team-title">Summed Medtech Team</h2>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-name">Alex Chong</div>
+                        <div class="member-title">Business Development Manager</div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-name">Grace Xue</div>
+                        <div class="member-title">Regulatory Affairs Director</div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-name">Kevin Lo</div>
+                        <div class="member-title">R&D Director</div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-name">Zen Yang</div>
+                        <div class="member-title">ISO13485 Management Representative</div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-name">Linda He</div>
+                        <div class="member-title">Project Manager</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="enter-button-container">
+                <button class="enter-button" onclick="enterAuditPortal()">
+                    <span>Enter Audit Portal</span>
+                    <span class="arrow">→</span>
+                </button>
             </div>
         </div>
-
-        <main>
-
-            <!-- Quick Links -->
-
-            <div class="quick-links">
-                <a href="Summed_Org_Chart.html" class="quick-link">
-                    <span class="quick-link-icon">🏢</span>
-                    Organization Chart
-                </a>
-                <a href="Simject_Assembly_Flowchart.html" class="quick-link">
-                    <span class="quick-link-icon">⚙️</span>
-                    Assembly Flowchart
-                </a>
-                <a href="assets/images/Summed%20Anji.mp4" class="quick-link virtual-tour-link">
-                    <span class="quick-link-icon pulse">🎥</span>
-                    <div class="quick-link-text">
-                        <span class="badge virtual">Virtual</span>
-                        Anji Plant Tour
-                    </div>
-                </a>
-            </div>
-
-            <!-- 01. Risk Management -->
-            <div class="category-card">
-                <div class="category-header">
-                    <div class="category-icon">⚠️</div>
-                    <h2 class="category-title">01. Risk Management</h2>
-                    <span class="category-count">3 documents</span>
-                </div>
-                <p class="category-description">PFMEA, DFMEA, and Risk Management Plan with comprehensive risk analysis
-                    throughout the product lifecycle.</p>
-                <div class="doc-grid">
-                    <a href="documents/01-risk-management/100-000-PFA-001_Process_Failure_Mode_Effects_Analysis.html"
-                        class="doc-item">
-                        <div class="doc-icon">⚠️</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Process Failure Mode Effects Analysis (PFMEA)</span>
-                            <div class="doc-meta"><span class="badge risk">PFA-001</span></div>
-                        </div>
-                    </a>
-                    <a href="documents/01-risk-management/100-005-DFA-001_Design_Failure_Mode_Effects_Analysis.html"
-                        class="doc-item">
-                        <div class="doc-icon">🛡️</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Design Failure Mode Effects Analysis (DFMEA)</span>
-                            <div class="doc-meta"><span class="badge risk">DFA-001</span></div>
-                        </div>
-                    </a>
-                    <a href="documents/01-risk-management/100-005-RMP-001_Risk_Management_Plan.html" class="doc-item">
-                        <div class="doc-icon">📋</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Risk Management Plan</span>
-                            <div class="doc-meta"><span class="badge risk">RMP-001</span></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 02. Design Input & Specifications -->
-            <div class="category-card">
-                <div class="category-header">
-                    <div class="category-icon">📝</div>
-                    <h2 class="category-title">02. Design Input & Specifications</h2>
-                    <span class="category-count">2 documents</span>
-                </div>
-                <p class="category-description">User Requirements Specification (URS) and Product Requirements
-                    Specification (PRS) defining customer needs and technical requirements.</p>
-                <div class="doc-grid">
-                    <a href="documents/02-design-input/100-005-PRS-001_Product_Requirement_Specification.html"
-                        class="doc-item">
-                        <div class="doc-icon">📝</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Product Requirement Specification</span>
-                            <div class="doc-meta"><span class="badge design">PRS-001</span></div>
-                        </div>
-                    </a>
-                    <a href="documents/02-design-input/100-005-URS-001_User_Requirement_Specification.html"
-                        class="doc-item">
-                        <div class="doc-icon">👤</div>
-                        <div class="doc-info">
-                            <span class="doc-name">User Requirement Specification</span>
-                            <div class="doc-meta"><span class="badge design">URS-001</span></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 03. Design Verification & Validation -->
-            <div class="category-card">
-                <div class="category-header">
-                    <div class="category-icon">🔧</div>
-                    <h2 class="category-title">03. Design Verification & Validation</h2>
-                    <span class="category-count">7 documents</span>
-                </div>
-                <p class="category-description">Functional test plans, reliability protocols, stability studies, and
-                    biological evaluation plans for comprehensive design validation.</p>
-                <div class="doc-grid">
-                    <a href="documents/03-design-verification/100-005-DVP-001_Design_Verification_and_Validation_Master_Plan.html"
-                        class="doc-item">
-                        <div class="doc-icon">📋</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Design V&V Master Plan</span>
-                            <div class="doc-meta"><span class="badge verification">DVP-001</span></div>
-                        </div>
-                    </a>
-                    <a href="documents/03-design-verification/100-000-BEP-001_Biological_Evaluation_Plan.html"
-                        class="doc-item">
-                        <div class="doc-icon">🧬</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Biological Evaluation Plan</span>
-                            <div class="doc-meta"><span class="badge verification">BEP-001</span></div>
-                        </div>
-                    </a>
-                    <a href="documents/03-design-verification/100-005-FTP-001_Functional_Test_Plan.html"
-                        class="doc-item">
-                        <div class="doc-icon">🔧</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Functional Test Plan</span>
-                            <div class="doc-meta"><span class="badge verification">FTP-001</span></div>
-                        </div>
-                    </a>
-                    <a href="documents/03-design-verification/100-005-RTP-001_Free_Fall_Test_Protocol.html"
-                        class="doc-item">
-                        <div class="doc-icon">📉</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Free Fall Test Protocol</span>
-                            <div class="doc-meta"><span class="badge verification">RTP-001</span></div>
-                        </div>
-                    </a>
-                    <a href="documents/03-design-verification/100-005-RTP-002_Simulated_Transport_Test_Protocol.html"
-                        class="doc-item">
-                        <div class="doc-icon">🚛</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Simulated Transport Test Protocol</span>
-                            <div class="doc-meta"><span class="badge verification">RTP-002</span></div>
-                        </div>
-                    </a>
-                    <a href="documents/03-design-verification/100-005-STP-001_Real-time_Aging_Stability_Plan.html"
-                        class="doc-item">
-                        <div class="doc-icon">⏳</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Real-time Aging Stability Plan</span>
-                            <div class="doc-meta"><span class="badge verification">STP-001</span></div>
-                        </div>
-                    </a>
-                    <a href="documents/03-design-verification/100-005-STP-002_Accelerated_Aging_Stability_Plan.html"
-                        class="doc-item">
-                        <div class="doc-icon">⚡</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Accelerated Aging Stability Plan</span>
-                            <div class="doc-meta"><span class="badge verification">STP-002</span></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 04. Design Output & Transfer -->
-            <div class="category-card">
-                <div class="category-header">
-                    <div class="category-icon">📤</div>
-                    <h2 class="category-title">04. Design Output & Transfer</h2>
-                    <span class="category-count">5 documents</span>
-                </div>
-                <p class="category-description">Instructions for Use (IFU) and Standard Inspection Procedures (SIP) for
-                    manufacturing transfer and production.</p>
-                <div class="doc-grid">
-                    <a href="documents/04-design-output/100-005-IFU-001_Instructions_for_Use.html" class="doc-item">
-                        <div class="doc-icon">📖</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Instructions for Use (IFU)</span>
-                            <div class="doc-meta"><span class="badge output">IFU-001</span></div>
-                        </div>
-                    </a>
-                    <a href="documents/04-design-output/100-005-SIP-001_Front_Component_Inspection_Specification.html"
-                        class="doc-item">
-                        <div class="doc-icon">🔍</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Front Component Inspection Spec</span>
-                            <div class="doc-meta"><span class="badge output">SIP-001</span></div>
-                        </div>
-                    </a>
-                    <a href="documents/04-design-output/100-005-SIP-011_Rear_Cover_Inspection_Specification.html"
-                        class="doc-item">
-                        <div class="doc-icon">🔍</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Rear Cover Inspection Spec</span>
-                            <div class="doc-meta"><span class="badge output">SIP-011</span></div>
-                        </div>
-                    </a>
-                    <a href="documents/04-design-output/100-005-SIP-012_Actuation_Rod_Inspection_Specification.html"
-                        class="doc-item">
-                        <div class="doc-icon">🔍</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Actuation Rod Inspection Spec</span>
-                            <div class="doc-meta"><span class="badge output">SIP-012</span></div>
-                        </div>
-                    </a>
-                    <a href="documents/04-design-output/100-005-SIP-014_Push_Rod_Inspection_Specification.html"
-                        class="doc-item">
-                        <div class="doc-icon">🔍</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Push Rod Inspection Spec</span>
-                            <div class="doc-meta"><span class="badge output">SIP-014</span></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 07. Materials & Components -->
-            <div class="category-card">
-                <div class="category-header">
-                    <div class="category-icon">🧾</div>
-                    <h2 class="category-title">07. Materials & Components</h2>
-                    <span class="category-count">1 document</span>
-                </div>
-                <p class="category-description">Interactive Bill of Materials (BOM) with complete component tree
-                    structure and material specifications.</p>
-                <div class="doc-grid">
-                    <a href="documents/07-materials-components/100-005-BOM-001_Interactive_EN.html" class="doc-item">
-                        <div class="doc-icon">🧾</div>
-                        <div class="doc-info">
-                            <span class="doc-name">Bill of Materials (BOM)</span>
-                            <div class="doc-meta"><span class="badge materials">BOM-001</span><span
-                                    class="badge materials">Interactive</span></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-        </main>
-
-        <footer>
-            <div class="footer-links">
-                <a href="Summed_Org_Chart.html">Organization Chart</a>
-                <a href="Simject_Assembly_Flowchart.html">Assembly Flowchart</a>
-                <a href="assets/images/Summed%20Anji.mp4">Anji Plant Tour</a>
-            </div>
-            <p>&copy; 2026 Summed Medtech 森迈医疗. All rights reserved.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.8rem;">
-                Prepared for Vem Pharma Turkey Regulatory Audit | ISO 13485:2016 Certified | FDA 21 CFR 820 Compliant
-            </p>
-        </footer>
-
     </div>
+
+    <!-- ==================== MAIN DOCUMENT PAGE ==================== -->
+    <div id="main-page" class="page">
+        <button class="back-button" onclick="backToWelcome()">
+            ← Back to Welcome
+        </button>
+
+        <div class="a4-container">
+            <div class="hero">
+                <div class="hero-container">
+                    <img src="assets/images/Summed%20logo.png" alt="Summed Medtech" class="hero-logo">
+                    <div class="hero-subtitle">Vem Pharma Regulatory Audit Documentation</div>
+                    <div class="hero-meta">
+                        <div class="hero-meta-item">
+                            <span>📍</span>
+                            <span>Jiaxing Summed Medtech Co., Ltd.</span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <span>💉</span>
+                            <span>Epinephrine Auto-Injector (Lisa & Lucy)</span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <span>📋</span>
+                            <span>ISO 13485:2016 | FDA 21 CFR 820</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <main>
+
+                <!-- Quick Links -->
+                <div class="quick-links">
+                    <a href="Summed_Org_Chart.html" class="quick-link">
+                        <span class="quick-link-icon">🏢</span>
+                        Organization Chart
+                    </a>
+                    <a href="Simject_Assembly_Flowchart.html" class="quick-link">
+                        <span class="quick-link-icon">⚙️</span>
+                        Assembly Flowchart
+                    </a>
+                    <a href="assets/images/ISO13485%20EN.pdf" class="quick-link">
+                        <span class="quick-link-icon">📜</span>
+                        ISO 13485 Certificate
+                    </a>
+                    <a href="assets/images/Summed%20Anji.mp4" class="quick-link virtual-tour-link">
+                        <span class="quick-link-icon pulse">🎥</span>
+                        <div class="quick-link-text">
+                            <span class="badge virtual">Virtual</span>
+                            Anji Plant Tour
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 01. Device Description & Specification -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">📋</div>
+                        <h2 class="category-title">01. Device Description & Specification</h2>
+                        <span class="category-count">2 documents</span>
+                    </div>
+                    <p class="category-description">General device description, variants, accessories, and core requirements
+                        (URS/PRS).</p>
+                    <div class="doc-grid">
+                        <a href="documents/02-design-input/100-005-URS-001_User_Requirement_Specification.html"
+                            class="doc-item">
+                            <div class="doc-icon">👤</div>
+                            <div class="doc-info">
+                                <span class="doc-name">User Requirement Specification</span>
+                                <div class="doc-meta"><span class="badge design">100-005-URS-001</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/02-design-input/100-005-PRS-001_Product_Requirement_Specification.html"
+                            class="doc-item">
+                            <div class="doc-icon">📝</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Product Requirement Specification</span>
+                                <div class="doc-meta"><span class="badge design">100-005-PRS-001</span></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 02. Information Supplied (Labelling & IFU) -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">📖</div>
+                        <h2 class="category-title">02. Information Supplied (Labelling & IFU)</h2>
+                        <span class="category-count">1 document</span>
+                    </div>
+                    <p class="category-description">User manuals, Instructions for Use (IFU), and product labelling artwork.
+                    </p>
+                    <div class="doc-grid">
+                        <a href="documents/04-design-output/100-005-IFU-001_Instructions_for_Use.html" class="doc-item">
+                            <div class="doc-icon">📖</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Instructions for Use (IFU)</span>
+                                <div class="doc-meta"><span class="badge output">100-005-IFU-001</span></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 03. Design & Manufacturing Information -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">⚙️</div>
+                        <h2 class="category-title">03. Design & Manufacturing Information</h2>
+                        <span class="category-count">5 documents</span>
+                    </div>
+                    <p class="category-description">BOM structure, inspection specifications (SIP), and master manufacturing
+                        records (DMR/DHF).</p>
+                    <div class="doc-grid">
+                        <a href="documents/07-materials-components/100-005-BOM-001_Dashboard.html" class="doc-item">
+                            <div class="doc-icon">🧾</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Bill of Materials (BOM)</span>
+                                <div class="doc-meta"><span class="badge materials">100-005-BOM-001</span><span
+                                        class="badge materials">Interactive</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/07-materials-components/100-005-SIP-001_Front_Component_Inspection_Specification.html"
+                            class="doc-item">
+                            <div class="doc-icon">🔍</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Front Component Inspection Spec</span>
+                                <div class="doc-meta"><span class="badge output">100-005-SIP-001</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/07-materials-components/100-005-SIP-011_Rear_Cover_Inspection_Specification.html"
+                            class="doc-item">
+                            <div class="doc-icon">🔍</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Rear Cover Inspection Spec</span>
+                                <div class="doc-meta"><span class="badge output">100-005-SIP-011</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/07-materials-components/100-005-SIP-012_Actuation_Rod_Inspection_Specification.html"
+                            class="doc-item">
+                            <div class="doc-icon">🔍</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Actuation Rod Inspection Spec</span>
+                                <div class="doc-meta"><span class="badge output">100-005-SIP-012</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/07-materials-components/100-005-SIP-014_Push_Rod_Inspection_Specification.html"
+                            class="doc-item">
+                            <div class="doc-icon">🔍</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Push Rod Inspection Spec</span>
+                                <div class="doc-meta"><span class="badge output">100-005-SIP-014</span></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 04. General Safety and Performance Requirements (GSPR) -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">🛡️</div>
+                        <h2 class="category-title">04. General Safety and Performance Requirements (GSPR)</h2>
+                        <span class="category-count">1 document</span>
+                    </div>
+                    <p class="category-description">Evidence of compliance with Annex I requirements for safety and
+                        performance.</p>
+                    <div class="doc-grid">
+                        <a href="documents/01-risk-management/100-005-SPR-001_General_Safety_and_Performance_Requirements_CHECKLIST.html"
+                            class="doc-item">
+                            <div class="doc-icon">📑</div>
+                            <div class="doc-info">
+                                <span class="doc-name">General Safety & Performance Requirements (GSPR) Checklist</span>
+                                <div class="doc-meta"><span class="badge risk">100-005-SPR-001</span></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 05. Benefit-Risk Analysis and Risk Management -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">⚠️</div>
+                        <h2 class="category-title">05. Benefit-Risk Analysis and Risk Management</h2>
+                        <span class="category-count">5 documents</span>
+                    </div>
+                    <p class="category-description">Hazard analysis, FMEAs, and cross-functional risk management records
+                        (ISO 14971).</p>
+                    <div class="doc-grid">
+                        <a href="documents/01-risk-management/100-005-RMP-001_Risk_Management_Plan.html" class="doc-item">
+                            <div class="doc-icon">📋</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Risk Management Plan</span>
+                                <div class="doc-meta"><span class="badge risk">100-005-RMP-001</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/01-risk-management/100-005-DFA-001_Design_Failure_Mode_Effects_Analysis.html"
+                            class="doc-item">
+                            <div class="doc-icon">🛡️</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Design Failure Mode Effects Analysis (DFMEA)</span>
+                                <div class="doc-meta"><span class="badge risk">100-005-DFA-001</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/01-risk-management/100-000-PFA-001_Process_Failure_Mode_Effects_Analysis.html"
+                            class="doc-item">
+                            <div class="doc-icon">⚠️</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Process Failure Mode Effects Analysis (PFMEA)</span>
+                                <div class="doc-meta"><span class="badge risk">100-000-PFA-001</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/01-risk-management/100-005-UFM-001_Use_Failure_Mode_Effects_Analysis.html"
+                            class="doc-item">
+                            <div class="doc-icon">👤</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Use Failure Mode Effects Analysis (UFMEA)</span>
+                                <div class="doc-meta"><span class="badge risk">100-005-UFM-001</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/01-risk-management/100-005-RAC-001_Risk_Analysis_Report_Confirmation.html"
+                            class="doc-item">
+                            <div class="doc-icon">✅</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Risk Analysis Report Confirmation</span>
+                                <div class="doc-meta"><span class="badge risk">100-005-RAC-001</span></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 06. Product Verification and Validation -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">🔧</div>
+                        <h2 class="category-title">06. Product Verification and Validation</h2>
+                        <span class="category-count">6 documents</span>
+                    </div>
+                    <p class="category-description">Full verification of design outputs, stability studies, and
+                        transportation validation.</p>
+                    <div class="doc-grid">
+                        <a href="documents/03-design-verification/100-005-DVP-001_Design_Verification_and_Validation_Master_Plan.html"
+                            class="doc-item">
+                            <div class="doc-icon">📋</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Design V&V Master Plan</span>
+                                <div class="doc-meta"><span class="badge verification">100-005-DVP-001</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/03-design-verification/100-005-FTP-001_Functional_Test_Plan.html"
+                            class="doc-item">
+                            <div class="doc-icon">🔧</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Functional Test Plan</span>
+                                <div class="doc-meta"><span class="badge verification">100-005-FTP-001</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/03-design-verification/100-005-STP-001_Real-time_Aging_Stability_Plan.html"
+                            class="doc-item">
+                            <div class="doc-icon">⏳</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Real-time Aging Stability Plan</span>
+                                <div class="doc-meta"><span class="badge verification">100-005-STP-001</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/03-design-verification/100-005-STP-002_Accelerated_Aging_Stability_Plan.html"
+                            class="doc-item">
+                            <div class="doc-icon">⚡</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Accelerated Aging Stability Plan</span>
+                                <div class="doc-meta"><span class="badge verification">100-005-STP-002</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/03-design-verification/100-005-RTP-001_Free_Fall_Test_Protocol.html"
+                            class="doc-item">
+                            <div class="doc-icon">📉</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Free Fall Test Protocol</span>
+                                <div class="doc-meta"><span class="badge verification">100-005-RTP-001</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/03-design-verification/100-005-RTP-002_Simulated_Transport_Test_Protocol.html"
+                            class="doc-item">
+                            <div class="doc-icon">🚛</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Simulated Transport Test Protocol</span>
+                                <div class="doc-meta"><span class="badge verification">100-005-RTP-002</span></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 07. Clinical Evaluation & Biocompatibility -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-icon">🧪</div>
+                        <h2 class="category-title">07. Clinical Evaluation & Biocompatibility</h2>
+                        <span class="category-count">5 documents</span>
+                    </div>
+                    <p class="category-description">Biological evaluation plans, material compliance reports (MSDS/RoHS),
+                        and clinical investigation summaries.</p>
+                    <div class="doc-grid">
+                        <a href="documents/03-design-verification/100-000-BEP-001_Biological_Evaluation_Plan.html"
+                            class="doc-item">
+                            <div class="doc-icon">🧬</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Biological Evaluation Plan</span>
+                                <div class="doc-meta"><span class="badge verification">100-000-BEP-001</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/07-materials-components/000-000-MRR-008_HYTREL_6356_Material_Review_Report.html"
+                            class="doc-item">
+                            <div class="doc-icon">🔬</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Material Review Report (Hytrel 6356)</span>
+                                <div class="doc-meta"><span class="badge design">000-000-MRR-008</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/07-materials-components/000-000-MRR-011_PC_ABS_Material_Review_Report.html"
+                            class="doc-item">
+                            <div class="doc-icon">🔬</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Material Review Report (PC+ABS)</span>
+                                <div class="doc-meta"><span class="badge design">000-000-MRR-011</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/07-materials-components/000-000-MRR-012_POM_FG500P_Material_Review_Report.html"
+                            class="doc-item">
+                            <div class="doc-icon">🔬</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Material Review Report (POM FG500P)</span>
+                                <div class="doc-meta"><span class="badge design">000-000-MRR-012</span></div>
+                            </div>
+                        </a>
+                        <a href="documents/07-materials-components/000-000-MRR-013_HF1130-111_Polycarbonate_Material_Review_Report.html"
+                            class="doc-item">
+                            <div class="doc-icon">🔬</div>
+                            <div class="doc-info">
+                                <span class="doc-name">Material Review Report (Polycarbonate)</span>
+                                <div class="doc-meta"><span class="badge design">000-000-MRR-013</span></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+            </main>
+
+            <footer>
+                <div class="footer-links">
+                    <a href="Summed_Org_Chart.html">Organization Chart</a>
+                    <a href="Simject_Assembly_Flowchart.html">Assembly Flowchart</a>
+                    <a href="assets/images/ISO13485%20EN.pdf">ISO 13485 Certificate</a>
+                    <a href="assets/images/Summed%20Anji.mp4">Anji Plant Tour</a>
+                </div>
+                <p>&copy; 2026 Summed Medtech 森迈医疗. All rights reserved.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+                    Prepared for Vem Pharma Turkey Regulatory Audit | ISO 13485:2016 Certified | FDA 21 CFR 820 Compliant
+                </p>
+            </footer>
+
+        </div>
+    </div>
+
+    <script>
+        // Page transition logic
+        const welcomePage = document.getElementById('welcome-page');
+        const mainPage = document.getElementById('main-page');
+        const STORAGE_KEY = 'vem_audit_visited';
+
+        // Check if user has visited before
+        function hasVisited() {
+            return localStorage.getItem(STORAGE_KEY) === 'true';
+        }
+
+        // Mark as visited
+        function markVisited() {
+            localStorage.setItem(STORAGE_KEY, 'true');
+        }
+
+        // Show welcome page
+        function showWelcome() {
+            welcomePage.classList.add('active');
+            welcomePage.classList.add('fade-in');
+            mainPage.classList.remove('active');
+        }
+
+        // Show main page
+        function showMain() {
+            mainPage.classList.add('active');
+            mainPage.classList.add('fade-in');
+            welcomePage.classList.remove('active');
+        }
+
+        // Enter audit portal
+        function enterAuditPortal() {
+            markVisited();
+            welcomePage.classList.remove('active');
+            setTimeout(() => {
+                showMain();
+            }, 300);
+        }
+
+        // Back to welcome
+        function backToWelcome() {
+            mainPage.classList.remove('active');
+            setTimeout(() => {
+                showWelcome();
+            }, 300);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (hasVisited()) {
+                showMain();
+            } else {
+                showWelcome();
+            }
+        });
+    </script>
 
 </body>
 
