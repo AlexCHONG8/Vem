@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Management Plan - 100-005-RMP-001</title>
+    <link rel="stylesheet" href="../../assets/css/summed-medtech-docs.css">
+    <style>
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .page-break {
+                page-break-after: always;
+            }
+        }
+
+        .doc-info-table,
+        .signature-table,
+        .revision-table,
+        .data-table {
+            width: 100%;
+            table-layout: auto;
+            max-width: 100%;
+        }
+
+        .risk-matrix-table {
+            font-size: 10pt;
+            border-collapse: collapse;
+        }
+
+        .risk-matrix-table th,
+        .risk-matrix-table td {
+            border: 1px solid #003366;
+            padding: 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .risk-matrix-table th {
+            background-color: #003366;
+            color: white;
+            font-weight: bold;
+        }
+
+        .risk-cell-a {
+            background-color: #d4edda;
+        }
+
+        .risk-cell-r {
+            background-color: #fff3cd;
+        }
+
+        .risk-cell-n {
+            background-color: #f8d7da;
+        }
+
+        .lifecycle-table {
+            font-size: 9pt;
+        }
+
+        .lifecycle-table th,
+        .lifecycle-table td {
+            padding: 6px;
+            vertical-align: top;
+        }
+
+        .team-table {
+            font-size: 8pt;
+        }
+
+        .team-table th,
+        .team-table td {
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        .figure-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .figure-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+        }
+
+        .figure-caption {
+            font-size: 9pt;
+            color: #666;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="a4-container">
+
+        <div class="header-section">
+            <img src="../../assets/images/Summed logo.png" alt="Summed Medtech 森迈医疗" class="company-logo"
+                style="width: 80% !important; max-width: 300px !important; height: auto !important;">
+            <div class="document-meta">
+                <div><strong>Document No.:</strong> 100-005-RMP-001</div>
+                <div><strong>Revision:</strong> 1.0</div>
+            </div>
+        </div>
+
+        <h1>Risk Management Plan (RMP)</h1>
+        <h2>Auto-Injector Risk Management Plan</h2>
+
+        <table class="doc-info-table">
+            <tr>
+                <td width="25%"><strong>Document No.:</strong></td>
+                <td colspan="3">100-005-RMP-001</td>
+            </tr>
+            <tr>
+                <td><strong>Revision:</strong></td>
+                <td>1.0</td>
+                <td><strong>Effective Date:</strong></td>
+                <td>2024-07-18</td>
+            </tr>
+            <tr>
+                <td><strong>Prepared by:</strong></td>
+                <td colspan="3">Kayla Li</td>
+            </tr>
+        </table>
+
+        <!-- Signature Table - Horizontal Format -->
+        <table class="signature-table">
+            <tr>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">Kayla Li</div>
+                        <div class="signature-title">QA Manager</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Prepared by</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">Kevin Lo</div>
+                        <div class="signature-title">RD Director</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Reviewed by</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">Andy Tsai</div>
+                        <div class="signature-title">General Manager</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Approved by</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Revision History</h3>
+        <table class="revision-table">
+            <thead>
+                <tr>
+                    <th width="15%">Revision Level</th>
+                    <th width="20%">Date of Revision</th>
+                    <th width="65%">Revision Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.0</td>
+                    <td>2024-07-18</td>
+                    <td>New file</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>1. Product Introduction</h2>
+
+        <h3>1.1 Product Name and Model</h3>
+        <table class="data-table table-2col">
+            <tbody>
+                <tr>
+                    <td><strong>Product Name:</strong></td>
+                    <td>Auto-Injector</td>
+                </tr>
+                <tr>
+                    <td><strong>Product Model:</strong></td>
+                    <td>SM-AISI104, SM-AISI105</td>
+                </tr>
+                <tr>
+                    <td><strong>Product Specification:</strong></td>
+                    <td>0.30 mL, 0.15 mL</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>1.2 Intended Use and Target Population</h3>
+
+        <h4>1.2.1 Intended Use</h4>
+        <p>For use with Epinephrine injection (pre-filled) (0.3 mg/0.3 mL, 0.15 mg/0.3 mL) for drug delivery
+            (intramuscular
+            injection). For single patient or individual single use only.</p>
+
+        <h4>1.2.2 Target Population</h4>
+        <table class="data-table table-2col">
+            <tbody>
+                <tr>
+                    <td><strong>Adult Model:</strong></td>
+                    <td>Patients with body weight ≥ 30 kg</td>
+                </tr>
+                <tr>
+                    <td><strong>Pediatric Model:</strong></td>
+                    <td>Patients with body weight 15-30 kg</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>2. Risk Management Scope</h2>
+
+        <h3>2.1 Life Cycle Coverage</h3>
+        <p>The Auto-Injector Risk Management Plan covers all stages of the life cycle, including design and development
+            planning, design and development, design changes, models, pre-clinical evaluation, clinical evaluation,
+            manufacturing, sales, use, after-sales service and disposal.</p>
+
+        <div class="figure-container">
+            <img src="../../assets/images/100-005-RMP-2-1.png" alt="Risk Management Process Flow">
+            <p class="figure-caption">Figure 1: Risk Management Process Flow</p>
+        </div>
+
+        <h3>2.2 Risk Management Process (Planned Risk Management Activities)</h3>
+        <p>According to ISO 14971:2019 Figure 1, Summed has established and maintains an effective risk management
+            process, as shown below.</p>
+
+        <div class="figure-container">
+            <img src="../../assets/images/100-005-RMP-2-2.png" alt="Risk Management Activities Timeline">
+            <p class="figure-caption">Figure 2: Risk Management Activities Throughout Lifecycle</p>
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2>3. Assignment of Responsibilities and Authority</h2>
+        <p>Personnel performing risk management activities/tasks shall have the education, training, skills and
+            experience
+            appropriate to the activities/tasks assigned to them. These personnel should have knowledge and experience
+            of
+            specific (or similar) medical devices and their use, the technologies involved or the risk management
+            techniques
+            employed. The following table summarizes the personnel and knowledge/experience for this risk management.
+        </p>
+
+        <h3>Management Representative</h3>
+        <table class="data-table team-table">
+            <thead>
+                <tr>
+                    <th width="15%">Role</th>
+                    <th width="10%">Name</th>
+                    <th width="25%">Qualifications</th>
+                    <th width="50%">Allocation of Risk Management Activities</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Project Leader</td>
+                    <td>Kevin Lo</td>
+                    <td>Education: Master's<br>Major: Biomedical Engineering<br>Work Experience: 20 years in Class II
+                        and
+                        III medical device R&D, responsible for product development, technical documentation, risk
+                        management, etc.<br>Training: ISO13485, ISO14971, ISO11135 sterilization validation</td>
+                    <td>Responsible for coordinating resources required for risk management activities.</td>
+                </tr>
+                <tr>
+                    <td>Quality Dept.</td>
+                    <td>Kayla Li</td>
+                    <td>Education: Master's<br>Major: Management Science<br>Work Experience: 10+ years in quality
+                        management, familiar with QMS requirements<br>Training: ISO13485 internal auditor</td>
+                    <td>Responsible for leading risk management throughout the product lifecycle. Specifically:<br>
+                        1. Formulate pre-market and post-market risk management plans<br>
+                        2. Collect risk inputs<br>
+                        3. Lead preliminary hazard analysis<br>
+                        4. Write PHA reports and risk management reports<br>
+                        5. Participate in DMFEA, PFMEA, UFMEA discussions and approve risk management documents<br>
+                        6. Organize pre-market risk management review<br>
+                        7. Lead post-market risk management</td>
+                </tr>
+                <tr>
+                    <td>Production Dept.</td>
+                    <td>Gao Zhangyun</td>
+                    <td>Education: Master's<br>Major: Materials Engineering<br>Work Experience: 8 years in production
+                        and
+                        process, 5 years in Class II and III medical devices, responsible for R&D, process and
+                        production,
+                        familiar with medical device full lifecycle<br>Training: ISO14971 risk management training</td>
+                    <td>1. Responsible for leading PFMEA discussions and writing PFMEA reports<br>
+                        2. Participate in PHA, DFMEA, UFMEA, risk management report discussions and risk management
+                        review;
+                        approve risk management documents<br>
+                        3. Production anomaly feedback and improvement, product hazard confirmation</td>
+                </tr>
+                <tr>
+                    <td>Marketing/Sales</td>
+                    <td>Doris Chang</td>
+                    <td>Education: Clinical Nutrition<br>Work Experience: 2 years in chemical reagent suppliers, 4 years
+                        in
+                        professional injection pharmaceuticals from raw materials to preparations, 2 years in
+                        biopharmaceutical CDMO (monoclonal antibodies, vaccines, ADC), 2 years in drug delivery device
+                        sales<br>Training: ISO13485 QMS, ISO14971 risk management training, GMP, FDA, TFDA audit
+                        experience
+                    </td>
+                    <td>1. Responsible for leading UFMEA discussions and writing UFMEA reports<br>
+                        2. Participate in PHA, DFMEA, PFMEA, risk management report discussions and risk management
+                        review<br>
+                        3. Approve risk management documents</td>
+                </tr>
+                <tr>
+                    <td>Regulatory/Registration</td>
+                    <td>Grace Xue</td>
+                    <td>Education: PhD<br>Major: Biochemistry and Molecular Biology<br>Work Experience: Nearly 15 years
+                        in
+                        pharmaceutical R&D and drug-device combination product regulatory management<br>Training:
+                        Medical
+                        device clinical practice GCP training and ISO14971 risk management training</td>
+                    <td>Participate in PHA, DFMEA, PFMEA, UFMEA and risk management report discussions and risk
+                        management
+                        review, and approve risk management documents.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>4. Risk Acceptance Criteria</h2>
+
+        <h3>4.1 Risk Severity Level Classification</h3>
+        <table class="data-table table-3col">
+            <thead>
+                <tr>
+                    <th>Level Name</th>
+                    <th>Code</th>
+                    <th>Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Catastrophic</td>
+                    <td>5</td>
+                    <td>Results in patient death</td>
+                </tr>
+                <tr>
+                    <td>Critical</td>
+                    <td>4</td>
+                    <td>Results in permanent injury or life-threatening injury</td>
+                </tr>
+                <tr>
+                    <td>Serious</td>
+                    <td>3</td>
+                    <td>Results in injury or damage requiring professional medical intervention</td>
+                </tr>
+                <tr>
+                    <td>Minor</td>
+                    <td>2</td>
+                    <td>Results in injury or damage not requiring professional medical intervention</td>
+                </tr>
+                <tr>
+                    <td>Negligible</td>
+                    <td>1</td>
+                    <td>Inconvenience or temporary discomfort</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>4.2 Risk Probability Level</h3>
+        <table class="data-table table-3col">
+            <thead>
+                <tr>
+                    <th>Level Name</th>
+                    <th>Code</th>
+                    <th>Frequency (per year)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Frequent</td>
+                    <td>5</td>
+                    <td>≥ 10<sup>-3</sup></td>
+                </tr>
+                <tr>
+                    <td>Probable</td>
+                    <td>4</td>
+                    <td>10<sup>-3</sup> > and ≥ 10<sup>-4</sup></td>
+                </tr>
+                <tr>
+                    <td>Occasional</td>
+                    <td>3</td>
+                    <td>10<sup>-4</sup> > and ≥ 10<sup>-5</sup></td>
+                </tr>
+                <tr>
+                    <td>Remote</td>
+                    <td>2</td>
+                    <td>10<sup>-5</sup> > and ≥ 10<sup>-6</sup></td>
+                </tr>
+                <tr>
+                    <td>Improbable</td>
+                    <td>1</td>
+                    <td>
+                        < 10<sup>-6</sup>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><em>Note: Frequency refers to the number of events occurring or expected to occur per device per year.</em>
+        </p>
+
+        <h3>4.3 Risk Acceptability Criteria</h3>
+        <table class="risk-matrix-table">
+            <thead>
+                <tr>
+                    <th rowspan="3">Probability<br>Level (PL)</th>
+                    <th rowspan="3">Code</th>
+                    <th colspan="5">Severity Level (SL)</th>
+                </tr>
+                <tr>
+                    <th>Negligible</th>
+                    <th>Minor</th>
+                    <th>Serious</th>
+                    <th>Critical</th>
+                    <th>Catastrophic</th>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Frequent</td>
+                    <td>5</td>
+                    <td class="risk-cell-r">R</td>
+                    <td class="risk-cell-n">N</td>
+                    <td class="risk-cell-n">N</td>
+                    <td class="risk-cell-n">N</td>
+                    <td class="risk-cell-n">N</td>
+                </tr>
+                <tr>
+                    <td>Probable</td>
+                    <td>4</td>
+                    <td class="risk-cell-r">R</td>
+                    <td class="risk-cell-r">R</td>
+                    <td class="risk-cell-n">N</td>
+                    <td class="risk-cell-n">N</td>
+                    <td class="risk-cell-n">N</td>
+                </tr>
+                <tr>
+                    <td>Occasional</td>
+                    <td>3</td>
+                    <td class="risk-cell-a">A</td>
+                    <td class="risk-cell-r">R</td>
+                    <td class="risk-cell-r">R</td>
+                    <td class="risk-cell-n">N</td>
+                    <td class="risk-cell-n">N</td>
+                </tr>
+                <tr>
+                    <td>Remote</td>
+                    <td>2</td>
+                    <td class="risk-cell-a">A</td>
+                    <td class="risk-cell-r">R</td>
+                    <td class="risk-cell-r">R</td>
+                    <td class="risk-cell-r">R</td>
+                    <td class="risk-cell-n">N</td>
+                </tr>
+                <tr>
+                    <td>Improbable</td>
+                    <td>1</td>
+                    <td class="risk-cell-a">A</td>
+                    <td class="risk-cell-a">A</td>
+                    <td class="risk-cell-a">A</td>
+                    <td class="risk-cell-r">R</td>
+                    <td class="risk-cell-r">R</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><strong>Explanation:</strong> A = Acceptable risk, R = Reasonably feasible reduction of risk, N =
+            Unacceptable
+            risk</p>
+
+        <p>For each risk level, the acceptable risk (SL × PL) should be below 3 (severity ≤ 3), which is acceptable for
+            our
+            product. The (SL × PL) should be below 9 (severity ≤ 9), which is reasonably feasible reduction of risk for
+            our
+            product. In other words, a risk level higher than 10 is unacceptable. If the risk cannot be reduced to an
+            acceptable range through feasible risk control measures, we need to confirm whether the benefits outweigh
+            the
+            risks.</p>
+
+        <div class="page-break"></div>
+
+        <h3>4.4 Risk Analysis</h3>
+        <p><strong>Purpose:</strong> To systematically identify known and foreseeable hazards associated with medical
+            devices.</p>
+
+        <h4>Risk Management Method</h4>
+        <p>A 1-5 point scale is used to score the occurrence (O), severity (S) and detection (D) of each failure mode,
+            and
+            calculate the Risk Priority Number (RPN):</p>
+        <p style="text-align: center; font-size: 14pt; font-weight: bold;">RPN = O × S × D</p>
+
+        <ul>
+            <li><strong>RPN ≥ 27:</strong> Risk reduction measures must be taken</li>
+            <li><strong>RPN < 27:</strong> Optimization as applicable, not mandatory</li>
+        </ul>
+
+        <h4>4.4.1 Information Collection and Lifecycle Stages</h4>
+        <p>Risk analysis should be based on qualitative and quantitative information collected from the following
+            lifecycle
+            stages:</p>
+
+        <table class="data-table lifecycle-table">
+            <thead>
+                <tr>
+                    <th width="20%">Lifecycle Stage</th>
+                    <th width="50%">Information & Activities to Collect (Risk Analysis Input)</th>
+                    <th width="30%">Information/Data Source</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Concept & Design Input</td>
+                    <td>• Intended use, performance requirements, user characteristics (age, ability, education), use
+                        environment<br>
+                        • Applicable regulations, standards and scientific literature</td>
+                    <td>• Product Requirement Specification (PRS)<br>
+                        • Regulations, ISO 11608</td>
+                </tr>
+                <tr>
+                    <td>Design & Development</td>
+                    <td>• Design drawings, material selection, working principle analysis<br>
+                        • Preliminary Hazard Analysis (PHA): Identify significant hazards based on design concept<br>
+                        • Design FMEA: Analyze potential failure modes of components, subsystems and systems<br>
+                        • Usability engineering files: User interface, task analysis, known use errors</td>
+                    <td>• Design reviews<br>
+                        • dFMEA report</td>
+                </tr>
+                <tr>
+                    <td>Production & Manufacturing</td>
+                    <td>• Process validation protocols and reports (IQ/OQ/PQ)<br>
+                        • In-line quality control data (e.g., dose accuracy tests, functional tests)<br>
+                        • Product identification and traceability records<br>
+                        • Process FMEA (pFMEA): Analyze defects that may be introduced in the production process</td>
+                    <td>• Validation reports<br>
+                        • Inspection records, statistical process control (SPC) data<br>
+                        • PFMEA report</td>
+                </tr>
+                <tr>
+                    <td>Packaging, Transport & Storage</td>
+                    <td>• Packaging validation reports (simulated transport, drop, vibration tests)<br>
+                        • Storage condition stability data</td>
+                    <td>• Packaging validation protocols and reports<br>
+                        • Real-time/accelerated aging study reports</td>
+                </tr>
+                <tr>
+                    <td>Post-Market Stage</td>
+                    <td>• Adverse event reports and trend analysis<br>
+                        • After-sales service data (maintenance, inquiries)</td>
+                    <td>• Adverse event monitoring databases (e.g., EUDAMED)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>5. Overall Residual Risk</h2>
+        <p>The method for evaluating overall residual risk and the risk acceptability criteria for overall residual risk
+            will be assessed after all risk control measures have been implemented and verified, considering the
+            contribution of all residual risks.</p>
+
+        <p>If the overall residual risk is considered unacceptable relative to the expected benefits, additional risk
+            control measures or modifications to the medical device or its intended use will be considered.</p>
+
+        <p>Our medical device should fully meet the acceptability criteria for overall residual risk.</p>
+
+        <p>The acceptability criteria for overall residual risk will be judged by experts with application knowledge and
+            clinical expertise.</p>
+
+        <p>To define the acceptability criteria for overall residual risk, the following inputs and considerations
+            should be
+            considered:</p>
+
+        <h3>5.1 Considerations for Overall Residual Risk Assessment</h3>
+        <p>5.1 Different event sequences may lead to different hazardous situations and risks.</p>
+        <p>5.2 Different hazardous situations may produce specific harm.</p>
+        <p>5.3 Risk control measures applicable to individual risks may lead to conflicting requirements, thereby
+            increasing overall residual risk.</p>
+        <p>5.4 Warning considerations alone may adequately reduce individual risks. However, excessive warnings may
+            confuse users, thereby reducing the effectiveness of individual warnings. Analysis may be needed to
+            determine whether there is over-reliance on warnings and whether this over-reliance affects risk reduction
+            and overall residual risk.</p>
+        <p>5.5 A comprehensive review of all instructions for use of the medical device may reveal that these
+            instructions are inconsistent or too difficult to follow.</p>
+        <p>5.6 The results of design verification, usability studies, clinical evaluation, pre-clinical evaluation and
+            clinical investigations can provide useful information about overall residual risk.</p>
+        <p>5.7 All benefit-risk analyses of individual risks should be considered.</p>
+        <p>5.8 When there are trade-offs between risks in the risk analysis, the impact on overall residual risk should
+            be analyzed with particular care.</p>
+
+        <p>5.9 The method for evaluating overall residual risk can take the following approaches:</p>
+        <ol type="a">
+            <li><strong>Benefit-Risk Comparison:</strong> Weigh the benefits related to the intended use of the medical
+                device against the overall residual risk. This assessment will consider knowledge of indications,
+                techniques and the latest state-of-the-art in the medical field, as well as the availability of
+                alternative medical devices or treatments.</li>
+            <li><strong>Visual Representation:</strong> Visual representation of residual risks may be useful. Each
+                individual residual risk will be displayed in the following risk matrix. If many risks are located in
+                the higher severity or higher probability regions of the risk matrix, the distribution of risks may
+                indicate that the overall residual risk may be unacceptable, even if each individual risk has been
+                judged acceptable.</li>
+            <li><strong>Comparison with Similar Devices:</strong> Compare the residual risks caused by our medical
+                device with corresponding risks of similar medical devices on the market. Considering differences in
+                intended use, the residual risks caused by the medical device can be individually compared with the
+                risks of similar medical devices.</li>
+            <li><strong>Expert Assessment:</strong> Expert-supported assessment of overall residual risk related to the
+                expected benefits of using the medical device under consideration.</li>
+            <li><strong>Further Investigation:</strong> Although at this point all individual risks should have been
+                identified, controlled and judged acceptable, further investigation of certain risks may be appropriate
+                as a result of the overall residual risk assessment, especially those that are nearly unacceptable.</li>
+            <li><strong>Risk Interdependency:</strong> Further investigation is also appropriate when certain risks are
+                interdependent with their causes or the risk control measures employed. The effectiveness of risk
+                control should be verified not only individually but also in combination with other risk control
+                measures. Failure Mode and Effects Analysis (FEMA) and Event Tree Analysis (ETA) can be useful tools for
+                discovering relationships between risks and risk control measures.</li>
+        </ol>
+
+        <div class="page-break"></div>
+
+        <h2>6. Implementation and Effectiveness Verification of Risk Control Measures</h2>
+        <p>All risk control measures capable of reducing risk shall be verified. Verification will be summarized in the
+            risk
+            management report. Verification of risk control measures can be conducted as part of design/development
+            verification and process verification. However, verification of the effectiveness of risk control measures
+            can
+            be performed as part of design/development verification.</p>
+
+        <h2>7. Post-Market Product Information Collection and Review</h2>
+        <p>Post-production information will be collected in accordance with product quality monitoring, medical device
+            reporting, post-market information collection and monitoring (PMS), and post-market clinical follow-up
+            (PMCF) in
+            compliance with ISO 13485:2016 Section 8.2 "Monitoring and Measurement".</p>
+
+        <p>In the risk management process, we use pre-clinical data results to identify device-related hazards and
+            verify
+            the effectiveness of risk control measures, and then through continuous collection, analysis and evaluation
+            of
+            clinical data, including clinical benefits from systematic clinical evaluation, to verify device performance
+            and
+            safety as part of the risk management report input.</p>
+
+        <div class="page-break"></div>
+
+        <h2>8. Appendix</h2>
+
+        <h3>Appendix A: Post-Market Risk Management Activities</h3>
+
+        <table class="data-table table-5col">
+            <thead>
+                <tr>
+                    <th width="20%">Activity Content</th>
+                    <th width="25%">Evaluation Points</th>
+                    <th width="25%">Deliverables</th>
+                    <th width="15%">Responsible Dept.</th>
+                    <th width="15%">Completion Timeline</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Product Design/Process Changes</td>
+                    <td>1. Whether new hazards are introduced<br>
+                        2. Whether risk estimation is acceptable<br>
+                        3. Verification of effectiveness of control measures</td>
+                    <td>Change records, risk document updates</td>
+                    <td>RD/PD/RA</td>
+                    <td>Before change implementation</td>
+                </tr>
+                <tr>
+                    <td>Standard/Regulation Updates</td>
+                    <td>ISO 11608, ISO 14971 and other related standard dynamics</td>
+                    <td>Regulatory compliance evaluation report</td>
+                    <td>RA</td>
+                    <td>Before standard implementation</td>
+                </tr>
+                <tr>
+                    <td>Market Use Information</td>
+                    <td>Customer complaints, adverse events, use error cases</td>
+                    <td>Annual use information analysis report</td>
+                    <td>BD/QA</td>
+                    <td>Annually</td>
+                </tr>
+                <tr>
+                    <td>Production Process Stability</td>
+                    <td>Key process parameters (SPC), PFMEA updates</td>
+                    <td>Process anomaly handling report</td>
+                    <td>PD</td>
+                    <td>Within 72 hours after anomaly occurrence</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <!-- Additional Reviewer Signatures -->
+        <h2>Additional Reviewers</h2>
+        <table class="signature-table">
+            <tr>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">Grace Xue</div>
+                        <div class="signature-title">RA Director</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Reviewed by</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">Doris Chang</div>
+                        <div class="signature-title">BD Manager</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Reviewed by</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">Gao Zhangyun</div>
+                        <div class="signature-title">Production Supervisor</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Reviewed by</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="footer">
+            <p>Summed Medtech 森迈医疗 | Document No.: 100-005-RMP-001 | Revision: 1.0</p>
+        </div>
+
+    </div>
+</body>
+
+</html>

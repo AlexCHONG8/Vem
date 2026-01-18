@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering BOM Dashboard - SM100-005 Lisa Adult</title>
+    <link rel="stylesheet" href="../../assets/css/summed-medtech-docs.css">
+    <style>
+        /* ===== BOM DASHBOARD STYLES - Standard Document Integration ===== */
+        :root {
+            /* Corporate colors - matching Summed Medtech branding */
+            --primary-color: #003366;
+            --secondary-color: #004d99;
+            --accent-color: #0066cc;
+
+            /* Level colors */
+            --level-1-color: #003366;
+            --level-2-color: #004d99;
+            --level-3-color: #0066cc;
+            --level-4-color: #cc6600;
+
+            /* Background colors */
+            --bg-level-1: #e6f0ff;
+            --bg-level-2: #f0f5ff;
+            --bg-level-3: #f5f9ff;
+            --bg-level-4: #fff5e6;
+
+            /* Component type colors */
+            --type-plastic: #0066cc;
+            --type-spring: #cc0000;
+            --type-metal: #666666;
+            --type-material: #cc6600;
+            --type-packaging: #6600cc;
+        }
+
+        /* Dashboard controls - matches standard document styling */
+        .dashboard-controls {
+            background: white;
+            padding: 1.5rem;
+            border: 2px solid #003366;
+            border-radius: 8px;
+            margin: 2rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .dashboard-controls label {
+            font-weight: 600;
+            color: #003366;
+            margin-right: 0.5rem;
+        }
+
+        .control-btn {
+            padding: 0.6rem 1.2rem;
+            font-size: 11pt;
+            font-weight: 600;
+            border: 2px solid #003366;
+            background: white;
+            color: #003366;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .control-btn:hover {
+            background: #003366;
+            color: white;
+        }
+
+        .view-btn {
+            padding: 0.6rem 1.5rem;
+            font-size: 11pt;
+            font-weight: 600;
+            border: 2px solid #003366;
+            background: white;
+            color: #003366;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .view-btn:hover,
+        .view-btn.active {
+            background: #003366;
+            color: white;
+        }
+
+        .search-input {
+            flex: 1;
+            max-width: 400px;
+            padding: 0.6rem 1rem;
+            font-size: 11pt;
+            border: 2px solid #003366;
+            border-radius: 4px;
+        }
+
+        /* View containers */
+        .view-container {
+            display: none;
+            overflow-x: hidden;
+        }
+
+        .view-container.active {
+            display: block;
+            overflow-x: hidden;
+        }
+
+        /* Executive Dashboard Cards */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 2rem;
+            border: 2px solid #003366;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #003366;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 11pt;
+            color: #666666;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .dashboard-section {
+            background: white;
+            padding: 1.5rem;
+            border: 2px solid #003366;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .section-title {
+            font-size: 16pt;
+            font-weight: 700;
+            color: #003366;
+            margin: 0 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #003366;
+        }
+
+        /* Component Grid */
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .component-category {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border: 1px solid #003366;
+            border-radius: 4px;
+        }
+
+        .category-title {
+            font-size: 14pt;
+            font-weight: 700;
+            color: #003366;
+            margin: 0 0 1rem 0;
+        }
+
+        .component-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .component-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #cccccc;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .component-list li:last-child {
+            border-bottom: none;
+        }
+
+        .component-name {
+            font-weight: 600;
+            color: #003366;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .component-material {
+            color: #666666;
+            font-size: 10pt;
+        }
+
+        /* Material Breakdown */
+        .material-bar-container {
+            margin: 1rem 0;
+        }
+
+        .material-bar-row {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f9f9f9;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+
+        .material-name {
+            width: 120px;
+            font-weight: 600;
+            flex-shrink: 0;
+            color: #003366;
+        }
+
+        .material-bar-wrapper {
+            flex: 1;
+            background: #e0e0e0;
+            height: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .material-bar {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding-left: 1rem;
+            color: white;
+            font-weight: 700;
+            font-size: 10pt;
+        }
+
+        .material-pct {
+            width: 80px;
+            text-align: right;
+            font-weight: 700;
+            color: #003366;
+            flex-shrink: 0;
+        }
+
+        .material-weight {
+            width: 80px;
+            text-align: right;
+            color: #666666;
+            flex-shrink: 0;
+        }
+
+        /* BOM Tree Table - matches standard table styling */
+        .bom-tree-table {
+            width: 100%;
+            max-width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            background: white;
+            table-layout: fixed;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .bom-tree-table th {
+            background: #003366;
+            color: white;
+            padding: 0.4rem 0.3rem;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #003366;
+            font-size: 9pt;
+        }
+
+        .bom-tree-table td {
+            padding: 0.5rem 0.4rem;
+            border: 1px solid #cccccc;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+            font-size: 9pt;
+            line-height: 1.4;
+            vertical-align: baseline;
+        }
+
+        /* Level column - force exact height and center */
+        .bom-tree-table td:nth-child(2) {
+            padding: 0;
+            width: 7%;
+            height: 40px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 40px;
+        }
+
+        /* Component name cell */
+        .bom-tree-table td:nth-child(4) {
+            vertical-align: middle;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Column widths for BOM tree - adjusted for better fit */
+        .bom-tree-table th:nth-child(1) { width: 4%; }  /* Toggle */
+        .bom-tree-table th:nth-child(2) { width: 7%; }  /* Level */
+        .bom-tree-table th:nth-child(3) { width: 6%; }  /* No. */
+        .bom-tree-table th:nth-child(4) { width: 32%; } /* Component Name */
+        .bom-tree-table th:nth-child(5) { width: 16%; } /* Part Number */
+        .bom-tree-table th:nth-child(6) { width: 10%; } /* Tool No. */
+        .bom-tree-table th:nth-child(7) { width: 8%; }  /* Qty */
+        .bom-tree-table th:nth-child(8) { width: 17%; } /* Material */
+
+        /* Force same widths on td elements */
+        .bom-tree-table td:nth-child(1) { width: 4%; }
+        .bom-tree-table td:nth-child(2) { width: 7%; }
+        .bom-tree-table td:nth-child(3) { width: 6%; }
+        .bom-tree-table td:nth-child(4) { width: 32%; }
+        .bom-tree-table td:nth-child(5) { width: 16%; }
+        .bom-tree-table td:nth-child(6) { width: 10%; }
+        .bom-tree-table td:nth-child(7) { width: 8%; }
+        .bom-tree-table td:nth-child(8) { width: 17%; }
+
+        .bom-tree-table tbody tr {
+            cursor: pointer;
+        }
+
+        .bom-tree-table tbody tr:hover {
+            background: #e6f0ff;
+        }
+
+        .tree-toggle {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            font-weight: 700;
+            color: #003366;
+            border-radius: 4px;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .tree-toggle.expanded {
+            transform: rotate(90deg);
+        }
+
+        .tree-toggle.leaf {
+            color: transparent;
+            cursor: default;
+        }
+
+        .child-row {
+            display: none;
+        }
+
+        .tree-indent {
+            display: inline-block;
+        }
+
+        .indent-1 { margin-left: 0; }
+        .indent-2 { margin-left: 20px; }
+        .indent-3 { margin-left: 40px; }
+        .indent-4 { margin-left: 60px; }
+
+        /* Component name with badge wrapper */
+        .component-name-wrapper {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .child-row.visible {
+            display: table-row;
+        }
+
+        .part-number {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            font-size: 9pt;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 0;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 9pt;
+            width: 26px;
+            height: 26px;
+            line-height: 26px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .lvl-1 { background: var(--bg-level-1); color: var(--level-1-color); }
+        .lvl-2 { background: var(--bg-level-2); color: var(--level-2-color); }
+        .lvl-3 { background: var(--bg-level-3); color: var(--level-3-color); }
+        .lvl-4 { background: var(--bg-level-4); color: var(--level-4-color); }
+
+        .type-badge {
+            display: inline-block;
+            padding: 0 0.5rem;
+            border-radius: 3px;
+            font-size: 7pt;
+            font-weight: 600;
+            white-space: nowrap;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .type-plastic { background: #dbeafe; color: #0066cc; }
+        .type-spring { background: #fecaca; color: #cc0000; }
+        .type-metal { background: #e2e8f0; color: #666666; }
+        .type-material { background: #fed7aa; color: #cc6600; }
+
+        /* Component cell wrapper for badge layout */
+        .component-cell-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            gap: 0.5rem;
+            min-width: 0;
+        }
+
+        .component-left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 0 0 auto;
+            white-space: nowrap;
+        }
+
+        .component-right {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            flex: 0 0 auto;
+        }
+
+        /* Supplier Table */
+        .supplier-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            background: white;
+        }
+
+        .supplier-table th {
+            background: #003366;
+            color: white;
+            padding: 0.8rem;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #003366;
+        }
+
+        .supplier-table td {
+            padding: 0.8rem;
+            border: 1px solid #cccccc;
+        }
+
+        .supplier-table tr:hover {
+            background: #e6f0ff;
+        }
+
+        .certification-badge {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 9pt;
+            margin: 0.2rem;
+        }
+
+        .cert-iso { background: #dbeafe; color: #1e40af; }
+        .cert-fda { background: #fce7f3; color: #9d174d; }
+        .cert-gmp { background: #dcfce7; color: #166534; }
+        .cert-reach { background: #fef3c7; color: #92400e; }
+
+        /* Quality Grid */
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .quality-card {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border: 2px solid #003366;
+            border-radius: 4px;
+        }
+
+        .quality-card h4 {
+            margin: 0 0 1rem 0;
+            color: #003366;
+            font-size: 12pt;
+        }
+
+        .quality-card ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+
+        .quality-card li {
+            margin: 0.5rem 0;
+            color: #333333;
+            font-size: 10pt;
+        }
+
+        /* Print styles */
+        @media print {
+            .dashboard-controls {
+                display: none;
+            }
+
+            .child-row {
+                display: table-row !important;
+            }
+
+            .view-container {
+                display: block !important;
+            }
+
+            .dashboard-section,
+            .metric-card {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .metrics-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quality-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="a4-container">
+    <!-- Standard Document Header -->
+    <div class="header-section">
+        <img src="../../assets/images/Summed logo.png" alt="Summed Medtech 森迈医疗" class="company-logo">
+        <div class="document-meta">
+            <div><strong>Document No.:</strong> SM100-005-BOM-001</div>
+            <div><strong>Revision:</strong> 2.0</div>
+        </div>
+    </div>
+
+    <h1>Engineering BOM - Bill of Materials Dashboard</h1>
+
+    <table class="doc-info-table">
+        <tr>
+            <td width="25%"><strong>Document Name:</strong></td>
+            <td colspan="3">Engineering BOM Dashboard - Lisa Adult Auto-Injector</td>
+        </tr>
+        <tr>
+            <td><strong>Document No.:</strong></td>
+            <td>SM100-005-BOM-001</td>
+            <td><strong>Revision:</strong></td>
+            <td>2.0</td>
+        </tr>
+        <tr>
+            <td><strong>Product Series:</strong></td>
+            <td>SM100-005 Lisa (Adult)</td>
+            <td><strong>Effective Date:</strong></td>
+            <td>2025.01.20</td>
+        </tr>
+    </table>
+
+    <table class="signature-table">
+        <tr>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">Timi Xiong</div>
+                    <div class="signature-title">RD Engineer</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Prepared by</div>
+                </div>
+            </td>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">Zen Yang</div>
+                    <div class="signature-title">ISO13485 Management Representative</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Reviewed by</div>
+                </div>
+            </td>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">Kevin Lo</div>
+                    <div class="signature-title">RD Director</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Approved by</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- View Switcher -->
+    <div class="dashboard-controls">
+        <label><strong>View:</strong></label>
+        <button type="button" class="view-btn active" onclick="showView('dashboard')">1️⃣ Dashboard</button>
+        <button type="button" class="view-btn" onclick="showView('bom-tree')">2️⃣ BOM Tree</button>
+        <button type="button" class="view-btn" onclick="showView('suppliers')">3️⃣ Suppliers</button>
+    </div>
+
+    <!-- VIEW 1: EXECUTIVE DASHBOARD -->
+    <div id="view-dashboard" class="view-container active">
+        <!-- Key Metrics -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">13</div>
+                <div class="metric-label">Functional Parts</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">10</div>
+                <div class="metric-label">Plastic Parts</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">2</div>
+                <div class="metric-label">Springs</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">1</div>
+                <div class="metric-label">Metal Clip</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">45g</div>
+                <div class="metric-label">Total Weight</div>
+            </div>
+        </div>
+
+        <!-- Product Structure Overview -->
+        <div class="dashboard-section">
+            <h2 class="section-title">Product Structure Overview</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th width="15%">Sub-Assembly</th>
+                        <th width="10%">Code</th>
+                        <th width="15%">Parts Count</th>
+                        <th width="60%">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Front Sub Assembly</strong></td>
+                        <td class="part-number">AISI104S2</td>
+                        <td><strong>7 plastic + 1 metal clip</strong></td>
+                        <td>Drug delivery path components: Syringe Collar, Syringe Carrier, Needle Cover, Body, Body Extension, Cap, Steel Buckle</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rear Sub Assembly</strong></td>
+                        <td class="part-number">AISI104S3</td>
+                        <td><strong>3 plastic + 2 springs</strong></td>
+                        <td>Activation mechanism: Rear Cap, Actuator, Actuator Sleeve, Plunger Rod, Plunger Rod Spring, Needle Cover Spring</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Component Breakdown by Type -->
+        <div class="dashboard-section">
+            <h2 class="section-title">Component Breakdown by Type</h2>
+            <div class="component-grid">
+                <div class="component-category">
+                    <h3 class="category-title">10 Plastic Parts (Molded)</h3>
+                    <ul class="component-list">
+                        <li><span class="component-name">Syringe Collar</span><span class="component-material">TPE 9066T</span></li>
+                        <li><span class="component-name">Syringe Carrier</span><span class="component-material">PC Lexan HF1130</span></li>
+                        <li><span class="component-name">Needle Cover</span><span class="component-material">PC+ABS C1200HF (Yellow)</span></li>
+                        <li><span class="component-name">Body</span><span class="component-material">PC+ABS C1200HF (White)</span></li>
+                        <li><span class="component-name">Body Extension</span><span class="component-material">PC+ABS C1200HF (Yellow)</span></li>
+                        <li><span class="component-name">Cap</span><span class="component-material">PC+ABS C1200HF (Red)</span></li>
+                        <li><span class="component-name">Rear Cap</span><span class="component-material">PC+ABS C1200HF (Gray)</span></li>
+                        <li><span class="component-name">Actuator</span><span class="component-material">POM FG500P</span></li>
+                        <li><span class="component-name">Actuator Sleeve</span><span class="component-material">POM FG500AL</span></li>
+                        <li><span class="component-name">Plunger Rod</span><span class="component-material">POM FG500P</span></li>
+                    </ul>
+                </div>
+
+                <div class="component-category">
+                    <h3 class="category-title">2 Springs (Metal)</h3>
+                    <ul class="component-list">
+                        <li><span class="component-name">Plunger Rod Spring</span><span class="component-material">SUS304 Wire (0.6mm)</span></li>
+                        <li><span class="component-name">Needle Cover Spring</span><span class="component-material">SUS304 Wire (1.1mm)</span></li>
+                    </ul>
+                    <div class="component-category" style="margin-top: 1.5rem; border: 1px solid #003366;">
+                        <h3 class="category-title">1 Metal Clip</h3>
+                        <ul class="component-list">
+                            <li><span class="component-name">Steel Buckle</span><span class="component-material">SUS304 (Stamped)</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Material Breakdown -->
+        <div class="dashboard-section">
+            <h2 class="section-title">Material Breakdown by Weight</h2>
+            <div class="material-bar-container">
+                <div class="material-bar-row">
+                    <div class="material-name">PC+ABS</div>
+                    <div class="material-bar-wrapper">
+                        <div class="material-bar" style="width: 46.7%; background: #0066cc;">PC+ABS C1200HF</div>
+                    </div>
+                    <div class="material-pct">46.7%</div>
+                    <div class="material-weight">21.0g</div>
+                </div>
+                <div class="material-bar-row">
+                    <div class="material-name">SUS304</div>
+                    <div class="material-bar-wrapper">
+                        <div class="material-bar" style="width: 18.4%; background: #666666;">Stainless Steel</div>
+                    </div>
+                    <div class="material-pct">18.4%</div>
+                    <div class="material-weight">8.3g</div>
+                </div>
+                <div class="material-bar-row">
+                    <div class="material-name">POM</div>
+                    <div class="material-bar-wrapper">
+                        <div class="material-bar" style="width: 16.0%; background: #22c55e;">Polyoxymethylene</div>
+                    </div>
+                    <div class="material-pct">16.0%</div>
+                    <div class="material-weight">7.2g</div>
+                </div>
+                <div class="material-bar-row">
+                    <div class="material-name">PC</div>
+                    <div class="material-bar-wrapper">
+                        <div class="material-bar" style="width: 5.8%; background: #06b6d4;">Polycarbonate</div>
+                    </div>
+                    <div class="material-pct">5.8%</div>
+                    <div class="material-weight">2.6g</div>
+                </div>
+                <div class="material-bar-row">
+                    <div class="material-name">TPE</div>
+                    <div class="material-bar-wrapper">
+                        <div class="material-bar" style="width: 1.1%; background: #f59e0b;">Thermoplastic Elastomer</div>
+                    </div>
+                    <div class="material-pct">1.1%</div>
+                    <div class="material-weight">0.5g</div>
+                </div>
+                <div class="material-bar-row">
+                    <div class="material-name">Packaging</div>
+                    <div class="material-bar-wrapper">
+                        <div class="material-bar" style="width: 12.0%; background: #6600cc;">Paper/PE/EPE/PET</div>
+                    </div>
+                    <div class="material-pct">12.0%</div>
+                    <div class="material-weight">~4g</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 2: BOM TREE -->
+    <div id="view-bom-tree" class="view-container">
+        <div class="dashboard-controls">
+            <label><strong>Actions:</strong></label>
+            <button type="button" class="control-btn" onclick="expandAll()">📂 Expand All</button>
+            <button type="button" class="control-btn" onclick="collapseAll()">📁 Collapse All</button>
+            <label style="margin-left: 2rem;"><strong>Search:</strong></label>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search by component name, part number, or material..." onkeyup="searchBOM()">
+        </div>
+
+        <table class="bom-tree-table" id="bomTreeTable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Level</th>
+                    <th>No.</th>
+                    <th>Component Name</th>
+                    <th>Part Number</th>
+                    <th>Tool No.</th>
+                    <th>Qty</th>
+                    <th>Material</th>
+                </tr>
+            </thead>
+            <tbody id="bomTreeBody">
+                <!-- LEVEL 1: Final Assembly -->
+                <tr data-level="1" data-item="1" class="parent-row">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 1)">▶</span></td>
+                    <td><span class="level-badge lvl-1">1</span></td>
+                    <td>1</td>
+                    <td><strong>Final Assembly</strong></td>
+                    <td class="part-number">AISI104</td>
+                    <td>-</td>
+                    <td>1 pc</td>
+                    <td>Complete Device</td>
+                </tr>
+
+                <!-- LEVEL 2: Front Sub Assembly -->
+                <tr data-level="2" data-item="2" class="parent-row child-row" data-parent="1">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 2)">▶</span></td>
+                    <td><span class="level-badge lvl-2">2</span></td>
+                    <td>2</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">
+                                <strong>Front Sub Assembly</strong>
+                            </div>
+                            <div class="component-right">
+                                <span class="type-badge type-plastic">7 Plastic</span>
+                                <span class="type-badge type-metal">1 Metal</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="part-number">AISI104S2</td>
+                    <td>-</td>
+                    <td>1 pc</td>
+                    <td>Drug Delivery Components</td>
+                </tr>
+
+                <!-- LEVEL 3: Front Parts -->
+                <tr data-level="3" data-item="4" class="parent-row child-row" data-parent="2">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 4)">▶</span></td>
+                    <td><span class="level-badge lvl-3">3</span></td>
+                    <td>4</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">Syringe Collar</div>
+                            <div class="component-right"><span class="type-badge type-plastic">Plastic</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">1M130AISI0010100</td>
+                    <td class="part-number">TM1A-AISI101-01</td>
+                    <td>1 pc</td>
+                    <td>TPE 9066T</td>
+                </tr>
+
+                <tr data-level="4" data-item="5" class="child-row" data-parent="4">
+                    <td><span class="tree-toggle leaf">●</span></td>
+                    <td><span class="level-badge lvl-4">4</span></td>
+                    <td>5</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">  └─ TPE 9066T Raw Material</div>
+                            <div class="component-right"><span class="type-badge type-material">Material</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">2M1340101</td>
+                    <td>-</td>
+                    <td>0.5 g</td>
+                    <td>DuPont</td>
+                </tr>
+
+                <tr data-level="3" data-item="6" class="parent-row child-row" data-parent="2">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 6)">▶</span></td>
+                    <td><span class="level-badge lvl-3">3</span></td>
+                    <td>6</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">Syringe Carrier</div>
+                            <div class="component-right"><span class="type-badge type-plastic">Plastic</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">1M112AISI1010200</td>
+                    <td class="part-number">TM1A-AISI101-02</td>
+                    <td>1 pc</td>
+                    <td>PC Lexan HF1130</td>
+                </tr>
+
+                <tr data-level="4" data-item="7" class="child-row" data-parent="6">
+                    <td><span class="tree-toggle leaf">●</span></td>
+                    <td><span class="level-badge lvl-4">4</span></td>
+                    <td>7</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">  └─ PC Lexan HF1130 Raw Material</div>
+                            <div class="component-right"><span class="type-badge type-material">Material</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">2M1120101</td>
+                    <td>-</td>
+                    <td>2.6 g</td>
+                    <td>SABIC</td>
+                </tr>
+
+                <tr data-level="3" data-item="8" class="parent-row child-row" data-parent="2">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 8)">▶</span></td>
+                    <td><span class="level-badge lvl-3">3</span></td>
+                    <td>8</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">Needle Cover</div>
+                            <div class="component-right"><span class="type-badge type-plastic">Plastic</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">1M115AISI1040100</td>
+                    <td class="part-number">TM1A-AISI101-03</td>
+                    <td>1 pc</td>
+                    <td>PC+ABS C1200HF</td>
+                </tr>
+
+                <tr data-level="4" data-item="9" class="child-row" data-parent="8">
+                    <td><span class="tree-toggle leaf">●</span></td>
+                    <td><span class="level-badge lvl-4">4</span></td>
+                    <td>9</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">  └─ PC+ABS C1200HF Raw Material</div>
+                            <div class="component-right"><span class="type-badge type-material">Material</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">2M1150101Y</td>
+                    <td>-</td>
+                    <td>4.8 g</td>
+                    <td>SABIC</td>
+                </tr>
+
+                <tr data-level="3" data-item="10" class="parent-row child-row" data-parent="2">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 10)">▶</span></td>
+                    <td><span class="level-badge lvl-3">3</span></td>
+                    <td>10</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">Body</div>
+                            <div class="component-right"><span class="type-badge type-plastic">Plastic</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">1M115AISI1010400</td>
+                    <td class="part-number">TM1A-AISI101-04</td>
+                    <td>1 pc</td>
+                    <td>PC+ABS C1200HF</td>
+                </tr>
+
+                <tr data-level="4" data-item="11" class="child-row" data-parent="10">
+                    <td><span class="tree-toggle leaf">●</span></td>
+                    <td><span class="level-badge lvl-4">4</span></td>
+                    <td>11</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">  └─ PC+ABS C1200HF Raw Material</div>
+                            <div class="component-right"><span class="type-badge type-material">Material</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">2M1150101W</td>
+                    <td>-</td>
+                    <td>11.0 g</td>
+                    <td>SABIC</td>
+                </tr>
+
+                <tr data-level="3" data-item="12" class="parent-row child-row" data-parent="2">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 12)">▶</span></td>
+                    <td><span class="level-badge lvl-3">3</span></td>
+                    <td>12</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">Body Extension</div>
+                            <div class="component-right"><span class="type-badge type-plastic">Plastic</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">1M115AISI1040200</td>
+                    <td class="part-number">TM1A-AISI101-05</td>
+                    <td>1 pc</td>
+                    <td>PC+ABS C1200HF</td>
+                </tr>
+
+                <tr data-level="4" data-item="13" class="child-row" data-parent="12">
+                    <td><span class="tree-toggle leaf">●</span></td>
+                    <td><span class="level-badge lvl-4">4</span></td>
+                    <td>13</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">  └─ PC+ABS C1200HF Raw Material</div>
+                            <div class="component-right"><span class="type-badge type-material">Material</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">2M1150101Y</td>
+                    <td>-</td>
+                    <td>1.4 g</td>
+                    <td>SABIC</td>
+                </tr>
+
+                <tr data-level="3" data-item="15" class="parent-row child-row" data-parent="2">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 15)">▶</span></td>
+                    <td><span class="level-badge lvl-3">3</span></td>
+                    <td>15</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">Cap</div>
+                            <div class="component-right"><span class="type-badge type-plastic">Plastic</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">1M115AISI1040300</td>
+                    <td class="part-number">TM1A-AISI101-06</td>
+                    <td>1 pc</td>
+                    <td>PC+ABS C1200HF</td>
+                </tr>
+
+                <tr data-level="4" data-item="16" class="child-row" data-parent="15">
+                    <td><span class="tree-toggle leaf">●</span></td>
+                    <td><span class="level-badge lvl-4">4</span></td>
+                    <td>16</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">  └─ PC+ABS C1200HF Raw Material</div>
+                            <div class="component-right"><span class="type-badge type-material">Material</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">2M1150101R</td>
+                    <td>-</td>
+                    <td>3.5 g</td>
+                    <td>SABIC</td>
+                </tr>
+
+                <tr data-level="3" data-item="17" class="parent-row child-row" data-parent="2">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 17)">▶</span></td>
+                    <td><span class="level-badge lvl-3">3</span></td>
+                    <td>17</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">Steel Buckle</div>
+                            <div class="component-right"><span class="type-badge type-metal">Metal Clip</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">1M212AISI0050100</td>
+                    <td>-</td>
+                    <td>1 pc</td>
+                    <td>SUS304</td>
+                </tr>
+
+                <tr data-level="4" data-item="18" class="child-row" data-parent="17">
+                    <td><span class="tree-toggle leaf">●</span></td>
+                    <td><span class="level-badge lvl-4">4</span></td>
+                    <td>18</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">  └─ SUS304 Raw Material</div>
+                            <div class="component-right"><span class="type-badge type-material">Material</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">2M2120111</td>
+                    <td>-</td>
+                    <td>1.8 g</td>
+                    <td>Taiwan Jia Zhang</td>
+                </tr>
+
+                <!-- LEVEL 2: Rear Sub Assembly -->
+                <tr data-level="2" data-item="24" class="parent-row child-row" data-parent="1">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 24)">▶</span></td>
+                    <td><span class="level-badge lvl-2">2</span></td>
+                    <td>24</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">
+                                <strong>Rear Sub Assembly</strong>
+                            </div>
+                            <div class="component-right">
+                                <span class="type-badge type-plastic">3 Plastic</span>
+                                <span class="type-badge type-spring">2 Springs</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="part-number">AISI104S3</td>
+                    <td>-</td>
+                    <td>1 pc</td>
+                    <td>Activation Mechanism</td>
+                </tr>
+
+                <!-- LEVEL 3: Rear Parts -->
+                <tr data-level="3" data-item="26" class="parent-row child-row" data-parent="24">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 26)">▶</span></td>
+                    <td><span class="level-badge lvl-3">3</span></td>
+                    <td>26</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">Rear Cap</div>
+                            <div class="component-right"><span class="type-badge type-plastic">Plastic</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">1M112AISI1040400</td>
+                    <td class="part-number">TM1A-AISI101-07</td>
+                    <td>1 pc</td>
+                    <td>PC+ABS C1200HF</td>
+                </tr>
+
+                <tr data-level="4" data-item="27" class="child-row" data-parent="26">
+                    <td><span class="tree-toggle leaf">●</span></td>
+                    <td><span class="level-badge lvl-4">4</span></td>
+                    <td>27</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">  └─ PC+ABS C1200HF Raw Material</div>
+                            <div class="component-right"><span class="type-badge type-material">Material</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">2M1120101Gr</td>
+                    <td>-</td>
+                    <td>1.8 g</td>
+                    <td>SABIC</td>
+                </tr>
+
+                <tr data-level="3" data-item="28" class="parent-row child-row" data-parent="24">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 28)">▶</span></td>
+                    <td><span class="level-badge lvl-3">3</span></td>
+                    <td>28</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">Actuator</div>
+                            <div class="component-right"><span class="type-badge type-plastic">Plastic</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">1M131AISI1010800</td>
+                    <td class="part-number">TM1A-AISI101-08</td>
+                    <td>1 pc</td>
+                    <td>POM FG500P</td>
+                </tr>
+
+                <tr data-level="4" data-item="29" class="child-row" data-parent="28">
+                    <td><span class="tree-toggle leaf">●</span></td>
+                    <td><span class="level-badge lvl-4">4</span></td>
+                    <td>29</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">  └─ POM FG500P Raw Material</div>
+                            <div class="component-right"><span class="type-badge type-material">Material</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">2M1310101</td>
+                    <td>-</td>
+                    <td>2.8 g</td>
+                    <td>DuPont</td>
+                </tr>
+
+                <tr data-level="3" data-item="30" class="parent-row child-row" data-parent="24">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 30)">▶</span></td>
+                    <td><span class="level-badge lvl-3">3</span></td>
+                    <td>30</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">Actuator Sleeve</div>
+                            <div class="component-right"><span class="type-badge type-plastic">Plastic</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">1M131AISI1010900</td>
+                    <td class="part-number">TM1A-AISI101-09</td>
+                    <td>1 pc</td>
+                    <td>POM FG500AL</td>
+                </tr>
+
+                <tr data-level="4" data-item="31" class="child-row" data-parent="30">
+                    <td><span class="tree-toggle leaf">●</span></td>
+                    <td><span class="level-badge lvl-4">4</span></td>
+                    <td>31</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">  └─ POM FG500AL Raw Material</div>
+                            <div class="component-right"><span class="type-badge type-material">Material</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">2M1310201</td>
+                    <td>-</td>
+                    <td>3.0 g</td>
+                    <td>DuPont</td>
+                </tr>
+
+                <tr data-level="3" data-item="32" class="parent-row child-row" data-parent="24">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 32)">▶</span></td>
+                    <td><span class="level-badge lvl-3">3</span></td>
+                    <td>32</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">Plunger Rod</div>
+                            <div class="component-right"><span class="type-badge type-plastic">Plastic</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">1M131AISI1011000</td>
+                    <td class="part-number">TM1A-AISI101-10</td>
+                    <td>1 pc</td>
+                    <td>POM FG500P</td>
+                </tr>
+
+                <tr data-level="4" data-item="33" class="child-row" data-parent="32">
+                    <td><span class="tree-toggle leaf">●</span></td>
+                    <td><span class="level-badge lvl-4">4</span></td>
+                    <td>33</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">  └─ POM FG500P Raw Material</div>
+                            <div class="component-right"><span class="type-badge type-material">Material</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">2M1310101</td>
+                    <td>-</td>
+                    <td>1.4 g</td>
+                    <td>DuPont</td>
+                </tr>
+
+                <tr data-level="3" data-item="34" class="parent-row child-row" data-parent="24">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 34)">▶</span></td>
+                    <td><span class="level-badge lvl-3">3</span></td>
+                    <td>34</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">Plunger Rod Spring</div>
+                            <div class="component-right"><span class="type-badge type-spring">Spring</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">1M212AISI0011100</td>
+                    <td>-</td>
+                    <td>1 pc</td>
+                    <td>SUS304</td>
+                </tr>
+
+                <tr data-level="4" data-item="35" class="child-row" data-parent="34">
+                    <td><span class="tree-toggle leaf">●</span></td>
+                    <td><span class="level-badge lvl-4">4</span></td>
+                    <td>35</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">  └─ SUS304 Wire Raw Material</div>
+                            <div class="component-right"><span class="type-badge type-material">Material</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">2M2120112</td>
+                    <td>-</td>
+                    <td>2.5 g</td>
+                    <td>KOS Ltd.</td>
+                </tr>
+
+                <tr data-level="3" data-item="36" class="parent-row child-row" data-parent="24">
+                    <td><span class="tree-toggle" onclick="toggleRow(this, 36)">▶</span></td>
+                    <td><span class="level-badge lvl-3">3</span></td>
+                    <td>36</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">Needle Cover Spring</div>
+                            <div class="component-right"><span class="type-badge type-spring">Spring</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">1M212AISI1011300</td>
+                    <td>-</td>
+                    <td>1 pc</td>
+                    <td>SUS304</td>
+                </tr>
+
+                <tr data-level="4" data-item="37" class="child-row" data-parent="36">
+                    <td><span class="tree-toggle leaf">●</span></td>
+                    <td><span class="level-badge lvl-4">4</span></td>
+                    <td>37</td>
+                    <td>
+                        <div class="component-cell-wrapper">
+                            <div class="component-left">  └─ SUS304 Wire Raw Material</div>
+                            <div class="component-right"><span class="type-badge type-material">Material</span></div>
+                        </div>
+                    </td>
+                    <td class="part-number">2M2120412</td>
+                    <td>-</td>
+                    <td>3.0 g</td>
+                    <td>KOS Ltd.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Packaging Section -->
+        <div class="dashboard-section" style="margin-top: 2rem;">
+            <h2 class="section-title">Packaging Materials (Separate from Product BOM)</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th width="15%">Sub-Assembly</th>
+                        <th width="25%">Packaging Component</th>
+                        <th width="15%">Part Number</th>
+                        <th width="15%">Material</th>
+                        <th width="15%">Supplier</th>
+                        <th width="15%">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="4"><strong>Front Sub Assembly</strong></td>
+                        <td>PET Tray (Front)</td>
+                        <td class="part-number">4M81310020221</td>
+                        <td>PET</td>
+                        <td>Jiashan Haoshun</td>
+                        <td>1 pc</td>
+                    </tr>
+                    <tr>
+                        <td>Carton</td>
+                        <td class="part-number">4M81000000216Br</td>
+                        <td>Corrugated Paper</td>
+                        <td>Hangzhou Jianlin</td>
+                        <td>1 pc</td>
+                    </tr>
+                    <tr>
+                        <td>Shrink Wrap</td>
+                        <td class="part-number">4M81130010421</td>
+                        <td>PE</td>
+                        <td>Jiashan Haoshun</td>
+                        <td>1 pc</td>
+                    </tr>
+                    <tr>
+                        <td>EPE Foam</td>
+                        <td class="part-number">4M82000000317W</td>
+                        <td>EPE</td>
+                        <td>Kunshan Chuanqi</td>
+                        <td>1 pc</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4"><strong>Rear Sub Assembly</strong></td>
+                        <td>PET Tray (Rear)</td>
+                        <td class="part-number">4M81310020321</td>
+                        <td>PET</td>
+                        <td>Jiashan Haoshun</td>
+                        <td>1 pc</td>
+                    </tr>
+                    <tr>
+                        <td>Carton</td>
+                        <td class="part-number">4M81000000216Br</td>
+                        <td>Corrugated Paper</td>
+                        <td>Hangzhou Jianlin</td>
+                        <td>1 pc</td>
+                    </tr>
+                    <tr>
+                        <td>Shrink Wrap</td>
+                        <td class="part-number">4M81130010421</td>
+                        <td>PE</td>
+                        <td>Jiashan Haoshun</td>
+                        <td>1 pc</td>
+                    </tr>
+                    <tr>
+                        <td>EPE Foam</td>
+                        <td class="part-number">4M82000000317W</td>
+                        <td>EPE</td>
+                        <td>Kunshan Chuanqi</td>
+                        <td>1 pc</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- VIEW 3: SUPPLIER MATRIX -->
+    <div id="view-suppliers" class="view-container">
+        <!-- Material Suppliers -->
+        <div class="dashboard-section">
+            <h2 class="section-title">Material Suppliers (Raw Materials)</h2>
+            <table class="supplier-table">
+                <thead>
+                    <tr>
+                        <th width="20%">Supplier</th>
+                        <th width="20%">Material</th>
+                        <th width="15%">Grade</th>
+                        <th width="25%">Certifications</th>
+                        <th width="10%">Weight</th>
+                        <th width="10%">Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>DuPont</strong></td>
+                        <td>
+                            • TPE 9066T<br>
+                            • POM FG500P<br>
+                            • POM FG500AL
+                        </td>
+                        <td>Medical Grade</td>
+                        <td>
+                            <span class="certification-badge cert-iso">ISO 9001</span>
+                            <span class="certification-badge cert-fda">FDA Compliant</span>
+                        </td>
+                        <td>10.5g</td>
+                        <td>USA</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SABIC</strong></td>
+                        <td>
+                            • PC+ABS C1200HF<br>
+                            • PC Lexan HF1130
+                        </td>
+                        <td>Medical Grade</td>
+                        <td>
+                            <span class="certification-badge cert-iso">ISO 13485</span>
+                            <span class="certification-badge cert-reach">REACH</span>
+                        </td>
+                        <td>21.0g</td>
+                        <td>Saudi Arabia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>KOS Ltd.</strong></td>
+                        <td>
+                            • SUS304 Wire (0.6mm)<br>
+                            • SUS304 Wire (1.1mm)
+                        </td>
+                        <td>Medical Grade</td>
+                        <td>
+                            <span class="certification-badge cert-iso">ISO 9001</span>
+                            <span class="certification-badge cert-fda">USP Class VI</span>
+                        </td>
+                        <td>5.5g</td>
+                        <td>South Korea</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Component Suppliers -->
+        <div class="dashboard-section">
+            <h2 class="section-title">Component Suppliers (Injection Molding & Assembly)</h2>
+            <table class="supplier-table">
+                <thead>
+                    <tr>
+                        <th width="20%">Supplier</th>
+                        <th width="25%">Components</th>
+                        <th width="15%">Part Count</th>
+                        <th width="20%">Quality Standards</th>
+                        <th width="10%">Lead Time</th>
+                        <th width="10%">Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Shanghai Honghui</strong></td>
+                        <td>
+                            10 injection molded parts:<br>
+                            • Syringe Collar (TPE)<br>
+                            • Syringe Carrier (PC)<br>
+                            • Needle Cover, Body, Extension, Cap, Rear Cap (PC+ABS)<br>
+                            • Actuator, Sleeve, Plunger Rod (POM)
+                        </td>
+                        <td>10</td>
+                        <td>
+                            <span class="certification-badge cert-iso">ISO 13485</span>
+                            <span class="certification-badge cert-gmp">GMP</span>
+                        </td>
+                        <td>4 weeks</td>
+                        <td>Shanghai, China</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Taiwan Jia Zhang</strong></td>
+                        <td>
+                            1 stamped metal part:<br>
+                            • Steel Buckle (SUS304)
+                        </td>
+                        <td>1</td>
+                        <td>
+                            <span class="certification-badge cert-iso">ISO 9001</span>
+                            <span class="certification-badge cert-fda">RoHS</span>
+                        </td>
+                        <td>3 weeks</td>
+                        <td>Taiwan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kunshan Huayi</strong></td>
+                        <td>
+                            2 spring components:<br>
+                            • Plunger Rod Spring<br>
+                            • Needle Cover Spring
+                        </td>
+                        <td>2</td>
+                        <td>
+                            <span class="certification-badge cert-iso">ISO 9001</span>
+                            <span class="certification-badge cert-fda">IATF 16949</span>
+                        </td>
+                        <td>2 weeks</td>
+                        <td>Kunshan, China</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Packaging Suppliers -->
+        <div class="dashboard-section">
+            <h2 class="section-title">Packaging Suppliers</h2>
+            <table class="supplier-table">
+                <thead>
+                    <tr>
+                        <th width="20%">Supplier</th>
+                        <th width="25%">Materials</th>
+                        <th width="15%">Type</th>
+                        <th width="20%">Sustainability</th>
+                        <th width="10%">Items</th>
+                        <th width="10%">Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Jiashan Haoshun</strong></td>
+                        <td>
+                            • PET Tray (Front & Rear)<br>
+                            • PE Shrink Wrap
+                        </td>
+                        <td>
+                            Blister packaging,<br>
+                            Protective film
+                        </td>
+                        <td>
+                            <span class="certification-badge cert-gmp">Recyclable</span>
+                            <span class="certification-badge cert-iso">Eco-friendly</span>
+                        </td>
+                        <td>4</td>
+                        <td>Jiashan, China</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hangzhou Jianlin</strong></td>
+                        <td>
+                            • Corrugated Carton
+                        </td>
+                        <td>Shipping packaging</td>
+                        <td>
+                            <span class="certification-badge cert-gmp">FSC Certified</span>
+                        </td>
+                        <td>2</td>
+                        <td>Hangzhou, China</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kunshan Chuanqi</strong></td>
+                        <td>
+                            • EPE Foam
+                        </td>
+                        <td>Cushioning material</td>
+                        <td>
+                            <span class="certification-badge cert-gmp">Biodegradable</span>
+                        </td>
+                        <td>2</td>
+                        <td>Kunshan, China</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Quality Certifications -->
+        <div class="dashboard-section">
+            <h2 class="section-title">Quality & Regulatory Compliance</h2>
+            <div class="quality-grid">
+                <div class="quality-card">
+                    <h4>Quality Management</h4>
+                    <ul>
+                        <li>✓ ISO 13485:2016 - Medical Device QM</li>
+                        <li>✓ ISO 9001:2015 - Quality System</li>
+                        <li>✓ FDA 21 CFR 820 - QSR</li>
+                        <li>✓ IATF 16949 - Automotive Quality</li>
+                    </ul>
+                </div>
+                <div class="quality-card">
+                    <h4>Material Compliance</h4>
+                    <ul>
+                        <li>✓ ISO 10993-1 - Biological Evaluation</li>
+                        <li>✓ USP Class VI - Biocompatibility</li>
+                        <li>✓ REACH - EU Chemical Regulation</li>
+                        <li>✓ RoHS - Hazardous Substances</li>
+                    </ul>
+                </div>
+                <div class="quality-card">
+                    <h4>Quality Metrics</h4>
+                    <ul>
+                        <li>✓ CPK ≥1.33 (molded parts)</li>
+                        <li>✓ Zero defects (metal parts)</li>
+                        <li>✓ 100% batch traceability</li>
+                        <li>✓ Supplier audit ≥90%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Summed Medtech 森迈医疗 | Document No.: SM100-005-BOM-001 | Revision: 2.0 | ISO 13485 Certified | FDA 21 CFR 820 Compliant</p>
+    </div>
+</div>
+
+<script>
+    // ===== VIEW SWITCHING =====
+    function showView(viewName) {
+        document.querySelectorAll('.view-container').forEach(view => {
+            view.classList.remove('active');
+        });
+        document.getElementById('view-' + viewName).classList.add('active');
+
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+    }
+
+    // ===== BOM TREE FUNCTIONS =====
+    function toggleRow(element, itemId) {
+        event.stopPropagation();
+        const parentRow = element.closest('tr');
+        const toggle = element;
+
+        if (toggle.classList.contains('expanded')) {
+            toggle.classList.remove('expanded');
+            toggle.textContent = '▶';
+        } else {
+            toggle.classList.add('expanded');
+            toggle.textContent = '▼';
+        }
+
+        const childRows = document.querySelectorAll(`tr[data-parent="${itemId}"]`);
+        childRows.forEach(child => {
+            if (child.classList.contains('visible')) {
+                child.classList.remove('visible');
+            } else {
+                child.classList.add('visible');
+            }
+        });
+    }
+
+    function expandAll() {
+        document.querySelectorAll('.tree-toggle:not(.leaf)').forEach(toggle => {
+            toggle.classList.add('expanded');
+            toggle.textContent = '▼';
+        });
+
+        document.querySelectorAll('.child-row').forEach(row => {
+            row.classList.add('visible');
+        });
+    }
+
+    function collapseAll() {
+        document.querySelectorAll('.tree-toggle').forEach(toggle => {
+            toggle.classList.remove('expanded');
+            toggle.textContent = '▶';
+        });
+
+        document.querySelectorAll('.child-row').forEach(row => {
+            row.classList.remove('visible');
+        });
+    }
+
+    function searchBOM() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+        if (searchTerm.length === 0) {
+            document.querySelectorAll('.child-row').forEach(row => {
+                row.classList.remove('visible');
+            });
+            document.querySelectorAll('.tree-toggle').forEach(toggle => {
+                toggle.classList.remove('expanded');
+                toggle.textContent = '▶';
+            });
+            return;
+        }
+
+        let matchCount = 0;
+
+        document.querySelectorAll('#bomTreeBody tr').forEach(row => {
+            const text = row.textContent.toLowerCase();
+            const level = row.getAttribute('data-level');
+            const item = row.getAttribute('data-item');
+
+            if (text.includes(searchTerm)) {
+                matchCount++;
+                row.style.display = '';
+
+                let parentItem = row.getAttribute('data-parent');
+                while (parentItem) {
+                    const parentRow = document.querySelector(`tr[data-item="${parentItem}"]`);
+                    if (parentRow) {
+                        parentRow.style.display = '';
+                        parentRow.querySelector('.tree-toggle')?.classList.add('expanded');
+                        parentRow.querySelector('.tree-toggle').textContent = '▼';
+
+                        const grandParent = parentRow.getAttribute('data-parent');
+                        if (grandParent) {
+                            parentRow.classList.add('visible');
+                        }
+
+                        parentItem = parentRow.getAttribute('data-parent');
+                    } else {
+                        break;
+                    }
+                }
+
+                if (row.classList.contains('child-row')) {
+                    row.classList.add('visible');
+                }
+            } else {
+                if (level > 1) {
+                    row.style.display = 'none';
+                }
+            }
+        });
+
+        if (searchTerm.length > 0) {
+            document.querySelectorAll('tr[data-parent="1"]').forEach(row => {
+                row.classList.add('visible');
+            });
+        }
+    }
+
+    // ===== KEYBOARD SHORTCUTS =====
+    document.addEventListener('keydown', function(e) {
+        if (e.key === '1') {
+            document.querySelectorAll('.view-btn')[0].click();
+        } else if (e.key === '2') {
+            document.querySelectorAll('.view-btn')[1].click();
+        } else if (e.key === '3') {
+            document.querySelectorAll('.view-btn')[2].click();
+        }
+    });
+
+    // ===== INITIALIZE =====
+    document.addEventListener('DOMContentLoaded', function() {
+        const level1Toggle = document.querySelector('tr[data-item="1"] .tree-toggle');
+        if (level1Toggle) {
+            level1Toggle.classList.add('expanded');
+            level1Toggle.textContent = '▼';
+        }
+
+        document.querySelectorAll('tr[data-parent="1"]').forEach(row => {
+            row.classList.add('visible');
+        });
+    });
+</script>
+</body>
+</html>

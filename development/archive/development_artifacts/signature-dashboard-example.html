@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature Dashboard Examples - Approach 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #64748b;
+            --accent: #0ea5e9;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-sub: #475569;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-main);
+            margin: 0;
+            padding: 2rem;
+            min-height: 100vh;
+            zoom: 125%;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header h1 {
+            color: var(--primary);
+            font-size: 28pt;
+            margin: 0 0 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .header p {
+            color: var(--text-sub);
+            margin: 0;
+            font-size: 11pt;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 32pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .stat-label {
+            font-size: 10pt;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0.5rem 0 0 0;
+        }
+
+        .dashboard-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .dashboard-title {
+            font-size: 18pt;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.6rem 1rem 0.6rem 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 10pt;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .search-box::before {
+            content: "🔍";
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 10pt;
+        }
+
+        .filter-select {
+            padding: 0.6rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 10pt;
+            font-family: 'Inter', sans-serif;
+            background: white;
+            cursor: pointer;
+        }
+
+        .export-btn {
+            padding: 0.6rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 10pt;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .export-btn:hover {
+            background: var(--primary-dark);
+            box-shadow: var(--shadow-md);
+        }
+
+        .signature-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .signature-table thead {
+            background: var(--bg-page);
+            border-bottom: 2px solid var(--border);
+        }
+
+        .signature-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 9pt;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .signature-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 10pt;
+        }
+
+        .signature-table tbody tr:hover {
+            background: var(--bg-page);
+        }
+
+        .doc-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .doc-link:hover {
+            text-decoration: underline;
+        }
+
+        .signature-name {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .signature-title {
+            font-size: 8pt;
+            color: var(--text-sub);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 8pt;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-signed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-partial {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .timestamp {
+            font-size: 8pt;
+            color: var(--text-sub);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-page);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--success);
+            transition: width 0.3s ease;
+        }
+
+        .feature-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        .feature-section h2 {
+            color: var(--text-main);
+            font-size: 18pt;
+            margin: 0 0 1.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            padding: 1.5rem;
+            background: var(--bg-page);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .feature-card h3 {
+            color: var(--text-main);
+            font-size: 12pt;
+            margin: 0 0 0.75rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-card p {
+            color: var(--text-sub);
+            font-size: 10pt;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .category-filter {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 9pt;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover {
+            background: var(--bg-page);
+            border-color: var(--primary);
+        }
+
+        .category-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .signature-table {
+                font-size: 9pt;
+            }
+
+            .signature-table th,
+            .signature-table td {
+                padding: 0.5rem;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>
+                📊 Signature Dashboard Examples
+            </h1>
+            <p><strong>Approach 1:</strong> Centralized signature tracking dashboard for all 30+ DHF documents</p>
+        </div>
+
+        <!-- STATISTICS -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">35</div>
+                <div class="stat-label">Total Documents</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: var(--success);">28</div>
+                <div class="stat-label">Fully Signed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: var(--warning);">5</div>
+                <div class="stat-label">Pending Signatures</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: var(--primary);">80%</div>
+                <div class="stat-label">Completion Rate</div>
+            </div>
+        </div>
+
+        <!-- MAIN DASHBOARD -->
+        <div class="dashboard-content">
+            <div class="dashboard-header">
+                <h2 class="dashboard-title">All Document Signatures</h2>
+
+                <div class="controls">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search documents, names..." id="searchInput">
+                    </div>
+
+                    <select class="filter-select" id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="risk">Risk Management</option>
+                        <option value="design-input">Design Input</option>
+                        <option value="design-verification">Design Verification</option>
+                        <option value="design-output">Design Output</option>
+                    </select>
+
+                    <select class="filter-select" id="statusFilter">
+                        <option value="all">All Status</option>
+                        <option value="signed">Signed ✓</option>
+                        <option value="pending">Pending ⏳</option>
+                        <option value="partial">Partial</option>
+                    </select>
+
+                    <button class="export-btn" onclick="exportTable()">
+                        📥 Export to Excel
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Quick Filter -->
+            <div class="category-filter">
+                <button class="category-btn active">All (35)</button>
+                <button class="category-btn">Risk Mgmt (6)</button>
+                <button class="category-btn">Design Input (8)</button>
+                <button class="category-btn">Design Verification (11)</button>
+                <button class="category-btn">Design Output (8)</button>
+                <button class="category-btn">Materials (2)</button>
+            </div>
+
+            <!-- SIGNATURE TABLE -->
+            <table class="signature-table" id="signatureTable">
+                <thead>
+                    <tr>
+                        <th>Document No.</th>
+                        <th>Document Title</th>
+                        <th>Prepared By</th>
+                        <th>Reviewed By</th>
+                        <th>Approved By</th>
+                        <th>Date Signed</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Risk Management Documents -->
+                    <tr>
+                        <td><a href="documents/01-risk-management/100-005-RMP-001_Risk_Management_Plan.html" class="doc-link">100-005-RMP-001</a></td>
+                        <td>Risk Management Plan</td>
+                        <td>
+                            <div class="signature-name">/s/ Kayla Li</div>
+                            <div class="signature-title">QA Manager</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Kevin Lo</div>
+                            <div class="signature-title">RD Director</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Andy Tsai</div>
+                            <div class="signature-title">General Manager</div>
+                        </td>
+                        <td><span class="timestamp">2025-02-13</span></td>
+                        <td><span class="badge badge-signed">✓ Signed</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="documents/01-risk-management/100-005-DFA-001_Design_Failure_Mode_Effects_Analysis.html" class="doc-link">100-005-DFA-001</a></td>
+                        <td>Design FMEA</td>
+                        <td>
+                            <div class="signature-name">/s/ Yanghua Su</div>
+                            <div class="signature-title">Production Operator</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Zhangyun Gao</div>
+                            <div class="signature-title">Production Manager</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Alex Li</div>
+                            <div class="signature-title">Production Director</div>
+                        </td>
+                        <td><span class="timestamp">2025-02-11</span></td>
+                        <td><span class="badge badge-signed">✓ Signed</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="documents/01-risk-management/100-005-UFM-001_Use_Failure_Mode_Effects_Analysis.html" class="doc-link">100-005-UFM-001</a></td>
+                        <td>Use FMEA</td>
+                        <td>
+                            <div class="signature-name">/s/ Timi Xiong</div>
+                            <div class="signature-title">RD Engineer</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Logan Zhao</div>
+                            <div class="signature-title">RD Manager</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Kevin Lo</div>
+                            <div class="signature-title">RD Director</div>
+                        </td>
+                        <td><span class="timestamp">2025-02-10</span></td>
+                        <td><span class="badge badge-signed">✓ Signed</span></td>
+                    </tr>
+                    <tr style="background: #fef3c7;">
+                        <td><a href="documents/01-risk-management/100-005-SPR-001_General_Safety_and_Performance_Requirements.html" class="doc-link">100-005-SPR-001</a></td>
+                        <td>GSPR Checklist</td>
+                        <td>
+                            <div class="signature-name">/s/ Grace Xue</div>
+                            <div class="signature-title">RA Director</div>
+                        </td>
+                        <td>
+                            <div class="signature-name" style="color: var(--warning);">Pending...</div>
+                        </td>
+                        <td>
+                            <div class="signature-name" style="color: var(--warning);">Pending...</div>
+                        </td>
+                        <td><span class="timestamp">—</span></td>
+                        <td><span class="badge badge-pending">⏳ Pending</span></td>
+                    </tr>
+
+                    <!-- Design Input Documents -->
+                    <tr>
+                        <td><a href="documents/02-design-input/100-005-DIR-001_Design_Input_Requirement.html" class="doc-link">100-005-DIR-001</a></td>
+                        <td>Design Input Requirement</td>
+                        <td>
+                            <div class="signature-name">/s/ Timi Xiong</div>
+                            <div class="signature-title">RD Engineer</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Zen Yang</div>
+                            <div class="signature-title">QMS Representative</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Alex Li</div>
+                            <div class="signature-title">Production Director</div>
+                        </td>
+                        <td><span class="timestamp">2025-02-09</span></td>
+                        <td><span class="badge badge-signed">✓ Signed</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="documents/02-design-input/000-000-MRR-008_HYTREL_6356_Material_Review_Report.html" class="doc-link">000-000-MRR-008</a></td>
+                        <td>HYTREL 6356 Material Review</td>
+                        <td>
+                            <div class="signature-name">/s/ Timi Xiong</div>
+                            <div class="signature-title">RD Engineer</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Logan Zhao</div>
+                            <div class="signature-title">RD Manager</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s| Rain Pang</div>
+                            <div class="signature-title">QC Lab Manager</div>
+                        </td>
+                        <td><span class="timestamp">2025-02-08</span></td>
+                        <td><span class="badge badge-signed">✓ Signed</span></td>
+                    </tr>
+
+                    <!-- Design Verification Documents -->
+                    <tr>
+                        <td><a href="documents/03-design-verification/100-005-CER-001_Clinical_Evaluation_Report.html" class="doc-link">100-005-CER-001</a></td>
+                        <td>Clinical Evaluation Report</td>
+                        <td>
+                            <div class="signature-name">/s/ Grace Xue</div>
+                            <div class="signature-title">RA Director</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s| Zen Yang</div>
+                            <div class="signature-title">QMS Representative</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Andy Tsai</div>
+                            <div class="signature-title">General Manager</div>
+                        </td>
+                        <td><span class="timestamp">2025-02-07</span></td>
+                        <td><span class="badge badge-signed">✓ Signed</span></td>
+                    </tr>
+                    <tr style="background: #dbeafe;">
+                        <td><a href="documents/03-design-verification/100-005-STV-001_Sterilization_Validation_Report.html" class="doc-link">100-005-STV-001</a></td>
+                        <td>Sterilization Validation Report</td>
+                        <td>
+                            <div class="signature-name">/s/ Ryzer Zhou</div>
+                            <div class="signature-title">QA Manager</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Ryzer Zhou</div>
+                            <div class="signature-title">QA Manager</div>
+                        </td>
+                        <td>
+                            <div class="signature-name" style="color: var(--warning);">Pending...</div>
+                        </td>
+                        <td><span class="timestamp">2025-02-06</span></td>
+                        <td><span class="badge badge-partial">Partial</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="documents/03-design-verification/100-005-VVE-001_VV_Test_Executive_Summary.html" class="doc-link">100-005-VVE-001</a></td>
+                        <td>V&V Test Executive Summary</td>
+                        <td>
+                            <div class="signature-name">/s/ Kevin Lo</div>
+                            <div class="signature-title">RD Director</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s| Zen Yang</div>
+                            <div class="signature-title">QMS Representative</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Kevin Lo</div>
+                            <div class="signature-title">RD Director</div>
+                        </td>
+                        <td><span class="timestamp">2025-02-05</span></td>
+                        <td><span class="badge badge-signed">✓ Signed</span></td>
+                    </tr>
+
+                    <!-- Design Output Documents -->
+                    <tr>
+                        <td><a href="documents/04-design-output/100-005-DHF-001_DHF_Review_Checklist.html" class="doc-link">100-005-DHF-001</a></td>
+                        <td>DHF Review Checklist</td>
+                        <td>
+                            <div class="signature-name">/s/ Timi Xiong</div>
+                            <div class="signature-title">RD Engineer</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Logan Zhao</div>
+                            <div class="signature-title">RD Manager</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Kevin Lo</div>
+                            <div class="signature-title">RD Director</div>
+                        </td>
+                        <td><span class="timestamp">2025-02-04</span></td>
+                        <td><span class="badge badge-signed">✓ Signed</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="documents/04-design-output/100-005-DMR-001_DMR_Index_Review_Form.html" class="doc-link">100-005-DMR-001</a></td>
+                        <td>DMR Index Review Form</td>
+                        <td>
+                            <div class="signature-name">/s/ Doris Chang</div>
+                            <div class="signature-title">Business Development Manager</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s| Zen Yang</div>
+                            <div class="signature-title">QMS Representative</div>
+                        </td>
+                        <td>
+                            <div class="signature-name">/s/ Andy Tsai</div>
+                            <div class="signature-title">General Manager</div>
+                        </td>
+                        <td><span class="timestamp">2025-02-03</span></td>
+                        <td><span class="badge badge-signed">✓ Signed</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- PROGRESS BAR -->
+            <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-page); border-radius: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <span style="font-weight: 600; color: var(--text-main);">Overall Signature Progress</span>
+                    <span style="font-weight: 600; color: var(--primary);">28/35 Complete</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FEATURES SECTION -->
+        <div class="feature-section">
+            <h2>✨ Dashboard Features</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🔍 Real-Time Search</h3>
+                    <p>Instantly find any document by number, title, or signer name. Results filter as you type.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📊 Category Filtering</h3>
+                    <p>Filter by DHF phase: Risk Management, Design Input, Verification, Output, Materials.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>✅ Status Tracking</h3>
+                    <p>See at a glance which documents are fully signed, pending, or partially complete.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📥 Excel Export</h3>
+                    <p>One-click export to Excel for auditors. Includes all signatures and timestamps.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔗 Direct Links</h3>
+                    <p>Click any document number to open the full document in a new tab for detailed review.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📈 Progress Monitoring</h3>
+                    <p>Visual progress bar shows completion percentage across all DHF documents.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>👥 Team Overview</h3>
+                    <p>See which team members have signed which documents. Track approval workflows.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⏰ Timestamp Display</h3>
+                    <p>Exact signing dates shown for each signature. Track document approval timeline.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎨 Color-Coded Status</h3>
+                    <p>Green for signed, yellow for pending, blue for partial. Visual clarity at a glance.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📱 Responsive Design</h3>
+                    <p>Works on desktop, tablet, and mobile. Audit-ready on any device.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- IMPLEMENTATION NOTES -->
+        <div class="feature-section">
+            <h2>📋 Implementation Details</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>⏱️ Time Estimate</h3>
+                    <p><strong>2-3 hours</strong> to build dashboard with static data from existing documents.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔧 Tech Stack</h3>
+                    <p>HTML5 + CSS3 + Vanilla JavaScript. No frameworks or dependencies required.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📂 File Location</h3>
+                    <p>Save as <code>signature-dashboard.html</code> in main Vem audit directory.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔄 Data Source</h3>
+                    <p>Can scrape signatures from existing documents or maintain JSON data file.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>✅ Integration</h3>
+                    <p>Add link in <code>index.html</code> hero section: "View All Signatures →"</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎯 Scalability</h3>
+                    <p>Handles 30, 50, or 100+ documents. Performance remains excellent.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- AUDITOR BENEFITS -->
+        <div class="feature-section">
+            <h2>🎯 Auditor Benefits</h2>
+
+            <div style="background: #ecfdf5; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--success);">
+                <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-main);">
+                    <li style="margin-bottom: 0.75rem;"><strong>Single Source of Truth:</strong> Auditor sees all signatures in one place without opening 30+ documents</li>
+                    <li style="margin-bottom: 0.75rem;"><strong>Quick Verification:</strong> Instantly confirm signature completeness across entire DHF</li>
+                    <li style="margin-bottom: 0.75rem;"><strong>Timeline Clarity:</strong> See approval sequence and dates at a glance</li>
+                    <li style="margin-bottom: 0.75rem;"><strong>Export Capability:</strong> Take away Excel spreadsheet for offline review</li>
+                    <li style="margin-bottom: 0.75rem;"><strong>Professional Presentation:</strong> Demonstrates organized, compliant documentation system</li>
+                    <li><strong>Reduces Audit Time:</strong> What would take hours checking individual documents now takes minutes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple search functionality (demo)
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const table = document.getElementById('signatureTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let row of rows) {
+                if (row.tagName === 'TR' && row.parentElement.tagName === 'TBODY') {
+                    const text = row.textContent.toLowerCase();
+                    row.style.display = text.includes(searchTerm) ? '' : 'none';
+                }
+            }
+        });
+
+        // Export function (demo)
+        function exportTable() {
+            alert('Export Functionality:\n\n✓ Export to Excel (.xlsx)\n✓ Export to PDF\n✓ Include all columns\n✓ Preserve formatting\n\nIn production, this would generate a real Excel file with all signature data.');
+        }
+
+        // Category filter (demo)
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // In production, filter table by category
+            });
+        });
+    </script>
+</body>
+</html>

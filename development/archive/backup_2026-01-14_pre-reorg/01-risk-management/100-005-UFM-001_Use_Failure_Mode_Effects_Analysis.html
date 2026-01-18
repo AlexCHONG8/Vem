@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use Failure Mode and Effects Analysis - 100-005-UFM-001</title>
+    <link rel="stylesheet" href="../../assets/css/summed-medtech-docs.css">
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 15mm 15mm 15mm 15mm;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .page-break {
+                page-break-after: always;
+            }
+        }
+
+        body {
+            max-width: 297mm;
+            margin: 0 auto;
+        }
+
+        .table-wrapper {
+            overflow-x: auto !important;
+            overflow-y: visible;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+            position: relative;
+        }
+
+        .fmea-table {
+            font-size: 8.5pt;
+            table-layout: fixed;
+            min-width: 1400px;
+            width: max-content;
+            line-height: 1.25;
+        }
+
+        .fmea-table th {
+            background-color: #2563eb;
+            color: white;
+            padding: 6px 4px !important;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .fmea-table td {
+            border: 1px solid #000;
+            padding: 4px 3px !important;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        .risk-high {
+            background-color: #fee2e2;
+            font-weight: bold;
+        }
+
+        .risk-med {
+            background-color: #fef3c7;
+        }
+
+        .risk-low {
+            background-color: #ecfdf5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="a4-container">
+
+        <div class="header-section">
+            <img src="../../assets/images/Summed logo.png" alt="Summed Medtech" class="company-logo"
+                style="width: 80% !important; max-width: 300px !important; height: auto !important;">
+            <div class="document-meta">
+                <div><strong>Document No.:</strong> 100-005-UFM-001</div>
+                <div><strong>Revision:</strong> 2.0</div>
+            </div>
+        </div>
+
+        <h1>Use Failure Mode and Effects Analysis (UFMEA)</h1>
+
+        <table class="doc-info-table">
+            <tr>
+                <td width="20%"><strong>Project Name:</strong></td>
+                <td>Simject Epinephrine Auto-Injector Project (Adult)</td>
+                <td width="15%"><strong>Project Code:</strong></td>
+                <td>SM100-005</td>
+            </tr>
+            <tr>
+                <td><strong>Client:</strong></td>
+                <td>Pharma A</td>
+                <td><strong>Project Leader:</strong></td>
+                <td>Linda He</td>
+            </tr>
+            <tr>
+                <td><strong>Date:</strong></td>
+                <td colspan="3">2024.12.24</td>
+            </tr>
+        </table>
+
+        <table class="signature-table">
+            <tr>
+                <td width="33.3%">
+                    <div class="signature-block">
+                        <div class="signature-name">/s/ Doris Chang</div>
+                        <div class="signature-title">Business Development Manager</div>
+                        <div class="signature-label">Prepared by</div>
+                        <div class="signature-date">2024.12.24</div>
+                    </div>
+                </td>
+                <td width="33.3%">
+                    <div class="signature-block">
+                        <div class="signature-name">/s/ Alex Chong</div>
+                        <div class="signature-title">Business Development Director</div>
+                        <div class="signature-label">Reviewed by</div>
+                        <div class="signature-date">2024.12.24</div>
+                    </div>
+                </td>
+                <td width="33.3%">
+                    <div class="signature-block">
+                        <div class="signature-name">/s/ Alex Chong</div>
+                        <div class="signature-title">Business Development Director</div>
+                        <div class="signature-label">Approved by</div>
+                        <div class="signature-date">2024.12.24</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Revision History</h3>
+        <table class="revision-table">
+            <thead>
+                <tr>
+                    <th>Revision</th>
+                    <th>Effective Date</th>
+                    <th>Description of Change</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.0</td>
+                    <td>2024.08.21</td>
+                    <td>Initial Release of UFMEA</td>
+                </tr>
+                <tr>
+                    <td>2.0</td>
+                    <td>2024.12.24</td>
+                    <td>FDA/EMA Compliance Optimization: Integrated 99.999% reliability, Training Device requirements,
+                        and Emergency-Use standards.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>1. Integration of FDA/EMA Regulatory Requirements</h2>
+
+        <h3>1.1 FDA Critical Requirements for Emergency-Use Injectors</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>FDA Requirement</th>
+                    <th>UFMEA Application</th>
+                    <th>Objective</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>99.999% Injection Success Reliability</strong></td>
+                    <td>User failure probability < 1&times;10⁻⁵</td>
+                    <td>System reliability target</td>
+                </tr>
+                <tr>
+                    <td><strong>0.5s Injection Time</strong></td>
+                    <td>User operation timeliness analysis</td>
+                    <td>Emergency responsiveness</td>
+                </tr>
+                <tr>
+                    <td><strong>Emergency Use Context</strong></td>
+                    <td>Usability under high-stress environments</td>
+                    <td>Optimization for emergency scenarios</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>1.2 EMA Mandatory Requirements for Training Devices</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>EMA Requirement</th>
+                    <th>UFMEA Application</th>
+                    <th>Verification Method</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Training Device</strong></td>
+                    <td>Dedicated failure analysis for training</td>
+                    <td>Training effectiveness verification</td>
+                </tr>
+                <tr>
+                    <td><strong>Audio-Visual Materials</strong></td>
+                    <td>Educational material usage analysis</td>
+                    <td>User comprehension testing</td>
+                </tr>
+                <tr>
+                    <td><strong>Patient Education</strong></td>
+                    <td>Failure analysis for patient education</td>
+                    <td>Education outcome evaluation</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>1.3 Technical Specification Alignment</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Customer URS</th>
+                    <th>Regulatory Optimization</th>
+                    <th>UFMEA Considerations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Actuation Force</strong></td>
+                    <td>5 - 25N</td>
+                    <td>9 - 20N</td>
+                    <td>User activation capability analysis</td>
+                </tr>
+                <tr>
+                    <td><strong>Audio Feedback</strong></td>
+                    <td>&ge; 60dB</td>
+                    <td>70 - 100dB</td>
+                    <td>Audibility in emergency environments</td>
+                </tr>
+                <tr>
+                    <td><strong>Injection Time</strong></td>
+                    <td>&le; 2.0s</td>
+                    <td>&le; 0.5s</td>
+                    <td>Emergency timeliness requirements</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>2. Scoring Criteria (FDA Emergency-Use Optimized)</h2>
+
+        <h3>2.1 Occurrence (O) - Emergency Adjusted</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Score</th>
+                    <th>Description</th>
+                    <th>Emergency Use Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5</td>
+                    <td>Very High</td>
+                    <td>Failure is almost inevitable in emergency (>1/2)</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>High</td>
+                    <td>Frequent failure under high stress (1/3)</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Moderate</td>
+                    <td>Occasional failure in emergency scenarios (1/8)</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Low</td>
+                    <td>Fewer failures even in emergency (1/20)</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Very Low</td>
+                    <td>Compliant with 99.999% reliability (<1 /100,000)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>2.2 Severity (S) - Life-Critical</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Score</th>
+                    <th>Description</th>
+                    <th>Emergency Impact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5</td>
+                    <td>Hazardous</td>
+                    <td>Immediate life-threatening, total treatment failure</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Major</td>
+                    <td>Significant reduction in treatment effectiveness</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Moderate</td>
+                    <td>Delayed injection or partial failure</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Minor</td>
+                    <td>Does not affect primary treatment</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Negligible</td>
+                    <td>No treatment impact</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>2.3 RPN Risk Leveling</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>RPN Range</th>
+                    <th>Risk Level</th>
+                    <th>FDA Compliance Requirement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&ge; 80</td>
+                    <td>Extreme Risk</td>
+                    <td>Non-compliant with 99.999% reliability</td>
+                </tr>
+                <tr>
+                    <td>60 - 79</td>
+                    <td>High Risk</td>
+                    <td>Threatens emergency-use performance</td>
+                </tr>
+                <tr>
+                    <td>40 - 59</td>
+                    <td>Medium Risk</td>
+                    <td>Impacts user experience</td>
+                </tr>
+                <tr>
+                    <td>
+                        < 40</td>
+                    <td>Acceptable</td>
+                    <td>Meets target reliability</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>3. Core Usage Scenarios</h2>
+
+        <h3>3.1 Emergency-Use Scenarios</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>User</th>
+                    <th>Time Req.</th>
+                    <th>Critical Success Factors</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>EC-001</strong></td>
+                    <td>Anaphylactic shock self-rescue</td>
+                    <td>Patient</td>
+                    <td>
+                        < 2 min</td>
+                    <td>One-handed operation, intuitive design</td>
+                </tr>
+                <tr>
+                    <td><strong>EC-002</strong></td>
+                    <td>Home emergency rescue</td>
+                    <td>Family Member</td>
+                    <td>
+                        < 3 min</td>
+                    <td>Clear instructions, Training Device practice</td>
+                </tr>
+                <tr>
+                    <td><strong>EC-003</strong></td>
+                    <td>Public space first aid</td>
+                    <td>Bystander</td>
+                    <td>
+                        < 5 min</td>
+                    <td>Fast learning, clear steps</td>
+                </tr>
+                <tr>
+                    <td><strong>EC-004</strong></td>
+                    <td>Professional medical use</td>
+                    <td>Doctor / Nurse</td>
+                    <td>
+                        < 1 min</td>
+                    <td>Prescriber Checklist training</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>3.2 Training Device Scenarios</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>User</th>
+                    <th>Training Goal</th>
+                    <th>EMA Requirement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Patient Self-training</strong></td>
+                    <td>Patient</td>
+                    <td>Proficient operation within 10s</td>
+                    <td>Mandatory training</td>
+                </tr>
+                <tr>
+                    <td><strong>Family Member Training</strong></td>
+                    <td>Family Member</td>
+                    <td>Accurate operation within 15s</td>
+                    <td>Home training plan</td>
+                </tr>
+                <tr>
+                    <td><strong>Doctor Training Verif.</strong></td>
+                    <td>Medical Personnel</td>
+                    <td>Professional operation within 5s</td>
+                    <td>Prescriber Checklist</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>4. UFMEA Detailed Analysis</h2>
+
+        <div class="table-wrapper">
+            <table class="fmea-table">
+                <thead>
+                    <tr>
+                        <th width="3%">No.</th>
+                        <th width="8%">Use Step</th>
+                        <th width="8%">Failure Mode</th>
+                        <th width="10%">Failure Cause</th>
+                        <th width="10%">Failure Effect</th>
+                        <th width="6%">Scenario</th>
+                        <th width="2%">O</th>
+                        <th width="2%">S</th>
+                        <th width="2%">D</th>
+                        <th width="3%">RPN</th>
+                        <th width="10%">FDA/EMA Relation</th>
+                        <th width="10%">Critical Mitigations</th>
+                        <th width="3%">New RPN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="13" class="component-header"
+                            style="background-color: #f1f5f9; font-weight: bold; text-align: left; padding-left: 10px;">
+                            4.1 Symptom Recognition and Decision Phase</td>
+                    </tr>
+                    <tr>
+                        <td>1.1</td>
+                        <td>Identify allergy symptoms</td>
+                        <td>Delayed recognition</td>
+                        <td>Lack of Training Device practice</td>
+                        <td>Missed treatment window</td>
+                        <td>EC-001, 002</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td class="risk-high">80</td>
+                        <td>99.999% Reliability Threat</td>
+                        <td><strong>Mandatory Training Device</strong></td>
+                        <td>16</td>
+                    </tr>
+                    <tr>
+                        <td>1.2</td>
+                        <td>Judge necessity of use</td>
+                        <td>Hesitation to use</td>
+                        <td>Lack of decision training</td>
+                        <td>Fatal treatment delay</td>
+                        <td>EC-001, 002</td>
+                        <td>3</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td class="risk-high">60</td>
+                        <td>Emergency Failure</td>
+                        <td><strong>Prescriber Checklist</strong></td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>1.3</td>
+                        <td>Distinguish adult/child dose</td>
+                        <td>Adult device used on child</td>
+                        <td>Judgment error in emergency</td>
+                        <td>Overdose risk</td>
+                        <td>EC-002, 005</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>36</td>
+                        <td>Pediatric safety requirement</td>
+                        <td>Obvious device distinction labeling</td>
+                        <td>12</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="13" class="component-header"
+                            style="background-color: #f1f5f9; font-weight: bold; text-align: left; padding-left: 10px;">
+                            4.2 Device Acquisition and Preparation Phase</td>
+                    </tr>
+                    <tr>
+                        <td>2.1</td>
+                        <td>Retrieve device</td>
+                        <td>Cannot find device</td>
+                        <td>Chaotic storage location</td>
+                        <td>Treatment delay</td>
+                        <td>All scenarios</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>36</td>
+                        <td>Emergency accessibility</td>
+                        <td>Highly visible storage box design</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>2.2</td>
+                        <td>Check expiration date</td>
+                        <td>Use expired device</td>
+                        <td>Ignoring check in emergency</td>
+                        <td>Reduced efficacy</td>
+                        <td>All scenarios</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>36</td>
+                        <td>Drug efficacy requirement</td>
+                        <td>Large font expiration labeling</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>2.3</td>
+                        <td>Open packaging</td>
+                        <td>Difficult to open</td>
+                        <td>Poor packaging design</td>
+                        <td>0.5s requirement delay</td>
+                        <td>EC-001, 003</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>24</td>
+                        <td>0.5s timeliness requirement</td>
+                        <td>One-handed easy-tear packaging</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>2.4</td>
+                        <td>Visual inspection</td>
+                        <td>Ignoring damage</td>
+                        <td>Haste in emergency</td>
+                        <td>Device functional failure</td>
+                        <td>All scenarios</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>32</td>
+                        <td>Device integrity</td>
+                        <td>Obvious damage indicators</td>
+                        <td>8</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="13" class="component-header"
+                            style="background-color: #f1f5f9; font-weight: bold; text-align: left; padding-left: 10px;">
+                            4.3 Activation Preparation Phase</td>
+                    </tr>
+                    <tr>
+                        <td>3.1</td>
+                        <td>Correct grip</td>
+                        <td>Unstable grip</td>
+                        <td>Hand tremor or slippery device</td>
+                        <td>Incorrect injection site</td>
+                        <td>EC-001, 002</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>36</td>
+                        <td>Mechanical reliability</td>
+                        <td>Anti-slip texture design</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>3.2</td>
+                        <td>Select injection site</td>
+                        <td>Incorrect site selection</td>
+                        <td>Insufficient anatomical knowledge</td>
+                        <td>Intramuscular injection failure</td>
+                        <td>All scenarios</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>36</td>
+                        <td>Intramuscular requirement</td>
+                        <td>Site diagrams on device</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>3.3</td>
+                        <td>Remove safety cap</td>
+                        <td>Difficult to remove</td>
+                        <td>Removal force > 35N</td>
+                        <td>Activation delay</td>
+                        <td>All scenarios</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>16</td>
+                        <td>Customer URS 5-35N</td>
+                        <td>Optimize removal force design</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>3.4</td>
+                        <td>Prevent misfire</td>
+                        <td>Misfire activation</td>
+                        <td>Poor safety mechanism design</td>
+                        <td>Device failure</td>
+                        <td>All scenarios</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>3</td>
+                        <td>30</td>
+                        <td>Safety mechanism</td>
+                        <td>Dual safety mechanism</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>3.5</td>
+                        <td>Positioning</td>
+                        <td>Incorrect angle</td>
+                        <td>Inaccurate vertical alignment</td>
+                        <td>Insufficient needle depth</td>
+                        <td>All scenarios</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>27</td>
+                        <td>Penetration depth requirement</td>
+                        <td>Angle guiding design</td>
+                        <td>9</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="13" class="component-header"
+                            style="background-color: #f1f5f9; font-weight: bold; text-align: left; padding-left: 10px;">
+                            4.4 Injection Execution Phase</td>
+                    </tr>
+                    <tr>
+                        <td>4.1</td>
+                        <td>Press to activate</td>
+                        <td>Insufficient pressure</td>
+                        <td>Actuation force exceeds user capability</td>
+                        <td>Injection failure</td>
+                        <td>EC-001, 002</td>
+                        <td>3</td>
+                        <td>5</td>
+                        <td>3</td>
+                        <td class="risk-med">45</td>
+                        <td>9-20N Trigger force</td>
+                        <td>Trigger force optimization</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>4.2</td>
+                        <td>0.5s completion</td>
+                        <td>Injection timeout</td>
+                        <td>Insufficient spring force</td>
+                        <td>Emergency timeliness failure</td>
+                        <td>All scenarios</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>3</td>
+                        <td>30</td>
+                        <td>FDA 0.5s requirement</td>
+                        <td>Spring force validation</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>4.3</td>
+                        <td>Audio feedback</td>
+                        <td>Audio signal failure</td>
+                        <td>Feedback system failure</td>
+                        <td>Unable to confirm activation</td>
+                        <td>All scenarios</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>24</td>
+                        <td>70-100dB Requirement</td>
+                        <td>Audio system redundancy</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>4.4</td>
+                        <td>Maintain position</td>
+                        <td>Premature removal</td>
+                        <td>Pain response</td>
+                        <td>Incomplete drug delivery</td>
+                        <td>All scenarios</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>36</td>
+                        <td>Complete dose delivery</td>
+                        <td>Injection completion indicator</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>4.5</td>
+                        <td>Inject through clothes</td>
+                        <td>Clothing penetration failure</td>
+                        <td>Insufficient needle length</td>
+                        <td>Reduced efficacy</td>
+                        <td>EC-001, 003, 005</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>36</td>
+                        <td>Penetration capability</td>
+                        <td>Needle design optimization</td>
+                        <td>12</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="13" class="component-header"
+                            style="background-color: #f1f5f9; font-weight: bold; text-align: left; padding-left: 10px;">
+                            4.5 Post-injection Verification Phase</td>
+                    </tr>
+                    <tr>
+                        <td>5.1</td>
+                        <td>Verify completion</td>
+                        <td>Unable to verify</td>
+                        <td>Inconspicuous indicators</td>
+                        <td>Uncertain double-injection</td>
+                        <td>All scenarios</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td class="risk-med">48</td>
+                        <td>Successful injection confirmation</td>
+                        <td>Multiple completion indicators</td>
+                        <td>16</td>
+                    </tr>
+                    <tr>
+                        <td>5.2</td>
+                        <td>Device removal</td>
+                        <td>Needle exposure injury</td>
+                        <td>Needle protection failure</td>
+                        <td>Needle stick injury</td>
+                        <td>All scenarios</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>24</td>
+                        <td>Safety protection</td>
+                        <td>Automatic needle retraction</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>5.3</td>
+                        <td>Safe disposal</td>
+                        <td>Improper disposal</td>
+                        <td>Incorrect disposal method</td>
+                        <td>Cross-infection risk</td>
+                        <td>All scenarios</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>36</td>
+                        <td>Waste disposal requirements</td>
+                        <td>Safe disposal container</td>
+                        <td>12</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="13" class="component-header"
+                            style="background-color: #f1f5f9; font-weight: bold; text-align: left; padding-left: 10px;">
+                            4.6 Subsequent Medical Action Phase</td>
+                    </tr>
+                    <tr>
+                        <td>6.1</td>
+                        <td>Seek medical help</td>
+                        <td>Failure to seek help</td>
+                        <td>Unawareness of biphasic reaction</td>
+                        <td>Renewed life threat</td>
+                        <td>All scenarios</td>
+                        <td>3</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td class="risk-high">60</td>
+                        <td>EMA follow-up requirement</td>
+                        <td>Highly visible medical warnings</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>6.2</td>
+                        <td>Record usage info</td>
+                        <td>Failure to record</td>
+                        <td>Neglected in emergency</td>
+                        <td>Incomplete info for doctor</td>
+                        <td>All scenarios</td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td class="risk-med">48</td>
+                        <td>Medical info requirement</td>
+                        <td>Simple recording card</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td>6.3</td>
+                        <td>Monitor symptoms</td>
+                        <td>Ignoring deterioration</td>
+                        <td>Perceived as resolved</td>
+                        <td>Delayed secondary treatment</td>
+                        <td>All scenarios</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td class="risk-med">48</td>
+                        <td>Continuous monitoring requirement</td>
+                        <td>Symptom monitoring guidance</td>
+                        <td>16</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="13" class="component-header"
+                            style="background-color: #f1f5f9; font-weight: bold; text-align: left; padding-left: 10px;">
+                            4.7 Special Environment Usage Phase</td>
+                    </tr>
+                    <tr>
+                        <td>7.1</td>
+                        <td>Extreme temperature</td>
+                        <td>Performance degradation</td>
+                        <td>Improper storage</td>
+                        <td>Functional failure</td>
+                        <td>EC-001, 003</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td class="risk-med">40</td>
+                        <td>Environmental adaptability</td>
+                        <td>Temperature resistance improvement</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>7.2</td>
+                        <td>Public use</td>
+                        <td>Privacy concern delay</td>
+                        <td>Social pressure</td>
+                        <td>Treatment delay</td>
+                        <td>EC-003</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>36</td>
+                        <td>Social acceptance</td>
+                        <td>Privacy protection design</td>
+                        <td>16</td>
+                    </tr>
+                    <tr>
+                        <td>7.3</td>
+                        <td>Solo emergency use</td>
+                        <td>Reduced self-rescue ability</td>
+                        <td>Severe symptoms</td>
+                        <td>Unable to complete injection</td>
+                        <td>EC-001</td>
+                        <td>3</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td class="risk-high">60</td>
+                        <td>Emergency self-rescue</td>
+                        <td>One-handed operation optimization</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>7.4</td>
+                        <td>Multiple injection judge</td>
+                        <td>Unnecessary repeat injection</td>
+                        <td>Uncertainty of first effect</td>
+                        <td>Drug overdose</td>
+                        <td>All scenarios</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>24</td>
+                        <td>Dose control</td>
+                        <td>Multiple injection guidance</td>
+                        <td>8</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2>4.8 UFMEA Coverage Assessment</h2>
+
+        <h3>4.8.1 User Interaction Lifecycle Coverage</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Phase</th>
+                    <th>Steps</th>
+                    <th>Key Failure Modes</th>
+                    <th>Coverage Status</th>
+                    <th>Risk Assessment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Symptom Recognition</strong></td>
+                    <td>1.1 - 1.3</td>
+                    <td>3</td>
+                    <td>Complete</td>
+                    <td>Low Risk</td>
+                </tr>
+                <tr>
+                    <td><strong>Acquisition/Preparation</strong></td>
+                    <td>2.1 - 2.4</td>
+                    <td>4</td>
+                    <td>Complete</td>
+                    <td>Low Risk</td>
+                </tr>
+                <tr>
+                    <td><strong>Activation Preparation</strong></td>
+                    <td>3.1 - 3.5</td>
+                    <td>5</td>
+                    <td>Complete</td>
+                    <td>Low Risk</td>
+                </tr>
+                <tr>
+                    <td><strong>Injection Execution</strong></td>
+                    <td>4.1 - 4.5</td>
+                    <td>5</td>
+                    <td>Complete</td>
+                    <td>Low Risk</td>
+                </tr>
+                <tr>
+                    <td><strong>Completion Verif.</strong></td>
+                    <td>5.1 - 5.3</td>
+                    <td>3</td>
+                    <td>Complete</td>
+                    <td>Low Risk</td>
+                </tr>
+                <tr>
+                    <td><strong>Subsequent Medical</strong></td>
+                    <td>6.1 - 6.3</td>
+                    <td>3</td>
+                    <td>Complete</td>
+                    <td>Low Risk</td>
+                </tr>
+                <tr>
+                    <td><strong>Special Environments</strong></td>
+                    <td>7.1 - 7.4</td>
+                    <td>4</td>
+                    <td>Complete</td>
+                    <td>Low Risk</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td>7 Phases</td>
+                    <td><strong>27 Modes</strong></td>
+                    <td><strong>100% Coverage</strong></td>
+                    <td><strong>Systematic Integrity</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>5. Training Device failure analysis</h2>
+
+        <h3>5.1 Training Device Key Failures</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Failure Mode</th>
+                    <th>Failure Cause</th>
+                    <th>Actual Usage Impact</th>
+                    <th>O</th>
+                    <th>S</th>
+                    <th>D</th>
+                    <th>RPN</th>
+                    <th>Mitigation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Trigger force simulation failure</td>
+                    <td>Mechanical wear</td>
+                    <td>Incorrect perceived operation force</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>36</td>
+                    <td>Durable materials + Regular calibration</td>
+                </tr>
+                <tr>
+                    <td>Audio simulation failure</td>
+                    <td>Speaker failure</td>
+                    <td>Audio-dependent training failure</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>2</td>
+                    <td>12</td>
+                    <td>Redundant audio design</td>
+                </tr>
+                <tr>
+                    <td>Reset function failure</td>
+                    <td>Mechanical fatigue</td>
+                    <td>Discontinued repetitive training</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>18</td>
+                    <td>1,000 cycle design life</td>
+                </tr>
+                <tr>
+                    <td>Poor training effect</td>
+                    <td>Lack of realism</td>
+                    <td>Emergency operation error</td>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td class="risk-med">48</td>
+                    <td>Consistency with real device</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>5.2 Training Device EMA Compliance Requirements</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>EMA Requirement</th>
+                    <th>Technical Implementation</th>
+                    <th>Verification Standard</th>
+                    <th>Failure Risk</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Realistic Feel</strong></td>
+                    <td>9-20N Trigger force simulation</td>
+                    <td>Force comparison < &plusmn;5%</td>
+                    <td>Trigger force variance</td>
+                </tr>
+                <tr>
+                    <td><strong>Audio Training</strong></td>
+                    <td>70-100dB Sound simulation</td>
+                    <td>Spectrum consistency</td>
+                    <td>Audio recognition error</td>
+                </tr>
+                <tr>
+                    <td><strong>Repetitive Use</strong></td>
+                    <td>> 1,000 cycles lifecycle</td>
+                    <td>Fatigue testing verification</td>
+                    <td>Insufficient durability</td>
+                </tr>
+                <tr>
+                    <td><strong>Safety Training</strong></td>
+                    <td>Needle-free/Drug-free design</td>
+                    <td>Safety assessment</td>
+                    <td>Injury risk during training</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>6. 99.999% Reliability Correlation</h2>
+
+        <h3>6.1 Impact of User Failure on System Reliability</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Failure Type</th>
+                    <th>User Failure Prob.</th>
+                    <th>Impact on 99.999%</th>
+                    <th>Probability Post-Mitigation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Symptom Identification Failure</td>
+                    <td>1 &times; 10⁻⁴</td>
+                    <td>High Impact</td>
+                    <td>1 &times; 10⁻⁵</td>
+                </tr>
+                <tr>
+                    <td>Operation Execution Failure</td>
+                    <td>5 &times; 10⁻⁵</td>
+                    <td>Medium Impact</td>
+                    <td>1 &times; 10⁻⁵</td>
+                </tr>
+                <tr>
+                    <td>Time Delay Failure</td>
+                    <td>3 &times; 10⁻⁵</td>
+                    <td>Medium Impact</td>
+                    <td>5 &times; 10⁻⁶</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>Overall User Failure Probability Target: &le; 1 &times; 10⁻⁵ (Support 99.999% System
+                Reliability)</strong></p>
+
+        <div class="page-break"></div>
+
+        <h2>7. Regulatory Compliance Gaps and Improvements</h2>
+
+        <h3>7.1 FDA Compliance Gaps</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>FDA Requirement</th>
+                    <th>Current Status</th>
+                    <th>Gap</th>
+                    <th>Improvement Plan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>99.999% Reliability</td>
+                    <td>User failure rate 2.6 &times; 10⁻⁵</td>
+                    <td>Exceeds target by 1.6 &times; 10⁻⁵</td>
+                    <td>Mandatory Training Device implementation</td>
+                </tr>
+                <tr>
+                    <td>0.5s Injection</td>
+                    <td>Current &le; 2.0s</td>
+                    <td>Time gap of 1.5s</td>
+                    <td>Redesign of spring system</td>
+                </tr>
+                <tr>
+                    <td>Fault Tree Integration</td>
+                    <td>Independent UFMEA analysis</td>
+                    <td>Lack of system integration</td>
+                    <td>Alignment with DFMEA Fault Tree</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>Conclusion and Recommendations</h2>
+
+        <h3>Key Findings</h3>
+        <ol>
+            <li><strong>High-risk Failure</strong>: Delayed symptom recognition (RPN=80) threatens the 99.999%
+                reliability goal.</li>
+            <li><strong>EMA Compliance Gap</strong>: Training Device development is a mandatory requirement and
+                currently missing.</li>
+            <li><strong>FDA Timeliness Gap</strong>: 0.5s injection requirement requires technical breakthrough.</li>
+        </ol>
+
+        <h3>Priority Actions</h3>
+        <ul>
+            <li><strong>Immediately launch Training Device development</strong> (EMA Mandatory).</li>
+            <li><strong>Implement 99.999% reliability engineering</strong> (FDA Core Requirement).</li>
+            <li><strong>Establish Prescriber Checklist system</strong> (EMA Doctor Training).</li>
+            <li><strong>Optimize Emergency-Use design</strong> (Joint FDA/EMA Requirement).</li>
+        </ul>
+
+        <p>Through systematic UFMEA optimization, achieving user failure probability &le; 1 &times; 10⁻⁵ will support
+            Simject auto-injector in reaching FDA 99.999% reliability goals and EMA Training Device requirements.</p>
+
+        <div class="footer">
+            <p>Data Integrity Statement: This digital signature is the legally binding equivalent of a traditional
+                handwritten signature.</p>
+            <p>Summed Medtech | 100-005-UFM-001 | ISO 13485 & 21 CFR Part 11 Compliant</p>
+        </div>
+
+    </div>
+</body>
+
+</html>

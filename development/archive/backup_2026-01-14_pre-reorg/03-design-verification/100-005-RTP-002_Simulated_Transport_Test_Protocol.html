@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulated Transport Test Protocol - 100-005-RTP-002</title>
+    <link rel="stylesheet" href="../../assets/css/summed-medtech-docs.css">
+    <style>
+        .contents-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .contents-list li {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .contents-list li::after {
+            content: "";
+            flex-grow: 1;
+            border-bottom: 1px dotted #ccc;
+            margin: 0 10px;
+            order: 2;
+        }
+
+        .contents-list li span:last-child {
+            order: 3;
+        }
+
+        .contents-list li span:first-child {
+            order: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="a4-container">
+        <div class="header-section">
+            <img src="../../assets/images/Summed logo.png" alt="Summed Medtech 森迈医疗" class="company-logo"
+                style="width: 80% !important; max-width: 300px !important; height: auto !important;">
+            <div class="document-meta">
+                <div><strong>Document No.:</strong> 100-005-RTP-002</div>
+                <div><strong>Revision:</strong> 1.0</div>
+            </div>
+        </div>
+
+        <h1>Simulated Transport Test Protocol (RTP)</h1>
+
+        <!-- Project Info Table -->
+        <table class="doc-info-table">
+            <tr>
+                <td width="20%"><strong>Project Name:</strong></td>
+                <td colspan="3">Simject-030 Epinephrine Bridge (Adult) Project</td>
+                <td width="20%"><strong>Project Code:</strong></td>
+                <td colspan="3">SM100-005</td>
+            </tr>
+            <tr>
+                <td><strong>Product Model:</strong></td>
+                <td colspan="3">AISI104</td>
+                <td><strong>Project Manager:</strong></td>
+                <td colspan="3">Peiling He</td>
+            </tr>
+            <tr>
+                <td><strong>RD Engineer:</strong></td>
+                <td colspan="3">Logan Zhao</td>
+                <td><strong>Effective Date:</strong></td>
+                <td colspan="3">2024-07-18</td>
+            </tr>
+        </table>
+
+        <!-- Approval Table -->
+        <h3>Approval Record</h3>
+        <table class="signature-table">
+            <tr>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">Zoey Cai</div>
+                        <div class="signature-title">RD Department</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Prepared by</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">YC Zheng</div>
+                        <div class="signature-title">DCC</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Reviewed by</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">Logan Zhao</div>
+                        <div class="signature-title">RD Department</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Reviewed by</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">Kevin Lo</div>
+                        <div class="signature-title">RD Department</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Approved by</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Revision History</h3>
+        <table class="revision-table">
+            <thead>
+                <tr>
+                    <th width="15%">Revision</th>
+                    <th width="20%">Date</th>
+                    <th width="15%">Author</th>
+                    <th width="50%">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.0</td>
+                    <td>2024-07-18</td>
+                    <td>Zoey Cai</td>
+                    <td>New version effective</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>1. Table of Contents</h2>
+        <ul class="contents-list">
+            <li><span>1. Table of Contents</span> <span>2</span></li>
+            <li><span>2. Purpose</span> <span>6</span></li>
+            <li><span>3. Scope</span> <span>6</span></li>
+            <li><span>4. Responsibility</span> <span>6</span></li>
+            <li><span>5. References</span> <span>6</span></li>
+            <li><span>6. Definitions</span> <span>6</span></li>
+            <li><span>7. Product Description</span> <span>/</span></li>
+            <li><span>8. Simulated Transport Test Procedure</span> <span>7</span></li>
+            <li><span>9. Functional Test</span> <span>9</span></li>
+            <li><span>10. Acceptance Criteria</span> <span>11</span></li>
+            <li><span>11. Report</span> <span>12</span></li>
+            <li><span>12. Appendix</span> <span>12</span></li>
+        </ul>
+
+        <div class="page-break"></div>
+
+        <h2>2. Purpose</h2>
+        <p>To verify that the Simject-030 bridge (adult) project products still meet performance requirements after
+            undergoing simulated transport testing.</p>
+
+        <h2>3. Scope</h2>
+        <p>This protocol applies to the simulated transport testing of the Simject-030 bridge (adult) project.</p>
+
+        <h2>4. Responsibility</h2>
+        <ul>
+            <li><strong>Analyst:</strong> Responsible for drafting this protocol, completing the tests according to the
+                plan, and issuing the test report.</li>
+            <li><strong>R&D Engineer:</strong> Responsible for reviewing this protocol.</li>
+            <li><strong>R&D Lead:</strong> Responsible for approving this protocol.</li>
+        </ul>
+
+        <h2>5. References</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th width="10%">No.</th>
+                    <th width="30%">Standard</th>
+                    <th width="60%">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>ASTM D 4169 23e1</td>
+                    <td>Standard Practice for Performance Testing of Shipping Containers and Systems</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>ISO 11608-1:2022</td>
+                    <td>Needle-based injection systems for medical use — Requirements and test methods — Part 1:
+                        Needle-based injection systems</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>6. Definitions</h2>
+        <ul>
+            <li><strong>Acceptance Criteria:</strong> The acceptable quality level that the transport unit must reach
+                after undergoing the test plan.</li>
+            <li><strong>Assurance Level:</strong> Test intensity levels based on the probability of occurrence in a
+                typical distribution cycle. Level I is high intensity with low probability; Level III is low intensity
+                with high probability; Level II is in between.</li>
+            <li><strong>Distribution Cycle:</strong> A test plan listed in sequence to simulate hazards expected in a
+                specific path from production to consumption.</li>
+            <li><strong>Transport Unit:</strong> The smallest complete unit that will undergo the distribution
+                environment, such as a shipping container and its contents.</li>
+        </ul>
+
+        <div class="page-break"></div>
+
+        <h2>7. Product Description</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Packaging Material</th>
+                    <th>Packaging Size</th>
+                    <th>Weight</th>
+                    <th>Packaging Method</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Simject Front Component</td>
+                    <td>Blister tray (4M81310020221), EPE (4M8200000317W), Bag (4M81130010421), Carton (4M8100000216Br)
+                    </td>
+                    <td>592*392*240 mm</td>
+                    <td>12 kg</td>
+                    <td>100-005-OWI-001(2.0)</td>
+                </tr>
+                <tr>
+                    <td>Simject Rear Component</td>
+                    <td>Blister tray (4M81310020321), EPE (4M8200000317W), Bag (4M81130010421), Carton (4M8100000216Br)
+                    </td>
+                    <td>592*392*240 mm</td>
+                    <td>9 kg</td>
+                    <td>100-005-OWI-002(2.0)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="data-table" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Sample Model</th>
+                    <th>Batch No.</th>
+                    <th>Contents</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pre-filled Syringe (PFS)</td>
+                    <td>/</td>
+                    <td>/</td>
+                    <td>/</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>8. Simulated Transport Test Procedure</h2>
+
+        <h3>8.1 Preconditioning</h3>
+        <p>Testing is conducted under standard atmospheric conditions (23°C ± 1°C / 50% RH ± 2%). Condition for 72 hours
+            or ensure all packaging system components reach equilibrium.</p>
+
+        <h3>8.2 Test Unit</h3>
+        <ul>
+            <li>8.2.1 Simject front component carton: Dimensions 592*392*240mm; Weight 12kg, containing 300 front
+                components.</li>
+            <li>8.2.2 Simject rear component carton: Dimensions 592*392*240mm; Weight 9kg, containing 300 rear
+                components.</li>
+        </ul>
+
+        <h3>8.3 Assurance Level</h3>
+        <p>Based on product value and shipping volume, all tests select <strong>Assurance Level II</strong>.</p>
+
+        <h3>8.4 Distribution Cycle</h3>
+        <p>DC-4 + DC-6 principle applied.</p>
+
+        <h3>8.5 Test Plan</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Seq.</th>
+                    <th>Test Plan</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Environmental Preconditioning</td>
+                    <td>23±1℃, 50±2%RH, Duration: 72h</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Plan A: Manual Handling</td>
+                    <td>Initial drop test</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Plan C: Vehicle Stacking</td>
+                    <td>Compression test</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Plan D: Stacking Vibration</td>
+                    <td>Vibration test</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Plan E: Vehicle Vibration</td>
+                    <td>Vibration test</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Plan F: Unconstrained Vibration</td>
+                    <td>Repeated shock</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Plan H: Environmental Hazard</td>
+                    <td>Not applicable</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Plan J: Concentrated Impact</td>
+                    <td>/</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Plan A: Manual Handling</td>
+                    <td>Final drop test</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Plan B: Warehouse Stacking</td>
+                    <td>/</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>8.6 Commissioned Testing</h3>
+        <p>8.6.1 The simulated transport testing is commissioned by Summed to Shanghai Guoyan Medical Device Testing
+            Center Co., Ltd.</p>
+        <p>8.6.2 The testing center shall provide raw data: vibration PSD spectrum; temp/humidity records (1-min
+            interval); drop shock waveform (peak acceleration, velocity change).</p>
+        <p>8.6.3 After testing per 8.5, samples are retrieved by Summed for subsequent functional testing.</p>
+
+        <div class="page-break"></div>
+
+        <h2>9. Functional Test</h2>
+
+        <h3>9.1 Test Environment Requirements</h3>
+        <p>Lab temperature 25 ± 3°C and humidity 55 ± 20% RH.</p>
+
+        <h3>9.2 Test Laboratory</h3>
+        <p>Performed at Summed laboratory. Retrieve front and rear components after Section 8 transport testing,
+            assemble
+            with batch XX PFS into finished auto-injectors.</p>
+
+        <h3>9.3 Fixture Information</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Fixture No.</th>
+                    <th>Fixture Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>JS-JJ-24-022</td>
+                    <td>Lisa & Lucy front component and PFS manual final assembly fixture</td>
+                </tr>
+                <tr>
+                    <td>JS-JJ-24-023</td>
+                    <td>Lisa & Lucy front component and rear component manual final assembly fixture</td>
+                </tr>
+                <tr>
+                    <td>JS-JJ-24-019</td>
+                    <td>Simject series sharps injury protection fixture</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>9.4 Equipment Information</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Equipment No.</th>
+                    <th>Equipment Name</th>
+                    <th>Model</th>
+                    <th>Validity</th>
+                    <th>Report No.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>JS-JC-24-005</td>
+                    <td>Simject Auto-Injector Testing Device</td>
+                    <td>Simject</td>
+                    <td>2026.05.12</td>
+                    <td>EVR-JS-JC-25-001</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>9.5 Auto-Injector Assembly</h3>
+        <p>Retrieve components after transport testing, assemble with batch XX PFS according to manual assembly
+            instructions to obtain finished pens.</p>
+
+        <h3>9.6 Test Quantity</h3>
+        <p>Test 30 auto-injectors. Sample 30 front/rear components from respective cartons. Ensure sampling 3 units from
+            each blister tray (10 trays total) randomly.</p>
+
+        <h3>9.7 Pre-Test Conditioning</h3>
+        <p>Place assembled auto-injectors at 23 ± 5°C and 50 ± 25% RH for at least 4 hours before testing.</p>
+
+        <h3>9.8 Functional Test Items and Methods</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th width="10%">No.</th>
+                    <th width="45%">Test Item</th>
+                    <th width="45%">Method</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Dose Accuracy</td>
+                    <td rowspan="11">100-005-TIS-023 (V1.0)</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Needle Extension Length (during injection)</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Cap Removal Force</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Activation Force (pressing needle shield)</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Injection Time (0.3mL dose)</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Drug Visibility Before Use</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Post-injection Lockout Force</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Device Status Indication</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Needle Shielding</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Injection Start Audible Prompt</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Sharps Injury Protection</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>10. Acceptance Criteria</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th width="5%">No.</th>
+                    <th width="25%">Item</th>
+                    <th width="70%">Acceptance Criteria</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Packaging Appearance</td>
+                    <td>
+                        1. Outer carton has no obvious structural damage (visible holes/tears). Slight dents
+                        allowed.<br>
+                        2. Outer carton labels remain clearly readable, no peeling.<br>
+                        3. Inner packaging has no obvious displacement or damage when opened.
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Product Appearance</td>
+                    <td>
+                        1. Product (front/rear components) has no parts ejected or fallen off, maintaining assembly
+                        integrity.<br>
+                        2. No scratches, cracks, or color inconsistencies.
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="11">3-13</td>
+                    <td rowspan="11">Performance</td>
+                    <td><strong>Dose Accuracy:</strong> 0.27mL < Vol < 0.34mL</td>
+                </tr>
+                <tr>
+                    <td><strong>Needle Extension:</strong> 15.24mm ± 2.54mm</td>
+                </tr>
+                <tr>
+                    <td><strong>Cap Removal Force:</strong> 5 - 35 N</td>
+                </tr>
+                <tr>
+                    <td><strong>Activation Force:</strong> 5 - 25 N</td>
+                </tr>
+                <tr>
+                    <td><strong>Injection Time:</strong> ≤ 2 seconds</td>
+                </tr>
+                <tr>
+                    <td><strong>Drug Visibility:</strong> Window clearly identifiable</td>
+                </tr>
+                <tr>
+                    <td><strong>Lockout Force:</strong> > 50 N</td>
+                </tr>
+                <tr>
+                    <td><strong>Status Indication:</strong> PFS stopper visible in window after injection</td>
+                </tr>
+                <tr>
+                    <td><strong>Needle Shielding:</strong> Needle not visible when in contact with surface; does not
+                        protrude when not in contact</td>
+                </tr>
+                <tr>
+                    <td><strong>Audible Prompt:</strong> ≥ 60dB at 30cm distance</td>
+                </tr>
+                <tr>
+                    <td><strong>Sharps Protection:</strong> Passes ISO 23908-2024 Appendix method</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>11. Report</h2>
+        <ul>
+            <li>11.1.1 Report shall contain detailed info of pens and PFS (model, batch, qty).</li>
+            <li>11.1.2 Report shall note simulated transport process and detailed data.</li>
+            <li>11.1.3 Report shall include result determination; if failed, re-test until passed. Each process/result
+                recorded.</li>
+        </ul>
+
+        <h2>12. Appendix</h2>
+        <p>1. Test Agency Credentials</p>
+
+        <div class="footer">
+            <p>Summed Medtech 森迈医疗 | Document No.: 100-005-RTP-002 | Revision: 1.0</p>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Requirement Specification - 100-005-URS-001</title>
+    <link rel="stylesheet" href="../../assets/css/summed-medtech-docs.css">
+</head>
+<body><div class="a4-container">
+
+    <div class="header-section">
+    <img src="../../assets/images/Summed logo.png" alt="Summed Medtech 森迈医疗" class="company-logo" style="width: 80% !important; max-width: 300px !important; height: auto !important;">
+        <div class="document-meta">
+            <div><strong>Document No.:</strong> 100-005-URS-001</div>
+            <div><strong>Revision:</strong> 2.0</div>
+        </div>
+    </div>
+
+    <h1>User Requirement Specification (URS)</h1>
+
+    <table class="doc-info-table">
+        <tr>
+            <td width="25%"><strong>Project Name:</strong></td>
+            <td colspan="3">Epinephrine Auto-Injector Project (Adult & Pediatric)</td>
+        </tr>
+        <tr>
+            <td><strong>Project Code:</strong></td>
+            <td colspan="3">SM100-005 (Adult), SM100-006 (Pediatric)</td>
+        </tr>
+        <tr>
+            <td><strong>Document No.:</strong></td>
+            <td>100-005-URS-001</td>
+            <td><strong>Revision:</strong></td>
+            <td>2.0</td>
+        </tr>
+    </table>
+
+    <!-- Signature Table - Horizontal 3-Person Format -->
+    <table class="signature-table">
+        <tr>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">Linda He</div>
+                    <div class="signature-title">Project Manager</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Prepared by</div>
+                </div>
+            </td>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">Grace Xue</div>
+                    <div class="signature-title">RA Director</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Reviewed by</div>
+                </div>
+            </td>
+            <td>
+                <div class="signature-block">
+                    <div class="signature-name">Grace Xue</div>
+                    <div class="signature-title">RA Director</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Approved by</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Revision History</h3>
+    <table class="revision-table">
+        <thead>
+            <tr>
+                <th width="15%">Revision Level</th>
+                <th width="20%">Date of Revision</th>
+                <th width="65%">Revision Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1.0</td>
+                <td>Initial Release</td>
+                <td>Initial document</td>
+            </tr>
+            <tr>
+                <td>2.0</td>
+                <td>Current Revision</td>
+                <td>Revision due to customer dose standard and drug density adjustment</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>1. Customer URS Document Information</h2>
+
+    <table class="data-table">
+        <tr>
+            <td width="30%"><strong>Customer:</strong></td>
+            <td>Pharma A, Ltd. (Pharma A)</td>
+        </tr>
+        <tr>
+            <td><strong>Customer Document No.:</strong></td>
+            <td>URS-2025-017-01</td>
+        </tr>
+        <tr>
+            <td><strong>Product Description:</strong></td>
+            <td>Auto-Injector User Requirement Specification</td>
+        </tr>
+    </table>
+
+    <h2>2. Purpose</h2>
+    <p>To support specific user requirements for a disposable auto-injector for epinephrine injection (pre-filled), this document describes the functionality and performance that the product should have.</p>
+
+    <h2>3. Scope</h2>
+    <p>Zhejiang Summed Medtech Co., Ltd. shall execute product design, development, verification, and manufacturing according to the requirements of this document.</p>
+
+    <h2>4. Abbreviations and Terms</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th width="30%">Abbreviation</th>
+                <th width="35%">English Definition</th>
+                <th width="35%">Chinese Definition</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>URS</td>
+                <td>User Requirement Specification</td>
+                <td>User Requirement Specification</td>
+            </tr>
+            <tr>
+                <td>ISO</td>
+                <td>International Organization for Standards</td>
+                <td>International Organization for Standardization</td>
+            </tr>
+            <tr>
+                <td>ASTM</td>
+                <td>American Society of Testing Materials</td>
+                <td>American Society for Testing and Materials</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>5. Intended Use</h2>
+    <p>Used in conjunction with epinephrine injection (pre-filled) for fluid delivery (intramuscular injection). For single patient or individual single use only.</p>
+
+    <ul>
+        <li><strong>Adult Dose:</strong> 0.30 mg/0.3 mL (1.0 mg/1.0 mL concentration)</li>
+        <li><strong>Pediatric Dose:</strong> 0.15 mg/0.3 mL (0.5 mg/1.0 mL concentration)</li>
+        <li><strong>Fill Volume:</strong> 1 ± 0.03 mL</li>
+        <li><strong>Injection Volume:</strong> 0.3 mL (0.27-0.34 mL)</li>
+    </ul>
+
+    <h2>6. Target Patient Population</h2>
+    <p><strong>Target Population:</strong> Adult model suitable for patients with body weight ≥30 kg. Pediatric model suitable for patients with body weight 15-30 kg.</p>
+
+    <h2>7. Product Appearance</h2>
+    <p>See Attachment 1: Product Appearance</p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Component</th>
+                <th>Adult Model Color</th>
+                <th>Pediatric Model Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Rear Cover</td>
+                <td>Gray</td>
+                <td>Gray</td>
+            </tr>
+            <tr>
+                <td>Barrel</td>
+                <td>White</td>
+                <td>White</td>
+            </tr>
+            <tr>
+                <td>Needle Shield</td>
+                <td>Yellow</td>
+                <td>Green</td>
+            </tr>
+            <tr>
+                <td>Cap</td>
+                <td>Red</td>
+                <td>Blue</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>8. Drug and Inner Package Information</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th width="30%">Item</th>
+                <th width="70%">Requirements</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Product Name</strong></td>
+                <td>Epinephrine Injection (Pre-filled)</td>
+            </tr>
+            <tr>
+                <td><strong>Description</strong></td>
+                <td>Colorless or almost colorless clear liquid, deteriorates easily when exposed to sunlight or air. Store in light-resistant, tightly closed container at 20-25°C</td>
+            </tr>
+            <tr>
+                <td><strong>Therapeutic Area</strong></td>
+                <td>Emergency allergic reactions (anaphylactic shock, asthma), cardiac arrest, etc.</td>
+            </tr>
+            <tr>
+                <td><strong>Adult Dose</strong></td>
+                <td>0.30 mg/0.3 mL (1.0 mg/1.0 mL), fill 1 ± 0.03 mL, single injection 0.3 mL (0.27-0.34 mL)</td>
+            </tr>
+            <tr>
+                <td><strong>Pediatric Dose</strong></td>
+                <td>0.15 mg/0.3 mL (0.5 mg/1.0 mL), fill 1 ± 0.03 mL, single injection 0.3 mL (0.27-0.34 mL)</td>
+            </tr>
+            <tr>
+                <td><strong>Needle Extension</strong></td>
+                <td>Adult: ≥0.5in (12.70mm)<br>Pediatric: ≥0.4in (10.16mm)</td>
+            </tr>
+            <tr>
+                <td><strong>Kinematic Viscosity</strong></td>
+                <td>1.12 cP (test with water for injection: 1.04 cP)<br>Test condition: Liquid temperature 24.8°C</td>
+            </tr>
+            <tr>
+                <td><strong>Density</strong></td>
+                <td>Adult (0.30 mg/0.3 mL): 1.0016 g/mL<br>Pediatric (0.15 mg/0.3 mL): 1.0009 g/mL</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>9. Main Component Specifications</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th width="25%">Component</th>
+                <th width="20%">Manufacturer</th>
+                <th width="15%">Model</th>
+                <th width="40%">Specifications</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Pre-filled Syringe Assembly (with Needle)</td>
+                <td>Refer to Attachment 3</td>
+                <td>1 mL (Long) 22G</td>
+                <td>
+                    Length: 84.5 ± 1.0 mm<br>
+                    Needle outer diameter: 8.15 ± 0.1 mm<br>
+                    Needle inner diameter: 6.35 ± 0.1 mm<br>
+                    Flange diameter: 13.8 ± 0.4 mm<br>
+                    Flange thickness: 1.65 ± 0.25 mm<br>
+                    Silicon oil amount: ≤0.7 mg/piece
+                </td>
+            </tr>
+            <tr>
+                <td>Stopper</td>
+                <td>Refer to Attachment 4</td>
+                <td>1 mL (Long) C2574</td>
+                <td>Axial position A or B of stopper in PFS with needle (see Figure 1). Provide test data for position B at delivery</td>
+            </tr>
+            <tr>
+                <td>Other</td>
+                <td>To be supplemented if needed</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>10. Target Market</h2>
+    <p>China market (excluding Hong Kong, Macau, Taiwan), European market. Other markets to be determined.</p>
+
+    <h2>11. Reference Standards/Regulations/Guidelines</h2>
+    <p>Refer to "Product Regulatory Standards List" (Attachment 5) provided by Summed. Compliance with current versions of medical device and drug-device combination product regulations/registration requirements. Changes to be communicated between parties.</p>
+
+    <h2>12. Requirements</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th width="15%">No.</th>
+                <th width="65%">Requirement</th>
+                <th width="20%">Required/Desired</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>11.1</td>
+                <td>Auto-injector is a single-use product (PFS cannot be removed), fixed dose, automatic injection, no dose adjustment required</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>11.2</td>
+                <td>Injection method: Intramuscular injection</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>11.3</td>
+                <td>Auto-injector provides cap protection</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>11.4</td>
+                <td>Easy to hold, ergonomic dimensions</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>11.5</td>
+                <td>Cap removal force: ≤35 N and ≥5 N</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>11.6</td>
+                <td>Injection activation force (pressing needle shield): ≤25 N and ≥5 N</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>11.7</td>
+                <td>Self-locking needle shield after injection</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>11.8</td>
+                <td>Visual, auditory, tactile, or combination indication of injection completion</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>11.9</td>
+                <td>Product function not affected under normal transportation and storage conditions</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>11.10</td>
+                <td>Shelf life: 2.5 years</td>
+                <td>Required</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>13. Transportation Method</h2>
+    <p>Air freight, land transportation, sea freight</p>
+
+    <div class="page-break"></div>
+
+    <h2>Attachment 1: Product Appearance - Adult Model</h2>
+    <h2>Attachment 2: Product Appearance - Pediatric Model</h2>
+
+    <div style="display: flex; justify-content: space-around; align-items: flex-start; gap: 15px; margin: 20px 0;">
+        <div class="figure-container" style="text-align: center; flex: 1;">
+            <img src="../../assets/images/100-005-URS-app1 adult.png" alt="Adult Model" style="max-width: 100%; height: auto; border: 1px solid #ccc;">
+            <p style="font-size: 9pt; color: #666; margin-top: 8px;">Figure A1: Adult Model (Lisa) - Attachment 1</p>
+        </div>
+        <div class="figure-container" style="text-align: center; flex: 1;">
+            <img src="../../assets/images/100-005-URS-app1 pediatric.png" alt="Pediatric Model" style="max-width: 100%; height: auto; border: 1px solid #ccc;">
+            <p style="font-size: 9pt; color: #666; margin-top: 8px;">Figure A2: Pediatric Model (Lucy) - Attachment 1</p>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2>Attachment 3: Pre-Filled Syringe Assembly (with Needle) Specifications</h2>
+
+    <div class="figure-container" style="text-align: center; margin: 20px 0;">
+        <img src="../../assets/images/100-005-URS-8 PFS.png" alt="Pre-Filled Syringe (PFS)" style="max-width: 700px; height: auto; border: 1px solid #ccc;">
+        <p style="font-size: 9pt; color: #666; margin-top: 8px;">Figure A3: Pre-Filled Syringe (PFS) - Attachment 3</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2>Attachment 4: Stopper Specifications</h2>
+
+    <div style="display: flex; justify-content: space-around; align-items: flex-start; gap: 15px; margin: 20px 0;">
+        <div class="figure-container" style="text-align: center; flex: 1;">
+            <img src="../../assets/images/100-005-URS-app2 PFS.png" alt="Pre-Filled Syringe Details" style="max-width: 100%; height: auto; border: 1px solid #ccc;">
+            <p style="font-size: 9pt; color: #666; margin-top: 8px;">Figure A4-1: Pre-Filled Syringe (PFS) Details</p>
+        </div>
+        <div class="figure-container" style="text-align: center; flex: 1;">
+            <img src="../../assets/images/100-005-URS-app2 Plunger.png" alt="Stopper Details" style="max-width: 100%; height: auto; border: 1px solid #ccc;">
+            <p style="font-size: 9pt; color: #666; margin-top: 8px;">Figure A4-2: Stopper/Plunger Details - Attachment 4</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Summed Medtech 森迈医疗 | Document No.: 100-005-URS-001 | Revision: 2.0</p>
+    </div>
+
+</div></body>
+</html>

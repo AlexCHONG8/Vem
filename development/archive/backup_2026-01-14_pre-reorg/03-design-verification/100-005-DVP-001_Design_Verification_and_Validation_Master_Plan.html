@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Verification and Validation Master Plan - 100-005-DVP-001</title>
+    <link rel="stylesheet" href="../../assets/css/summed-medtech-docs.css">
+    <style>
+        .toc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .toc-table td {
+            padding: 5px 0;
+            border: none;
+        }
+
+        .section-header {
+            background-color: #f4f4f4;
+            padding: 10px;
+            margin-top: 20px;
+            border-left: 5px solid #0056b3;
+        }
+
+        .content-block {
+            margin-bottom: 25px;
+        }
+
+        .data-table th {
+            background-color: #e9ecef;
+        }
+
+        .sub-section {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="a4-container">
+
+        <div class="header-section">
+            <img src="../../assets/images/Summed logo.png" alt="Summed Medtech 森迈医疗" class="company-logo"
+                style="width: 80% !important; max-width: 306px !important; height: auto !important;">
+            <div class="document-meta">
+                <div><strong>Document No.:</strong> 100-005-DVP-001</div>
+                <div><strong>Revision:</strong> 1.0</div>
+            </div>
+        </div>
+
+        <h1>Design Verification and Validation Master Plan (V/VMP)</h1>
+
+        <table class="doc-info-table">
+            <tr>
+                <td width="20%"><strong>Project Name:</strong></td>
+                <td colspan="3">Simject-030 Adrenaline (Adult) Project by LBE Pharma</td>
+            </tr>
+            <tr>
+                <td><strong>Project Code:</strong></td>
+                <td>SM100-005</td>
+                <td width="20%"><strong>Product Code:</strong></td>
+                <td>AISI104</td>
+            </tr>
+            <tr>
+                <td><strong>Project Manager:</strong></td>
+                <td>Linda He</td>
+                <td><strong>R&D Engineer:</strong></td>
+                <td>Logan Zhao</td>
+            </tr>
+            <tr>
+                <td><strong>Document No.:</strong></td>
+                <td>100-005-DVP-001</td>
+                <td><strong>Revision:</strong></td>
+                <td>1.0</td>
+            </tr>
+        </table>
+
+        <div class="section-header">
+            <h2>1. Contents</h2>
+        </div>
+        <table class="toc-table">
+            <tr>
+                <td>1. Contents</td>
+                <td style="text-align: right;">2</td>
+            </tr>
+            <tr>
+                <td>2. Purpose</td>
+                <td style="text-align: right;">3</td>
+            </tr>
+            <tr>
+                <td>3. Responsibilities</td>
+                <td style="text-align: right;">3</td>
+            </tr>
+            <tr>
+                <td>4. Project Team</td>
+                <td style="text-align: right;">4</td>
+            </tr>
+            <tr>
+                <td>5. Tracking And Reporting Systems</td>
+                <td style="text-align: right;">4</td>
+            </tr>
+            <tr>
+                <td>6. Definitions</td>
+                <td style="text-align: right;">4</td>
+            </tr>
+            <tr>
+                <td>7. Product Overview & Assembly</td>
+                <td style="text-align: right;">5</td>
+            </tr>
+            <tr>
+                <td>8. Testing Facility</td>
+                <td style="text-align: right;">6</td>
+            </tr>
+            <tr>
+                <td>9. Relevant Standards/Regulations/References</td>
+                <td style="text-align: right;">6</td>
+            </tr>
+            <tr>
+                <td>10. Configuration</td>
+                <td style="text-align: right;">9</td>
+            </tr>
+            <tr>
+                <td>11. Design Verification/Validation</td>
+                <td style="text-align: right;">10</td>
+            </tr>
+            <tr>
+                <td>12. Schedule And Resources</td>
+                <td style="text-align: right;">17</td>
+            </tr>
+            <tr>
+                <td>13. V/VMP Plan Review</td>
+                <td style="text-align: right;">17</td>
+            </tr>
+        </table>
+
+        <div class="page-break"></div>
+
+        <div class="section-header">
+            <h2>2. Purpose</h2>
+        </div>
+        <div class="content-block">
+            <p>The purpose of this Design Verification and Validation Master Plan (V/VMP) is to document the required
+                tests for a formal product related project. This plan lists which tests shall be conducted by SUMMED for
+                design, process and user V/V, as required by the FDA Quality System Regulation (21 CFR 820) and
+                ISO13485:2016. This V/VMP is designed for the medical device constituent of a combination product.</p>
+            <p>The Verification and Validation activities are driven from input approved at Design Review:</p>
+            <ul>
+                <li>The Design Input Requirement (DIR), document no. SM100-005-DIR-001.</li>
+                <li>The User Requirement Specification (URS), document no. 100-005-URS-001.</li>
+                <li>Product Requirement Specification document no. 100-005-PRS-001.</li>
+                <li>Risk Assessment for Management plan, and FMEA (DFMEA, PFMEA).</li>
+            </ul>
+        </div>
+
+        <div class="section-header">
+            <h2>3. Responsibilities</h2>
+        </div>
+        <div class="content-block">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th width="30%">Role</th>
+                        <th>Responsibilities</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>3.1 Project Leader</strong></td>
+                        <td>Responsible for modifying this plan to include all required tests for the device that
+                            requires V/V.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3.2 Validation Manager</strong></td>
+                        <td>Responsible for reviewing the test data and the report. Coordinate with test team analysts
+                            for validation test.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3.3 Validation Analyst</strong></td>
+                        <td>Responsible for supporting/performing the test of the samples.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3.4 R&D Engineer</strong></td>
+                        <td>Responsible for reviewing the master plan.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3.5 R&D Manager</strong></td>
+                        <td>Responsible for approving the master plan and the protocol.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3.6 PD Production team</strong></td>
+                        <td>Responsible for arranging the production plan and preparing the validation samples;
+                            responsible for installation, set-up, and operation of manufacturing equipment for
+                            validation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3.7 RA team</strong></td>
+                        <td>Responsible for Supporting the validation process in meeting applicable regulatory
+                            standards.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3.8 QC team</strong></td>
+                        <td>Responsible for installation, set-up, and equipment acceptance of testing equipment for
+                            validation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3.9 QA manager</strong></td>
+                        <td>Responsible for reviewing the verification activities to ensure they meet the system
+                            requirements.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-header">
+            <h2>4. Project Team</h2>
+        </div>
+        <div class="content-block">
+            <p>The goal of this document is to clearly describe the overall V/VMP plan so that any Summed function
+                required to take on a test role can easily identify and contact the personnel involved in the project.
+            </p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>Name</th>
+                        <th>SUMMED Function</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Project Leader</td>
+                        <td>Linda He</td>
+                        <td>PM</td>
+                    </tr>
+                    <tr>
+                        <td>Validation Manager</td>
+                        <td>Linda Wang</td>
+                        <td>RD</td>
+                    </tr>
+                    <tr>
+                        <td>Test Designer</td>
+                        <td>Linda Wang</td>
+                        <td>RD</td>
+                    </tr>
+                    <tr>
+                        <td>Test Personnel</td>
+                        <td>Zoey Cai</td>
+                        <td>RD</td>
+                    </tr>
+                    <tr>
+                        <td>QA Representative</td>
+                        <td>Zen Yang</td>
+                        <td>QA</td>
+                    </tr>
+                    <tr>
+                        <td>Documentation Reviewers</td>
+                        <td>Grace Xue, Alex, Kevin Lo</td>
+                        <td>RD, RA, BD</td>
+                    </tr>
+                    <tr>
+                        <td>Regulatory Reviewers</td>
+                        <td>Grace Xue</td>
+                        <td>RA</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-header">
+            <h2>5. Tracking And Reporting Systems</h2>
+        </div>
+        <div class="content-block">
+            <p>If there is a test failure, an investigation shall be conducted and documented as part of the test
+                report. Justification must be provided in the test report if the results are still considered valid. If
+                the results of the investigation lead to a change in design, Document and Change Controls (QP01 and
+                QW-RD-03) shall be followed for documentation and traceability purposes.</p>
+        </div>
+
+        <div class="section-header">
+            <h2>6. Definitions</h2>
+        </div>
+        <div class="content-block">
+            <ul>
+                <li><strong>Design Validation:</strong> Establishing by objective evidence that device specifications
+                    conform to user needs and intended use(s). Completed under actual or simulated use conditions.</li>
+                <li><strong>Design Verification:</strong> Establishing by objective evidence confirming that the design
+                    output meets the design input requirements.</li>
+                <li><strong>Process Validation:</strong> Demonstrating that a process when operated within specified
+                    limits results in product complying with predetermined requirements.</li>
+                <li><strong>Tool/Equipment Validation:</strong> Process of checking that a tool or equipment meets
+                    specifications and fulfills its intended purpose.</li>
+            </ul>
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="section-header">
+            <h2>7. Product Overview & Assembly</h2>
+        </div>
+        <div class="content-block">
+            <h3>7.1 Product Overview</h3>
+            <p>Refer to 1ml PFS specification (100-005-URS-001) and Design Input Requirements.</p>
+            <h3>7.2 Intended Use</h3>
+            <p>Simject Auto-Injector is intended for use with epinephrine (pre-filled 0.3mL, 0.30mg/0.3mL) for
+                medication delivery (intramuscular injection). For single-patient use only.</p>
+            <h3>7.3 Assembly Process Description</h3>
+            <p>Front assembly refer to Assembly Flow Chart. Rear assembly flow chart refer to document QW-PD-08.</p>
+        </div>
+
+        <div class="section-header">
+            <h2>8. Testing Facility</h2>
+        </div>
+        <div class="content-block">
+            <p>The tests listed in this V/VMP will be conducted at SUMMED, located in Jia-Shan, China.</p>
+        </div>
+
+        <div class="section-header">
+            <h2>9. Relevant Standards/Regulations/References</h2>
+        </div>
+        <div class="content-block">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Classification</th>
+                        <th>No.</th>
+                        <th>Standard</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="4">China</td>
+                        <td>1</td>
+                        <td>GB/T 42061-2022</td>
+                        <td>Medical device QMS requirements for regulatory purposes</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>GB/T 42062-2022</td>
+                        <td>Application of risk management to medical devices</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>YY/T 1437-2023</td>
+                        <td>Guidance on the application of GB/T 42062</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>YY/T 0681.15-2019</td>
+                        <td>Sterile medical device packaging test methods - Part 15</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="7">International</td>
+                        <td>1</td>
+                        <td>ISO 13485:2016</td>
+                        <td>Medical devices - Quality management systems</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>ISO 14971:2019</td>
+                        <td>Application of risk management to medical devices</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>ISO/TR 24971:2020</td>
+                        <td>Guidance on the application of ISO 14971</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>ASTM F1980:2021</td>
+                        <td>Accelerated Aging of Sterile Barrier Systems</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>IEC 62366-1:2015</td>
+                        <td>Application of usability engineering to medical devices</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>ASTM D4169-23e1</td>
+                        <td>Performance Testing of Shipping Containers</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>ISO 11608-1:2022</td>
+                        <td>Needle-based injection systems - Part 1</td>
+                    </tr>
+                    <tr>
+                        <td>International</td>
+                        <td>8</td>
+                        <td>ISO 11608-5:2022</td>
+                        <td>Needle-based injection systems - Part 5: Automated functions</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="section-header">
+            <h2>10. Configuration</h2>
+        </div>
+        <div class="content-block">
+            <h3>10.1 Component List</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Part No.</th>
+                        <th>Part Name</th>
+                        <th>Material</th>
+                        <th>Drawing Reference</th>
+                        <th>SIP Reference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1M130AISI0010100</td>
+                        <td>Syringe Collar</td>
+                        <td>TPE 9066T</td>
+                        <td>Rev.1.0</td>
+                        <td>100-005-SIP-003</td>
+                    </tr>
+                    <tr>
+                        <td>1M112AISI1010200</td>
+                        <td>Syringe Carrier</td>
+                        <td>PC Lexan HF1130</td>
+                        <td>Rev.1.0</td>
+                        <td>100-005-SIP-004</td>
+                    </tr>
+                    <tr>
+                        <td>1M115AISI1040100</td>
+                        <td>Needle Cover</td>
+                        <td>PC-ABS C1200HF</td>
+                        <td>Rev.1.0</td>
+                        <td>100-005-SIP-005</td>
+                    </tr>
+                    <tr>
+                        <td>1M115AISI1010400</td>
+                        <td>Body</td>
+                        <td>PC+ABS C1200HF</td>
+                        <td>Rev.1.0</td>
+                        <td>100-005-SIP-006</td>
+                    </tr>
+                    <tr>
+                        <td>1M112AISI1040400</td>
+                        <td>Rear Cap</td>
+                        <td>PC Lexan HF1130</td>
+                        <td>Rev.1.0</td>
+                        <td>100-005-SIP-011</td>
+                    </tr>
+                    <tr>
+                        <td>1M131AISI1011000</td>
+                        <td>Plunger Rod</td>
+                        <td>POM FG500P</td>
+                        <td>Rev.1.0</td>
+                        <td>100-005-SIP-014</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>10.2 Package Parts</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Part Name</th>
+                        <th>Material</th>
+                        <th>SIP Reference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tray (Front Sub-assembly)</td>
+                        <td>PET</td>
+                        <td>100-005-SIP-018</td>
+                    </tr>
+                    <tr>
+                        <td>Carton</td>
+                        <td>Corrugated Paper</td>
+                        <td>100-005-SIP-022</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>10.3 Accessory List</h3>
+            <p>1. Prefilled Syringe (PFS) | Glass/silicone rubber | 1mL</p>
+            <h3>10.4 Equipment Qualification</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Equipment Name</th>
+                        <th>Model</th>
+                        <th>Status</th>
+                        <th>Expiry</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Simject Dedicated Tester</td>
+                        <td>23089-JX-SM</td>
+                        <td>Qualified</td>
+                        <td>2026.05.06</td>
+                    </tr>
+                    <tr>
+                        <td>Temp & Humidity Chamber</td>
+                        <td>STH1040A</td>
+                        <td>Qualified</td>
+                        <td>2026.02.17</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-header">
+            <h2>11. Design Verification/Validation</h2>
+        </div>
+        <div class="content-block">
+            <h3>11.1 Tools Verification/Validation</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Tool Name</th>
+                        <th>Description</th>
+                        <th>Dept</th>
+                        <th>Protocol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Assembly Fixture (Front)</td>
+                        <td>Manual assembly fixture for Front & PFS</td>
+                        <td>RD</td>
+                        <td>000-000-FVP-001</td>
+                    </tr>
+                    <tr>
+                        <td>Assembly Fixture (Final)</td>
+                        <td>Manual assembly fixture for Front & Rear</td>
+                        <td>RD</td>
+                        <td>000-000-FVP-001</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>11.2 Process/Testing Equipment V/V</h3>
+            <p>All equipment and processes are validated via IQ/OQ/PQ protocols (e.g., EVP-JS-SC-24-010 to 012).</p>
+
+            <h3>11.3 Verification/Validation Test Matrix</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Test Item</th>
+                        <th>Sample Quantity</th>
+                        <th>Total Samples</th>
+                        <th>Time (Days)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Functional Testing</td>
+                        <td>30</td>
+                        <td rowspan="5">2520</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Reliability Testing</td>
+                        <td>70</td>
+                        <td>40</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Stability testing</td>
+                        <td>1800</td>
+                        <td>932</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Biocompatibility</td>
+                        <td>60</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Marking/Labelling/IFU</td>
+                        <td>/</td>
+                        <td>7</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>11.4 Executive Summary</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>V/V Test items</th>
+                        <th>Test Method</th>
+                        <th>Test Criteria</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dose Accuracy</td>
+                        <td>100-005-TIS-023</td>
+                        <td>0.27 < Injection volume < 0.34mL</td>
+                    </tr>
+                    <tr>
+                        <td>Needle Extension</td>
+                        <td>100-005-TIS-023</td>
+                        <td>15.24mm (±2.54mm)</td>
+                    </tr>
+                    <tr>
+                        <td>Cap Removal Force</td>
+                        <td>100-005-TIS-023</td>
+                        <td>5-35 N</td>
+                    </tr>
+                    <tr>
+                        <td>Activation Force</td>
+                        <td>100-005-TIS-023</td>
+                        <td>5-25 N</td>
+                    </tr>
+                    <tr>
+                        <td>Injection Time</td>
+                        <td>100-005-TIS-023</td>
+                        <td>≤ 2 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>Transportation Reliability</td>
+                        <td>ASTM D4169-23e1</td>
+                        <td>Packaging complete and undamaged</td>
+                    </tr>
+                    <tr>
+                        <td>Stability (Accelerated)</td>
+                        <td>ASTM F1980-2021</td>
+                        <td>Meet basic functional requirements</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-header">
+            <h2>12. Schedule And Resources</h2>
+        </div>
+        <div class="content-block">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Project Phase</th>
+                        <th>V/V Test</th>
+                        <th>Responsible Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Planning</td>
+                        <td>URS / Market Evaluation</td>
+                        <td>BD/RD/PM/RA</td>
+                    </tr>
+                    <tr>
+                        <td>Design Input</td>
+                        <td>DIR / DD Plan</td>
+                        <td>RD/PM/RA</td>
+                    </tr>
+                    <tr>
+                        <td>Design Output</td>
+                        <td>Metal parts validation</td>
+                        <td>RD/QC/PM</td>
+                    </tr>
+                    <tr>
+                        <td>D V/V</td>
+                        <td>Tool / Equipment Validation</td>
+                        <td>PD/QC/RD</td>
+                    </tr>
+                    <tr>
+                        <td>D V/V</td>
+                        <td>Design verification and Validation Test</td>
+                        <td>RD/PM</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-header">
+            <h2>13. V/VMP Plan Review</h2>
+        </div>
+        <div class="content-block">
+            <p>This master plan shall be reviewed by the Project Leader, R&D Engineer, QA Engineer/Manager, RA
+                Engineer/Manager, and customer representative. It must be approved by the R&D Manager.</p>
+        </div>
+
+        <!-- Signature Table -->
+        <table class="signature-table">
+            <tr>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">/s/ Zoey Cai</div>
+                        <div class="signature-title">QC Operator</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Prepared by</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">/s/ Grace Xue</div>
+                        <div class="signature-title">RA Director</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Reviewed by</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">/s/ Kevin Lo</div>
+                        <div class="signature-title">RD Director</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Approved by</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="footer">
+            <p>Data Integrity Statement: This digital signature is the legally binding equivalent of a traditional
+                handwritten signature.</p>
+            <p>Summed Medtech 森迈医疗 | Document No.: 100-005-DVP-001 | Revision: 1.0 | Effective Date: 2025.11.27</p>
+        </div>
+
+    </div>
+</body>
+
+</html>

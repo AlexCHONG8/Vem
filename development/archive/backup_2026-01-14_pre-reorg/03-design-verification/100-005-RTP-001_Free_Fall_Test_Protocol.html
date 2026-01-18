@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fall Test Protocol - 100-005-RTP-001</title>
+    <link rel="stylesheet" href="../../assets/css/summed-medtech-docs.css">
+</head>
+
+<body>
+    <div class="a4-container">
+        <div class="header-section">
+            <img src="../../assets/images/Summed logo.png" alt="Summed Medtech 森迈医疗" class="company-logo"
+                style="width: 80% !important; max-width: 300px !important; height: auto !important;">
+            <div class="document-meta">
+                <div><strong>Document No.:</strong> 100-005-RTP-001</div>
+                <div><strong>Revision:</strong> 1.0</div>
+            </div>
+        </div>
+
+        <h1>Free Fall Test Protocol (RTP)</h1>
+
+        <table class="doc-info-table">
+            <tr>
+                <td width="25%"><strong>Project Name:</strong></td>
+                <td colspan="3">Simject-030 Epinephrine Pharma Bridge (Adult) Project</td>
+            </tr>
+            <tr>
+                <td><strong>Project Code:</strong></td>
+                <td>SM100-005</td>
+                <td><strong>Product Model:</strong></td>
+                <td>AISI104</td>
+            </tr>
+        </table>
+
+        <table class="signature-table">
+            <tr>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">Zoey Cai</div>
+                        <div class="signature-title">R&D Department (Prepared by)</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Prepared by</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">YC Zheng</div>
+                        <div class="signature-title">Document Control Center</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Reviewed by</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="signature-block">
+                        <div class="signature-name">Logan Zhao</div>
+                        <div class="signature-title">R&D Department</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Reviewed by</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="signature-block">
+                        <div class="signature-name">Kevin Lo</div>
+                        <div class="signature-title">R&D Department (Approved by)</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Approved by</div>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>Table of Contents</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th width="10%">Section</th>
+                    <th width="60%">Title</th>
+                    <th width="15%">Page</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Table of Contents</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Purpose</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Scope</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Responsibilities</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>References</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Definitions</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Sample Information</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Auto-Injector Assembly</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>8.1</td>
+                    <td>Product Test Flow Diagram</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Content</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>9.1</td>
+                    <td>Product Overview</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>9.2</td>
+                    <td>Test Fixtures</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>9.3</td>
+                    <td>Test Equipment</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>9.4</td>
+                    <td>Validation Procedure</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>9.5</td>
+                    <td>Functional Testing</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>9.6</td>
+                    <td>Acceptance Criteria</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>9.7</td>
+                    <td>Validation Report</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Appendix</td>
+                    <td>8</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>2. Purpose</h2>
+        <p>To verify that Simject series - Epinephrine Pharma Bridge (Adult) project products maintain performance
+            compliance after free fall testing.</p>
+
+        <h2>3. Scope</h2>
+        <p>This protocol applies to free fall testing for Simject series - Epinephrine Pharma Bridge (Adult) project.
+        </p>
+
+        <h2>4. Responsibilities</h2>
+        <p><strong>4.1.</strong> Analyst: Responsible for drafting this protocol, completing testing according to the
+            protocol, and issuing test reports.</p>
+        <p><strong>4.2.</strong> R&D Engineer: Responsible for reviewing this protocol.</p>
+        <p><strong>4.3.</strong> R&D Director: Responsible for approving this protocol.</p>
+
+        <h2>5. References</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th width="10%">No.</th>
+                    <th width="30%">Standard</th>
+                    <th width="60%">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>YY/T 1768.1-2021</td>
+                    <td>Needle-based injection systems for medical use - Requirements and test methods - Part 1:
+                        Needle-based injection systems</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>ISO 11608-1:2022</td>
+                    <td>Needle-based injection systems for medical use - Requirements and test methods - Part 1:
+                        Needle-based injection systems</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>6. Definitions</h2>
+        <ul>
+            <li><strong>Container:</strong> Primary packaging containing injection drug (single-chamber or
+                multi-chamber)
+            </li>
+        </ul>
+
+        <div class="page-break"></div>
+
+        <h2>7. Sample Information</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th width="35%">Sample Name</th>
+                    <th width="35%">Sample Model</th>
+                    <th width="30%">Batch No.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Front Component</td>
+                    <td>AISI104F0</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Rear Component</td>
+                    <td>AISI104R0</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Pre-filled Syringe (PFS)</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>8. Auto-Injector Assembly</h2>
+        <p>Assemble front component, rear component, and PFS according to "000-000-TIS-001 Lisa & Lucy Manual Final
+            Assembly
+            Fixture Test Instruction V1.0" to obtain finished auto-injectors.</p>
+
+        <h3>8.1. Product Test Flow Diagram</h3>
+        <div class="figure-container">
+            <img src="../../assets/images/free_fall_testing_flowchart_en.png" alt="Free Fall Test Flowchart"
+                style="max-width: 48%; height: auto; border: none; padding: 10px;">
+            <p class="figure-caption">Figure 8-1: Free Fall Test and Performance Testing Flowchart</p>
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2>9. Content</h2>
+
+        <h3>9.1. Product Overview</h3>
+        <p>Refer to Design Input Requirement (DIR), Document No.: 0df6edb6-13db-4769-89be-2fad4dd4a821.docx</p>
+
+        <h3>9.2. Test Fixtures</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th width="35%">Fixture No.</th>
+                    <th width="65%">Fixture Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>JS-JJ-24-022</td>
+                    <td>Lisa & Lucy front component and PFS manual final assembly fixture</td>
+                </tr>
+                <tr>
+                    <td>JS-JJ-24-023</td>
+                    <td>Lisa & Lucy front component and rear component manual final assembly fixture</td>
+                </tr>
+                <tr>
+                    <td>JS-JJ-25-001</td>
+                    <td>Free fall test stand</td>
+                </tr>
+                <tr>
+                    <td>JS-JJ-23-018</td>
+                    <td>Free fall test box</td>
+                </tr>
+                <tr>
+                    <td>JS-JJ-24-019</td>
+                    <td>Simject series sharps injury protection fixture</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h3>9.3. Test Equipment</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th width="20%">Equipment No.</th>
+                    <th width="30%">Equipment Name</th>
+                    <th width="20%">Model</th>
+                    <th width="15%">Calibration Valid Until</th>
+                    <th width="15%">Calibration Report</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>JS-JC-24-005</td>
+                    <td>Simject auto-injector testing equipment</td>
+                    <td>Simject</td>
+                    <td>2026.05.12</td>
+                    <td>EVR-JS-JC-25-001</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>9.4. Validation Procedure</h3>
+
+        <h4>9.4.1. Environmental Conditions</h4>
+        <p>Test laboratory temperature and humidity must be controlled within 25 ± 3°C and 55 ± 20% RH range.</p>
+
+        <h4>9.4.2. Free Fall Preconditioning</h4>
+        <p><strong>9.4.2.1.</strong> Use auto-injectors assembled per Section 8 for free fall preconditioning. Note that
+            before free fall preconditioning, the injector cap should never have been removed, maintaining a tightly
+            closed
+            state.</p>
+
+        <p><strong>9.4.2.2.</strong> Drop injectors from 1000 mm (1 m) height onto the inner surface of the "free fall
+            test
+            box" in the following three drop orientations:</p>
+
+        <p><strong>9.4.2.2.1.</strong> <strong>Horizontal orientation:</strong> Drop 10 new injectors in an undisturbed
+            manner. If container breakage is easily observed, do not proceed to next test. Determine as test failure.
+        </p>
+
+        <p><strong>9.4.2.2.2.</strong> <strong>Vertical orientation (rear cap downward):</strong> Drop 10 new injectors
+            in
+            an undisturbed manner with rear cap facing downward. If container breakage is easily observed, the system
+            shall
+            not proceed to next test. Determine as test failure.</p>
+
+        <p><strong>9.4.2.2.3.</strong> <strong>Vertical orientation (cap downward):</strong> Drop 10 new injectors in an
+            undisturbed manner with cap facing downward. If container breakage is easily observed, the system shall not
+            proceed to next test. Determine as test failure.</p>
+
+        <p><strong>9.4.2.3.</strong> Each test orientation allows up to three obvious container fractures, otherwise
+            determine as test failure.</p>
+
+        <p><strong>9.4.2.4.</strong> For each orientation, a total of 10 injectors are dropped, totaling 30 injectors
+            across
+            all orientations.</p>
+
+        <div class="page-break"></div>
+
+        <h3>9.5. Functional Testing</h3>
+        <p>Perform functional testing on the 30 injectors that underwent free fall preconditioning according to
+            100-005-TIS-023 (V1.0) functional test method.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th width="5%">No.</th>
+                    <th width="50%">Test Item</th>
+                    <th width="45%">Test Method</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Dose accuracy</td>
+                    <td rowspan="10">100-005-TIS-023 (V1.0)</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Needle extension length (during injection)</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Cap removal force</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Injection activation force (pressing needle shield)</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Injection time for 0.3 mL dose</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Drug visibility before use</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Post-injection needle shield lockout force</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Device status indication</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Needle shielding</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Injection start audible prompt</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Sharps injury protection</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h3>9.6. Acceptance Criteria</h3>
+        <p><strong>9.6.1.</strong> If complete container breakage is easily observed in any test orientation, determine
+            as
+            test failure.</p>
+        <p><strong>9.6.2.</strong> Each test orientation allows up to three obvious container fractures, otherwise
+            determine
+            as test failure.</p>
+        <p><strong>9.6.3.</strong> Functional test results of auto-injectors after dropping shall meet the standard
+            requirements in the following table:</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th width="5%">No.</th>
+                    <th width="30%">Test Item</th>
+                    <th width="65%">Acceptance Criteria</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Dose accuracy</td>
+                    <td>0.27 &lt; injection volume &lt; 0.34 mL</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Needle extension length (during injection)</td>
+                    <td>0.6 in (±0.1 in) / 15.24 mm (±2.54 mm)</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Cap removal force</td>
+                    <td>5-35 N</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Injection activation force (pressing needle shield)</td>
+                    <td>5-25 N</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Injection time for 0.3 mL dose</td>
+                    <td>≤ 2 seconds</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Drug visibility before use</td>
+                    <td>Window clearly identifiable</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Post-injection needle shield lockout force</td>
+                    <td>&gt;50 N</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Device status indication</td>
+                    <td>PFS plunger visible at window after injection</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Needle shielding</td>
+                    <td>When injector contacts test surface, needle is not visually visible; when injector does not
+                        contact
+                        test surface, needle does not protrude</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Injection start audible prompt</td>
+                    <td>Measured at 30 cm from device, loudness ≥ 60 dB</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Sharps injury protection</td>
+                    <td>ISO 23908-2024 Appendix test method</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h3>9.7. Validation Report</h3>
+        <p><strong>9.7.1.</strong> Report shall contain detailed information of used auto-injectors and PFS, including
+            model, batch number, quantity, etc.</p>
+        <p><strong>9.7.2.</strong> Report shall specify the specific process and detailed data of free fall
+            preconditioning
+            and functional testing.</p>
+        <p><strong>9.7.3.</strong> Report shall include result determination for free fall testing. If testing fails,
+            re-testing shall be performed until passed. Each testing process and result shall be recorded and described
+            in
+            detail in the report.</p>
+
+        <div class="page-break"></div>
+
+        <h2>10. Appendix</h2>
+
+        <!-- Section 10: Appendix - Drop Orientations -->
+        <!-- Row 1: Horizontal Orientation (Slightly larger scale per feedback) -->
+        <div style="display: flex; justify-content: center; margin: 20px 0 40px 0;">
+            <div class="figure-container" style="text-align: center; margin: 0;">
+                <img src="../../assets/images/100-005-RTP-10a.png" alt="Horizontal drop orientation"
+                    style="width: 350px !important; height: auto !important; border: 1px solid #ccc;">
+                <p style="font-size: 9pt; color: #666; margin-top: 8px;">Figure 10-1: Horizontal drop orientation</p>
+            </div>
+        </div>
+
+        <!-- Row 2: Vertical Orientations -->
+        <div style="display: flex; justify-content: center; align-items: flex-start; gap: 60px; margin: 20px 0;">
+            <div class="figure-container" style="text-align: center; margin: 0;">
+                <img src="../../assets/images/100-005-RTP-10b.png" alt="Vertical cap-down drop orientation"
+                    style="height: 300px !important; width: auto !important; border: 1px solid #ccc;">
+                <p style="font-size: 9pt; color: #666; margin-top: 8px;">Figure 10-2: Vertical cap-down orientation</p>
+            </div>
+            <div class="figure-container" style="text-align: center; margin: 0;">
+                <img src="../../assets/images/100-005-RTP-10c.png" alt="Vertical rear cap-down drop orientation"
+                    style="height: 300px !important; width: auto !important; border: 1px solid #ccc;">
+                <p style="font-size: 9pt; color: #666; margin-top: 8px;">Figure 10-3: Vertical rear cap-down orientation
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Summed Medtech 森迈医疗 | Document No.: 100-005-RTP-001 | Revision: 1.0</p>
+        </div>
+    </div>
+</body>
+
+</html>
